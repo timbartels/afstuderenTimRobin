@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
+		2D01162A1DD1FE8E00324B9C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116291DD1FE8E00324B9C /* GameScene.sks */; };
+		2D01162C1DD1FE8E00324B9C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D01162B1DD1FE8E00324B9C /* Actions.sks */; };
+		2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162D1DD1FE8E00324B9C /* GameScene.swift */; };
+		2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162F1DD1FE8E00324B9C /* GameViewController.swift */; };
+		2D0116331DD1FE8E00324B9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116311DD1FE8E00324B9C /* Main.storyboard */; };
+		2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116341DD1FE8E00324B9C /* Assets.xcassets */; };
+		2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */; };
+		2D0116431DD1FE8E00324B9C /* codeKlojoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2D01163F1DD1FE8E00324B9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D01161C1DD1FE8E00324B9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D0116231DD1FE8E00324B9C;
+			remoteInfo = codeKlojo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2D0116291DD1FE8E00324B9C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2D01162B1DD1FE8E00324B9C /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		2D01162D1DD1FE8E00324B9C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		2D01162F1DD1FE8E00324B9C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2D0116321DD1FE8E00324B9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2D0116341DD1FE8E00324B9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D0116371DD1FE8E00324B9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2D0116391DD1FE8E00324B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D01163E1DD1FE8E00324B9C /* codeKlojoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = codeKlojoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeKlojoTests.swift; sourceTree = "<group>"; };
+		2D0116441DD1FE8E00324B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D0116211DD1FE8E00324B9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D01163B1DD1FE8E00324B9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D01161B1DD1FE8E00324B9C = {
+			isa = PBXGroup;
+			children = (
+				2D0116261DD1FE8E00324B9C /* codeKlojo */,
+				2D0116411DD1FE8E00324B9C /* codeKlojoTests */,
+				2D0116251DD1FE8E00324B9C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D0116251DD1FE8E00324B9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D0116241DD1FE8E00324B9C /* codeKlojo.app */,
+				2D01163E1DD1FE8E00324B9C /* codeKlojoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D0116261DD1FE8E00324B9C /* codeKlojo */ = {
+			isa = PBXGroup;
+			children = (
+				2D0116271DD1FE8E00324B9C /* AppDelegate.swift */,
+				2D0116291DD1FE8E00324B9C /* GameScene.sks */,
+				2D01162B1DD1FE8E00324B9C /* Actions.sks */,
+				2D01162D1DD1FE8E00324B9C /* GameScene.swift */,
+				2D01162F1DD1FE8E00324B9C /* GameViewController.swift */,
+				2D0116311DD1FE8E00324B9C /* Main.storyboard */,
+				2D0116341DD1FE8E00324B9C /* Assets.xcassets */,
+				2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */,
+				2D0116391DD1FE8E00324B9C /* Info.plist */,
+			);
+			path = codeKlojo;
+			sourceTree = "<group>";
+		};
+		2D0116411DD1FE8E00324B9C /* codeKlojoTests */ = {
+			isa = PBXGroup;
+			children = (
+				2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */,
+				2D0116441DD1FE8E00324B9C /* Info.plist */,
+			);
+			path = codeKlojoTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D0116231DD1FE8E00324B9C /* codeKlojo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D0116471DD1FE8E00324B9C /* Build configuration list for PBXNativeTarget "codeKlojo" */;
+			buildPhases = (
+				2D0116201DD1FE8E00324B9C /* Sources */,
+				2D0116211DD1FE8E00324B9C /* Frameworks */,
+				2D0116221DD1FE8E00324B9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = codeKlojo;
+			productName = codeKlojo;
+			productReference = 2D0116241DD1FE8E00324B9C /* codeKlojo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D01163D1DD1FE8E00324B9C /* codeKlojoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D01164A1DD1FE8E00324B9C /* Build configuration list for PBXNativeTarget "codeKlojoTests" */;
+			buildPhases = (
+				2D01163A1DD1FE8E00324B9C /* Sources */,
+				2D01163B1DD1FE8E00324B9C /* Frameworks */,
+				2D01163C1DD1FE8E00324B9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D0116401DD1FE8E00324B9C /* PBXTargetDependency */,
+			);
+			name = codeKlojoTests;
+			productName = codeKlojoTests;
+			productReference = 2D01163E1DD1FE8E00324B9C /* codeKlojoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D01161C1DD1FE8E00324B9C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Tim Bartels";
+				TargetAttributes = {
+					2D0116231DD1FE8E00324B9C = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					2D01163D1DD1FE8E00324B9C = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2D0116231DD1FE8E00324B9C;
+					};
+				};
+			};
+			buildConfigurationList = 2D01161F1DD1FE8E00324B9C /* Build configuration list for PBXProject "codeKlojo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2D01161B1DD1FE8E00324B9C;
+			productRefGroup = 2D0116251DD1FE8E00324B9C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D0116231DD1FE8E00324B9C /* codeKlojo */,
+				2D01163D1DD1FE8E00324B9C /* codeKlojoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D0116221DD1FE8E00324B9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D0116331DD1FE8E00324B9C /* Main.storyboard in Resources */,
+				2D01162A1DD1FE8E00324B9C /* GameScene.sks in Resources */,
+				2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */,
+				2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */,
+				2D01162C1DD1FE8E00324B9C /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D01163C1DD1FE8E00324B9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D0116201DD1FE8E00324B9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */,
+				2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */,
+				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D01163A1DD1FE8E00324B9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D0116431DD1FE8E00324B9C /* codeKlojoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2D0116401DD1FE8E00324B9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D0116231DD1FE8E00324B9C /* codeKlojo */;
+			targetProxy = 2D01163F1DD1FE8E00324B9C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2D0116311DD1FE8E00324B9C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D0116321DD1FE8E00324B9C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D0116371DD1FE8E00324B9C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2D0116451DD1FE8E00324B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2D0116461DD1FE8E00324B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2D0116481DD1FE8E00324B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = codeKlojo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.TimBartels.codeKlojo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		2D0116491DD1FE8E00324B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = codeKlojo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.TimBartels.codeKlojo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2D01164B1DD1FE8E00324B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = codeKlojoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.TimBartels.codeKlojoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/codeKlojo.app/codeKlojo";
+			};
+			name = Debug;
+		};
+		2D01164C1DD1FE8E00324B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = codeKlojoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.TimBartels.codeKlojoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/codeKlojo.app/codeKlojo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D01161F1DD1FE8E00324B9C /* Build configuration list for PBXProject "codeKlojo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D0116451DD1FE8E00324B9C /* Debug */,
+				2D0116461DD1FE8E00324B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D0116471DD1FE8E00324B9C /* Build configuration list for PBXNativeTarget "codeKlojo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D0116481DD1FE8E00324B9C /* Debug */,
+				2D0116491DD1FE8E00324B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2D01164A1DD1FE8E00324B9C /* Build configuration list for PBXNativeTarget "codeKlojoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D01164B1DD1FE8E00324B9C /* Debug */,
+				2D01164C1DD1FE8E00324B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2D01161C1DD1FE8E00324B9C /* Project object */;
+}
