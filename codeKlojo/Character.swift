@@ -18,7 +18,7 @@ class Character: SKSpriteNode {
         self.position = CGPoint(x: -100, y: 100)
         self.physicsBody = SKPhysicsBody()
         if let physics = self.physicsBody {
-            physics.affectedByGravity = false
+            physics.affectedByGravity = true
             physics.allowsRotation = true
             physics.isDynamic = true;
             physics.linearDamping = 5.75

@@ -9,9 +9,10 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let player = Character(imageNamed: "player_assets")
+    var level = Level(rectOf: CGSize(width: 300, height: 100))
     let background = Background(imageNamed: "background")
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
@@ -32,6 +33,8 @@ class GameScene: SKScene {
         self.camera = cam
         background.load()
         addChild(background)
+        level.loadFloor()
+        self.addChild(level)
         player.load()
         addChild(player)
         buttons.loadButtonRight(button: buttonRight)
