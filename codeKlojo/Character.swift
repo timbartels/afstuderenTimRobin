@@ -11,10 +11,11 @@ import SpriteKit
 
 class Character: SKSpriteNode {
     var characterWalkingFrames : [SKTexture]!
+    var charSize = CGFloat(0.18)
     func load() {
-        self.setScale(1)
+        self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
-        self.position = CGPoint(x: -100, y: 0)
+        self.position = CGPoint(x: -100, y: 100)
         self.physicsBody = SKPhysicsBody()
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
@@ -27,11 +28,11 @@ class Character: SKSpriteNode {
     
     func moveRight(){
         self.position.x += 50.0
-        self.xScale = 1
+        self.xScale = (charSize)
     }
     func moveLeft(){
         self.position.x -= 50.0
-        self.xScale = -1
+        self.xScale = -(charSize)
     }
 
 }

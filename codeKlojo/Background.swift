@@ -13,7 +13,13 @@ class Background:SKSpriteNode {
     func load(){
         self.anchorPoint = CGPoint(x: 1,y: 0)
         self.position = CGPoint(x: 0, y: 0)
-        self.size = frame.size
+        
+        // Dit moet nog ff anders
+        let bounds = UIScreen.main.bounds
+        let height = bounds.size.height
+        self.size.height = height
+        
+        print(height)
         self.zPosition = -99
     }
 }

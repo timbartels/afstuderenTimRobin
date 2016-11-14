@@ -14,16 +14,26 @@ class Buttons{
     var buttonStateL = false
     
     func loadButtonRight(button: UIButton) {
-        button.setTitle("\u{27A1}", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.frame = CGRect(x: 150, y: 600, width: 50, height: 50)
+        let bounds = UIScreen.main.bounds
+        let height = bounds.size.height
+        let image = UIImage(named: "button") as UIImage?
+        
+        button.setImage(image, for: .normal)
+        button.frame = CGRect(x: 150, y: height-100, width: 80, height: 80)
+        button.alpha = 0.5
+        button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
+        
         button.addTarget(self, action: #selector(ButtonDownR), for: .touchDown)
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpInside)
     }
     func loadButtonLeft(button: UIButton) {
-        button.setTitle("\u{2B05}", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.frame = CGRect(x: 50, y: 600, width: 50, height: 50)
+        let bounds = UIScreen.main.bounds
+        let height = bounds.size.height
+        let image = UIImage(named: "button") as UIImage?
+        
+        button.setImage(image, for: .normal)
+        button.frame = CGRect(x: 50, y: height-100, width: 80, height: 80)
+        button.alpha = 0.5
         button.addTarget(self, action: #selector(ButtonDownL), for: .touchDown)
         button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpInside)
     }

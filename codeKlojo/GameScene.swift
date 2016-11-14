@@ -75,6 +75,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: CFTimeInterval) {
         
         cam.position = player.position
+        cam.position.y += (self.frame.height/2)-100
         if (buttons.buttonStateR == true){
             player.moveRight()
         }
