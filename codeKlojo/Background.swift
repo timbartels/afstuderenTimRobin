@@ -14,9 +14,7 @@ class Background:SKSpriteNode {
     func load(){
         self.anchorPoint = CGPoint(x: 1,y: 0)
         self.position = CGPoint(x: 0, y: 0)
-        
         self.size.height = repsonsive.getHeightScreen()
-        
         self.zPosition = -99
     }
 }

@@ -12,10 +12,11 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let player = Character(imageNamed: "player_assets")
-    var level = Level(rectOf: CGSize(width: 300, height: 100))
+    var level = Level(rectOf: CGSize(width: 4000, height: 0))
     let background = Background(imageNamed: "background")
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
+    let buttonUp = UIButton()
     let buttons = Buttons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -30,7 +31,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
  
     override func didMove(to view: SKView) {
-        
         self.camera = cam
         background.load()
         addChild(background)
@@ -39,9 +39,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.load()
         addChild(player)
         buttons.loadButtonRight(button: buttonRight)
+        buttons.loadButtonUp(button: buttonUp)
         buttons.loadButtonLeft(button: buttonLeft)
         view.addSubview(buttonLeft)
         view.addSubview(buttonRight)
+        view.addSubview(buttonUp)
         
     }
     
@@ -83,7 +85,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (buttons.buttonStateR == true){
             player.moveRight()
         }
+        if (buttons.buttonStateU == true){
+            player.jump()
+            buttons.buttonStateU = false
+        }
 
+        
         if (buttons.buttonStateL == true){
             player.moveLeft()
         }

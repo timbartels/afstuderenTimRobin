@@ -18,5 +18,12 @@ class Responsive{
     func getHeightScreen() -> CGFloat {
         return setHeightScreen(bounds: bounds)
     }
+    func setWidthScreen(bounds: CGRect) -> CGFloat{
+        let width = bounds.size.width
+        return width
+    }
+    func getWidthScreen() -> CGFloat {
+        return setWidthScreen(bounds: bounds)
+    }
     
 }

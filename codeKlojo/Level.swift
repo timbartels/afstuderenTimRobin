@@ -11,10 +11,11 @@ import SpriteKit
 
 class Level:SKShapeNode{
     func loadFloor() {
-        self.lineWidth = 5
         self.physicsBody = SKPhysicsBody(edgeChainFrom: self.path!)
-        self.physicsBody?.restitution = 0.75
+        self.physicsBody?.restitution = 0
         self.physicsBody?.isDynamic = false
+        self.position = CGPoint(x: -2000, y: 50)
+        self.alpha = 0
         
     }
 }
