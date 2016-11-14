@@ -1,0 +1,37 @@
+//
+//  Character.swift
+//  codeKlojo
+//
+//  Created by Tim Bartels on 10-11-16.
+//  Copyright © 2016 Tim Bartels. All rights reserved.
+//
+
+import Foundation
+import SpriteKit
+
+class Character: SKSpriteNode {
+    var characterWalkingFrames : [SKTexture]!
+    func load() {
+        self.setScale(1)
+        self.anchorPoint = CGPoint(x: 0.5,y: 0)
+        self.position = CGPoint(x: -100, y: 0)
+        self.physicsBody = SKPhysicsBody()
+        if let physics = self.physicsBody {
+            physics.affectedByGravity = false
+            physics.allowsRotation = true
+            physics.isDynamic = true;
+            physics.linearDamping = 5.75
+            physics.angularDamping = 100.75
+        }
+    }
+    
+    func moveRight(){
+        self.position.x += 50.0
+        self.xScale = 1
+    }
+    func moveLeft(){
+        self.position.x -= 50.0
+        self.xScale = -1
+    }
+
+}
