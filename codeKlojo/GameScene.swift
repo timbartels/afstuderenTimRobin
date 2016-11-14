@@ -30,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
  
     override func didMove(to view: SKView) {
+        
         self.camera = cam
         background.load()
         addChild(background)

@@ -20,6 +20,7 @@
 		2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBB1DD46D2700B5116E /* Character.swift */; };
 		2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */; };
 		2D5E7CC31DD4820200B5116E /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CC21DD4820200B5116E /* Background.swift */; };
+		2DB7F1031DD9E64000AACB19 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7F1021DD9E64000AACB19 /* Level.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		2D5E7CBB1DD46D2700B5116E /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerButtons.swift; sourceTree = "<group>"; };
 		2D5E7CC21DD4820200B5116E /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		2DB7F1021DD9E64000AACB19 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				2D5E7CBB1DD46D2700B5116E /* Character.swift */,
 				2D337F011DD9D10900F4AFE7 /* Responsive.swift */,
+				2DB7F1021DD9E64000AACB19 /* Level.swift */,
 				2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */,
 				2D5E7CC21DD4820200B5116E /* Background.swift */,
 			);
@@ -237,6 +240,7 @@
 				2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */,
 				2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */,
 				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
+				2DB7F1031DD9E64000AACB19 /* Level.swift in Sources */,
 				2D5E7CC31DD4820200B5116E /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
