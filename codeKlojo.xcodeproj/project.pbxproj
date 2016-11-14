@@ -16,10 +16,10 @@
 		2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116341DD1FE8E00324B9C /* Assets.xcassets */; };
 		2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */; };
 		2D0116431DD1FE8E00324B9C /* codeKlojoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */; };
+		2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D337F011DD9D10900F4AFE7 /* Responsive.swift */; };
 		2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBB1DD46D2700B5116E /* Character.swift */; };
 		2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */; };
 		2D5E7CC31DD4820200B5116E /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CC21DD4820200B5116E /* Background.swift */; };
-		2D5E7CC51DD4894C00B5116E /* walking.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2D5E7CC41DD4894C00B5116E /* walking.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +46,10 @@
 		2D01163E1DD1FE8E00324B9C /* codeKlojoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = codeKlojoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeKlojoTests.swift; sourceTree = "<group>"; };
 		2D0116441DD1FE8E00324B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D337F011DD9D10900F4AFE7 /* Responsive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responsive.swift; sourceTree = "<group>"; };
 		2D5E7CBB1DD46D2700B5116E /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerButtons.swift; sourceTree = "<group>"; };
 		2D5E7CC21DD4820200B5116E /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
-		2D5E7CC41DD4894C00B5116E /* walking.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = walking.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,6 @@
 				2D0116341DD1FE8E00324B9C /* Assets.xcassets */,
 				2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */,
 				2D0116391DD1FE8E00324B9C /* Info.plist */,
-				2D5E7CC41DD4894C00B5116E /* walking.atlas */,
 			);
 			path = codeKlojo;
 			sourceTree = "<group>";
@@ -119,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2D5E7CBB1DD46D2700B5116E /* Character.swift */,
+				2D337F011DD9D10900F4AFE7 /* Responsive.swift */,
 				2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */,
 				2D5E7CC21DD4820200B5116E /* Background.swift */,
 			);
@@ -210,7 +210,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D0116331DD1FE8E00324B9C /* Main.storyboard in Resources */,
-				2D5E7CC51DD4894C00B5116E /* walking.atlas in Resources */,
 				2D01162A1DD1FE8E00324B9C /* GameScene.sks in Resources */,
 				2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */,
 				2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */,
@@ -234,6 +233,7 @@
 			files = (
 				2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */,
 				2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */,
+				2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */,
 				2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */,
 				2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */,
 				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
