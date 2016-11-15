@@ -83,8 +83,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cam.position = player.position
         cam.position.y += (self.frame.height/2)-100
         if (buttons.buttonStateR == true){
-            player.animateMove()
             player.moveRight()
+            print("ButtonR = true")
+            player.animateMove()
         }
         if (buttons.buttonStateU == true){
             player.jump()
@@ -92,8 +93,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if (buttons.buttonStateL == true){
-            player.animateMove()
             player.moveLeft()
+            print("ButtonL = true")
+            player.animateMove()
         }
         // Called before each frame is rendered
         

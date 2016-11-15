@@ -31,19 +31,20 @@ class Character: SKSpriteNode {
             let i = SKTexture.init(imageNamed: "movement\(i)")
             frames.append(i)
         }
-        print(frames)
+       
         let animation = SKAction.animate(with: frames, timePerFrame: 0.05)
         self.run(SKAction.repeatForever(animation))
+        print("lopen")
     }
     
     func moveRight(){
-        self.animateMove()
+        //self.animateMove()
         let moveRightAction = SKAction.moveBy(x: 10, y:0, duration: 0.1)
         self.run(moveRightAction)
         self.xScale = (charSize)
     }
     func moveLeft(){
-        self.animateMove()
+        //self.animateMove()
         let moveLeftAction = SKAction.moveBy(x: -10, y:0, duration: 0.1)
         self.run(moveLeftAction)
         self.xScale = -(charSize)
