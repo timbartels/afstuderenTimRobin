@@ -33,7 +33,6 @@ class Buttons{
         let image = UIImage(named: "button") as UIImage?
         
         button.setImage(image, for: .normal)
-        print(width)
         button.frame = CGRect(x: width-100, y: height-100, width: 80, height: 80)
         button.alpha = 0.5
         button.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2 )

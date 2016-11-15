@@ -25,12 +25,25 @@ class Character: SKSpriteNode {
         }
     }
     
+    func animateMove(){
+        var frames: [SKTexture] = []
+        for i in 1...8{
+            let i = SKTexture.init(imageNamed: "movement\(i)")
+            frames.append(i)
+        }
+        print(frames)
+        let animation = SKAction.animate(with: frames, timePerFrame: 0.05)
+        self.run(SKAction.repeatForever(animation))
+    }
+    
     func moveRight(){
+        self.animateMove()
         let moveRightAction = SKAction.moveBy(x: 10, y:0, duration: 0.1)
         self.run(moveRightAction)
         self.xScale = (charSize)
     }
     func moveLeft(){
+        self.animateMove()
         let moveLeftAction = SKAction.moveBy(x: -10, y:0, duration: 0.1)
         self.run(moveLeftAction)
         self.xScale = -(charSize)
