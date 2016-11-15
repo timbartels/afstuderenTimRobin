@@ -25,6 +25,7 @@ class Buttons{
         button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
         button.addTarget(self, action: #selector(ButtonDownR), for: .touchDown)
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpInside)
+        button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpOutside)
     }
     func loadButtonUp(button: UIButton) {
         let height = repsonsive.getHeightScreen()
@@ -48,6 +49,7 @@ class Buttons{
         button.alpha = 0.5
         button.addTarget(self, action: #selector(ButtonDownL), for: .touchDown)
         button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpInside)
+        button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpOutside)
     }
     
     @objc func ButtonDownR(sender:UIButton) {
