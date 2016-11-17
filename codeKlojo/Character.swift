@@ -12,6 +12,7 @@ import SpriteKit
 class Character: SKSpriteNode {
     var characterWalkingFrames : [SKTexture]!
     var charSize = CGFloat(0.18)
+    let buttons = Buttons()
     func load() {
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
@@ -24,31 +25,44 @@ class Character: SKSpriteNode {
             physics.allowsRotation = false
         }
     }
-    
-    func animateMove(){
-        var frames: [SKTexture] = []
-        for i in 1...8{
-            let i = SKTexture.init(imageNamed: "movement\(i)")
-            frames.append(i)
+
+    func animatePlayer(){
+        let movementAtlas = SKTextureAtlas(named: "movement")
+        var frames = [SKTexture]()
+        
+        let numImages = movementAtlas.textureNames.count
+        for i in 1...numImages{
+            let i = "movement\(i)"
+            frames.append(movementAtlas.textureNamed(i))
         }
-       
-        let animation = SKAction.animate(with: frames, timePerFrame: 0.05)
-        self.run(SKAction.repeatForever(animation))
-        print("lopen")
+
+        self.run(SKAction.repeatForever(
+            SKAction.animate(with: frames,
+                             timePerFrame: 0.1,
+                             resize: false,
+                             restore: true)),
+                 withKey:"walking")
+        
     }
     
-    func moveRight(){
-        //self.animateMove()
-        let moveRightAction = SKAction.moveBy(x: 10, y:0, duration: 0.1)
-        self.run(moveRightAction)
-        self.xScale = (charSize)
+    func animateMove(l: Bool, r: Bool){
+        if (self.action(forKey: "walking") == nil) {
+            animatePlayer()
+        }
+        if (l){
+            self.run(SKAction.moveBy(x: -10, y:0, duration: 0.1))
+            self.xScale = -(charSize)
+        }
+        if (r){
+            self.run(SKAction.moveBy(x: 10, y:0, duration: 0.1))
+            self.xScale = (charSize)
+        }
     }
-    func moveLeft(){
-        //self.animateMove()
-        let moveLeftAction = SKAction.moveBy(x: -10, y:0, duration: 0.1)
-        self.run(moveLeftAction)
-        self.xScale = -(charSize)
+    
+    func moveEnded() {
+        self.removeAction(forKey: "walking")
     }
+
     func jump(){
         let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
         let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)

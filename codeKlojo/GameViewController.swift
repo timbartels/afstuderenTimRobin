@@ -16,29 +16,33 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        if let scene = GKScene(fileNamed: "GameScene") {
-            
-            // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! GameScene? {
+        if #available(iOS 10.0, *) {
+            if let scene = GKScene(fileNamed: "GameScene") {
                 
-                // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
-                
-                // Set the scale mode to scale to fit the window
-                sceneNode.scaleMode = .aspectFill
-                
-                // Present the scene
-                if let view = self.view as! SKView? {
+                // Get the SKScene from the loaded GKScene
+                if let sceneNode = scene.rootNode as! GameScene? {
                     
-                    sceneNode.scaleMode = SKSceneScaleMode.resizeFill
-                    view.presentScene(sceneNode)
+                    // Copy gameplay related content over to the scene
+                    sceneNode.entities = scene.entities
+                    sceneNode.graphs = scene.graphs
                     
-                    view.ignoresSiblingOrder = true
-                    view.showsFPS = true
-                    view.showsNodeCount = true
+                    // Set the scale mode to scale to fit the window
+                    sceneNode.scaleMode = .aspectFill
+                    
+                    // Present the scene
+                    if let view = self.view as! SKView? {
+                        
+                        sceneNode.scaleMode = SKSceneScaleMode.resizeFill
+                        view.presentScene(sceneNode)
+                        
+                        view.ignoresSiblingOrder = true
+                        view.showsFPS = true
+                        view.showsNodeCount = true
+                    }
                 }
             }
+        } else {
+            // Fallback on earlier versions
         }
     }
 
