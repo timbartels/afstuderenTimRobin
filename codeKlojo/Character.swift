@@ -56,7 +56,8 @@ class Character: SKSpriteNode {
             SKAction.animate(with: frames,
                              timePerFrame: 0.1,
                              resize: false,
-                             restore: true))
+                             restore: true), withKey:"jump")
+
     }
     
     func animateMove(l: Bool, r: Bool, u: Bool){
@@ -93,8 +94,8 @@ class Character: SKSpriteNode {
 
     func jump(){
         let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
-        let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
-        let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
+        // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
+        let jumpSequence = SKAction.sequence([jumpUpAction])
         self.run(jumpSequence)
         animateJumpingPlayer()
     }
