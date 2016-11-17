@@ -60,7 +60,6 @@ class Character: SKSpriteNode {
     }
     
     func animateMove(l: Bool, r: Bool, u: Bool){
-        
         if (l){
             moveLeft()
         }
@@ -69,7 +68,11 @@ class Character: SKSpriteNode {
             moveRight()
         }
         
-        if (self.action(forKey: "walking") == nil && u == false) {
+        if(u){
+            jump()
+        }
+        
+        if (self.action(forKey: "walking") == nil && self.action(forKey: "jump") == nil) {
             animateWalkingPlayer()
         }
     }
