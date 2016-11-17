@@ -68,8 +68,8 @@ class Character: SKSpriteNode {
         if (r){
             moveRight()
         }
-
-        if (self.action(forKey: "walking") == nil || u == false) {
+        
+        if (self.action(forKey: "walking") == nil && u == false) {
             animateWalkingPlayer()
         }
     }
