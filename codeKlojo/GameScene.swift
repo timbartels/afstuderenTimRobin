@@ -87,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             buttons.buttonStateU = false
         }
         if(buttons.buttonStateL == true || buttons.buttonStateR == true){
-            player.animateMove(l: buttons.buttonStateL, r: buttons.buttonStateR)
+            player.animateMove(l: buttons.buttonStateL, r: buttons.buttonStateR, u: buttons.buttonStateU)
         }else{
             self.run(SKAction.run({
                 self.player.moveEnded()

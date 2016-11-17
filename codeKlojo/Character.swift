@@ -59,21 +59,29 @@ class Character: SKSpriteNode {
                              restore: true))
     }
     
-    func animateMove(l: Bool, r: Bool){
+    func animateMove(l: Bool, r: Bool, u: Bool){
         
         if (l){
-            self.run(SKAction.moveBy(x: -10, y:0, duration: 0.1))
-            self.xScale = -(charSize)
+            moveLeft()
         }
         
         if (r){
-            self.run(SKAction.moveBy(x: 10, y:0, duration: 0.1))
-            self.xScale = (charSize)
+            moveRight()
         }
 
-        if (self.action(forKey: "walking") == nil) {
+        if (self.action(forKey: "walking") == nil || u == false) {
             animateWalkingPlayer()
         }
+    }
+    
+    func moveLeft(){
+        self.run(SKAction.moveBy(x: -10, y:0, duration: 0.1))
+        self.xScale = -(charSize)
+    }
+    
+    func moveRight(){
+        self.run(SKAction.moveBy(x: 10, y:0, duration: 0.1))
+        self.xScale = (charSize)
     }
     
     func moveEnded() {
