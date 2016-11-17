@@ -21,6 +21,7 @@
 		2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */; };
 		2D5E7CC31DD4820200B5116E /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CC21DD4820200B5116E /* Background.swift */; };
 		2D8A627A1DDC96F100458D4F /* movement.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2D8A62791DDC96F100458D4F /* movement.atlas */; };
+		2D8A627C1DDDB3E800458D4F /* jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2D8A627B1DDDB3E800458D4F /* jump.atlas */; };
 		2DB7F1031DD9E64000AACB19 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7F1021DD9E64000AACB19 /* Level.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerButtons.swift; sourceTree = "<group>"; };
 		2D5E7CC21DD4820200B5116E /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		2D8A62791DDC96F100458D4F /* movement.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = movement.atlas; sourceTree = "<group>"; };
+		2D8A627B1DDDB3E800458D4F /* jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = jump.atlas; sourceTree = "<group>"; };
 		2DB7F1021DD9E64000AACB19 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				2D0116341DD1FE8E00324B9C /* Assets.xcassets */,
 				2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */,
 				2D0116391DD1FE8E00324B9C /* Info.plist */,
+				2D8A627B1DDDB3E800458D4F /* jump.atlas */,
 				2D8A62791DDC96F100458D4F /* movement.atlas */,
 			);
 			path = codeKlojo;
@@ -221,6 +224,7 @@
 				2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */,
 				2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */,
 				2D01162C1DD1FE8E00324B9C /* Actions.sks in Resources */,
+				2D8A627C1DDDB3E800458D4F /* jump.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

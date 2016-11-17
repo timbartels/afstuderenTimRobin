@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
-    let player = Character(imageNamed: "player_assets")
+    let player = Character(texture: SKTextureAtlas(named: "movement").textureNamed("movement1"))
     var level = Level(rectOf: CGSize(width: 4000, height: 0))
     let background = Background(imageNamed: "background")
     let buttonRight = UIButton()

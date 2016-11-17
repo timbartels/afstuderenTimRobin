@@ -10,9 +10,7 @@ import Foundation
 import SpriteKit
 
 class Character: SKSpriteNode {
-    var characterWalkingFrames : [SKTexture]!
     var charSize = CGFloat(0.18)
-    let buttons = Buttons()
     func load() {
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
@@ -26,7 +24,7 @@ class Character: SKSpriteNode {
         }
     }
 
-    func animatePlayer(){
+    func animateWalkingPlayer(){
         let movementAtlas = SKTextureAtlas(named: "movement")
         var frames = [SKTexture]()
         
@@ -44,18 +42,37 @@ class Character: SKSpriteNode {
                  withKey:"walking")
         
     }
+    func animateJumpingPlayer(){
+        let jumpAtlas = SKTextureAtlas(named: "jump")
+        var frames = [SKTexture]()
+        
+        let numImages = jumpAtlas.textureNames.count
+        for i in 1...numImages{
+            let i = "jump\(i)"
+            frames.append(jumpAtlas.textureNamed(i))
+        }
+        
+        self.run(
+            SKAction.animate(with: frames,
+                             timePerFrame: 0.1,
+                             resize: false,
+                             restore: true))
+    }
     
     func animateMove(l: Bool, r: Bool){
-        if (self.action(forKey: "walking") == nil) {
-            animatePlayer()
-        }
+        
         if (l){
             self.run(SKAction.moveBy(x: -10, y:0, duration: 0.1))
             self.xScale = -(charSize)
         }
+        
         if (r){
             self.run(SKAction.moveBy(x: 10, y:0, duration: 0.1))
             self.xScale = (charSize)
+        }
+
+        if (self.action(forKey: "walking") == nil) {
+            animateWalkingPlayer()
         }
     }
     
@@ -68,6 +85,7 @@ class Character: SKSpriteNode {
         let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
         let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
         self.run(jumpSequence)
+        animateJumpingPlayer()
     }
 
 }
