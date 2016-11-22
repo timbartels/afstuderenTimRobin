@@ -23,44 +23,72 @@ class Character: SKSpriteNode {
             physics.allowsRotation = false
         }
     }
-
-    func animateWalkingPlayer(){
+    
+    func animatePlayer(jump: Bool, move: Bool){
         let movementAtlas = SKTextureAtlas(named: "movement")
-        var frames = [SKTexture]()
+        switch (jump, move) {
+        case (true, false):
+            var framesJump = [SKTexture]()
+            let frames = [11,12,11]
+            for jump in frames{
+                let jump = "movement\(jump)"
+                framesJump.append(movementAtlas.textureNamed(jump))
+                
+            }
+            self.run(
+                SKAction.animate(with: framesJump,
+                                 timePerFrame: 0.1,
+                                 resize: false,
+                                 restore: true), withKey:"jump")
+        case (false, true):
+            var framesMove = [SKTexture]()
+            let frames = [3,4,5,6,7,6,5,4,3,8,9,10,9,8]
+            for move in frames{
+                let move = "movement\(move)"
+                framesMove.append(movementAtlas.textureNamed(move))
+            }
+            
+            self.run(SKAction.repeatForever(
+                SKAction.animate(with: framesMove,
+                                 timePerFrame: 0.05,
+                                 resize: false,
+                                 restore: true)),
+                     withKey:"walking")
         
-        let numImages = movementAtlas.textureNames.count
-        for i in 1...numImages{
-            let i = "movement\(i)"
-            frames.append(movementAtlas.textureNamed(i))
-        }
+        case (false, true):
+            var framesMove = [SKTexture]()
+            let frames = [3,4,5,6,7,6,5,4,3,8,9,10,9,8]
+            for move in frames{
+                let move = "movement\(move)"
+                framesMove.append(movementAtlas.textureNamed(move))
+            }
+            
+            self.run(SKAction.repeatForever(
+                SKAction.animate(with: framesMove,
+                                 timePerFrame: 0.05,
+                                 resize: false,
+                                 restore: true)),
+                     withKey:"walking")
 
-        self.run(SKAction.repeatForever(
-            SKAction.animate(with: frames,
-                             timePerFrame: 0.1,
-                             resize: false,
-                             restore: true)),
-                 withKey:"walking")
-        
-    }
-    func animateJumpingPlayer(){
-        let jumpAtlas = SKTextureAtlas(named: "jump")
-        var frames = [SKTexture]()
-        
-        let numImages = jumpAtlas.textureNames.count
-        for i in 1...numImages{
-            let i = "jump\(i)"
-            frames.append(jumpAtlas.textureNamed(i))
+        default:
+            var framesIdle = [SKTexture]()
+            let frames = [3,1]
+            for idle in frames{
+                let idle = "movement\(idle)"
+                framesIdle.append(movementAtlas.textureNamed(idle))
+            }
+            
+            self.run(SKAction.repeatForever(
+                SKAction.animate(with: framesIdle,
+                                 timePerFrame: 0.4,
+                                 resize: false,
+                                 restore: true)),
+                     withKey:"idle")
         }
         
-        self.run(
-            SKAction.animate(with: frames,
-                             timePerFrame: 0.1,
-                             resize: false,
-                             restore: true), withKey:"jump")
-
     }
     
-    func animateMove(l: Bool, r: Bool, u: Bool){
+    func animateMove(l: Bool, r: Bool){
         if (l){
             moveLeft()
         }
@@ -69,12 +97,8 @@ class Character: SKSpriteNode {
             moveRight()
         }
         
-        if(u){
-            jump()
-        }
-        
         if (self.action(forKey: "walking") == nil && self.action(forKey: "jump") == nil) {
-            animateWalkingPlayer()
+            animatePlayer(jump: false, move: true)
         }
     }
     
@@ -97,7 +121,7 @@ class Character: SKSpriteNode {
         // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
         let jumpSequence = SKAction.sequence([jumpUpAction])
         self.run(jumpSequence)
-        animateJumpingPlayer()
+        animatePlayer(jump: true, move: false)
     }
 
 }

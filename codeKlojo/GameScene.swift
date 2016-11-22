@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
-    let player = Character(texture: SKTextureAtlas(named: "movement").textureNamed("movement1"))
+    let player = Character(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     var level = Level(rectOf: CGSize(width: 4000, height: 0))
     let background = Background(imageNamed: "background")
     let buttonRight = UIButton()
@@ -79,7 +79,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: CFTimeInterval) {
-        
         cam.position = player.position
         cam.position.y += (self.frame.height/2)-100
         if (buttons.buttonStateU == true){
@@ -87,11 +86,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             buttons.buttonStateU = false
         }
         if(buttons.buttonStateL == true || buttons.buttonStateR == true){
-            player.animateMove(l: buttons.buttonStateL, r: buttons.buttonStateR, u: buttons.buttonStateU)
+            player.animateMove(l: buttons.buttonStateL, r: buttons.buttonStateR)
         }else{
             self.run(SKAction.run({
                 self.player.moveEnded()
             }))
+            
         }
         // Called before each frame is rendered
         

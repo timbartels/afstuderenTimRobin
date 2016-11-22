@@ -43,6 +43,21 @@ class GameViewController: UIViewController {
             }
         } else {
             // Fallback on earlier versions
+            let scene = SKScene(fileNamed: "GameScene")
+            // Set the scale mode to scale to fit the window
+            scene?.scaleMode = .aspectFill
+            
+            // Present the scene
+            if let view = self.view as! SKView? {
+                
+                scene?.scaleMode = SKSceneScaleMode.resizeFill
+                view.presentScene(scene)
+                
+                view.ignoresSiblingOrder = true
+                view.showsFPS = true
+                view.showsNodeCount = true
+            }
+
         }
     }
 
