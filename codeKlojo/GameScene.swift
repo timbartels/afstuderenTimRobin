@@ -35,6 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.load()
         addChild(background)
         level.loadFloor()
+        level.showLives()
+        print(player.gameover)
         self.addChild(level)
         player.load()
         addChild(player)
@@ -80,6 +82,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: CFTimeInterval) {
         player.checkGameOver()
+        if (player.gameover == 3){
+            goToGameOverScreenScene()
+        }
         cam.position = player.position
         cam.position.y += (self.frame.height/2)-100
         if (buttons.buttonStateU == true){
@@ -111,4 +116,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.lastUpdateTime = currentTime
     }
+    
+    func goToGameOverScreenScene(){
+        if #available(iOS 10.0, *) {
+            if let scene = GKScene(fileNamed: "GameOverScreenScene") {
+                
+                // Get the SKScene from the loaded GKScene
+                if let sceneNode = scene.rootNode as! GameOverScreenScene? {
+           
+                    
+                    // Set the scale mode to scale to fit the window
+                    sceneNode.scaleMode = .aspectFill
+                    
+                    // Present the scene
+                    if let view = self.view {
+                        
+                        sceneNode.scaleMode = SKSceneScaleMode.resizeFill
+                        
+                        let fade = SKTransition.crossFade(withDuration: 1.5)
+                        view.presentScene(sceneNode, transition: fade)
+                        
+                        view.ignoresSiblingOrder = true
+                        view.showsFPS = true
+                        view.showsNodeCount = true
+                    }
+                }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+}
 }

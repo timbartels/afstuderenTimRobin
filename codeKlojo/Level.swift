@@ -18,4 +18,11 @@ class Level:SKShapeNode{
         self.alpha = 0
         
     }
+    func showLives(){
+        let lives = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        lives.center = CGPoint(x: 160, y: 285)
+        lives.textAlignment = .center
+        lives.text = String(Player().gameover)
+    }
+    
 }

@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class Player: Character {
+    var gameover = 0
     override func load() {
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
@@ -38,11 +39,12 @@ class Player: Character {
         }
     }
     func checkGameOver(){
-        let gameover = CGPoint(x: self.position.x, y: 0)
         let positionPlayer = self.position
-        if (positionPlayer.y <= gameover.y){
+        let endLine = CGPoint(x: self.position.x, y: 0)
+        if (positionPlayer.y <= endLine.y){
             self.load()
+            self.gameover += 1
+            
         }
     }
 }
-    

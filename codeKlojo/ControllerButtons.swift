@@ -10,13 +10,13 @@ import Foundation
 import SpriteKit
 
 class Buttons{
-    let repsonsive = Responsive()
+    let responsive = Responsive()
     var buttonStateR = false
     var buttonStateL = false
     var buttonStateU = false
     
     func loadButtonRight(button: UIButton) {
-        let height = repsonsive.getHeightScreen()
+        let height = responsive.getHeightScreen()
         let image = UIImage(named: "button") as UIImage?
         
         button.setImage(image, for: .normal)
@@ -28,8 +28,8 @@ class Buttons{
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpOutside)
     }
     func loadButtonUp(button: UIButton) {
-        let height = repsonsive.getHeightScreen()
-        let width = repsonsive.getWidthScreen()
+        let height = responsive.getHeightScreen()
+        let width = responsive.getWidthScreen()
         let image = UIImage(named: "button") as UIImage?
         
         button.setImage(image, for: .normal)
@@ -40,7 +40,7 @@ class Buttons{
         
     }
     func loadButtonLeft(button: UIButton) {
-        let height = repsonsive.getHeightScreen()
+        let height = responsive.getHeightScreen()
         let image = UIImage(named: "button") as UIImage?
         
         button.setImage(image, for: .normal)
