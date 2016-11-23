@@ -17,17 +17,10 @@ class GameViewController: UIViewController {
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if #available(iOS 10.0, *) {
-            if let scene = GKScene(fileNamed: "GameScene") {
+            if let scene = GKScene(fileNamed: "StartScreenScene") {
                 
                 // Get the SKScene from the loaded GKScene
-                if let sceneNode = scene.rootNode as! GameScene? {
-                    
-                    // Copy gameplay related content over to the scene
-                    sceneNode.entities = scene.entities
-                    sceneNode.graphs = scene.graphs
-                    
-                    // Set the scale mode to scale to fit the window
-                    sceneNode.scaleMode = .aspectFill
+                if let sceneNode = scene.rootNode as! StartScreenScene? {
                     
                     // Present the scene
                     if let view = self.view as! SKView? {
@@ -43,7 +36,7 @@ class GameViewController: UIViewController {
             }
         } else {
             // Fallback on earlier versions
-            let scene = SKScene(fileNamed: "GameScene")
+            let scene = SKScene(fileNamed: "StartScreenScene")
             // Set the scale mode to scale to fit the window
             scene?.scaleMode = .aspectFill
             
