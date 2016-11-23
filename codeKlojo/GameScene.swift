@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
-    let player = Character(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
+    let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     var level = Level(rectOf: CGSize(width: 4000, height: 0))
     let background = Background(imageNamed: "background")
     let buttonRight = UIButton()
@@ -79,6 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: CFTimeInterval) {
+        player.checkGameOver()
         cam.position = player.position
         cam.position.y += (self.frame.height/2)-100
         if (buttons.buttonStateU == true){

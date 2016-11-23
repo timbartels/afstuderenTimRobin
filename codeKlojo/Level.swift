@@ -14,7 +14,7 @@ class Level:SKShapeNode{
         self.physicsBody = SKPhysicsBody(edgeChainFrom: self.path!)
         self.physicsBody?.restitution = 0
         self.physicsBody?.isDynamic = false
-        self.position = CGPoint(x: -2000, y: 50)
+        self.position = CGPoint(x: 2000, y: 50)
         self.alpha = 0
         
     }

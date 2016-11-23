@@ -10,11 +10,11 @@ import Foundation
 import SpriteKit
 
 class Background:SKSpriteNode {
-    let repsonsive = Responsive()
+    let responsive = Responsive()
     func load(){
-        self.anchorPoint = CGPoint(x: 1,y: 0)
+        self.anchorPoint = CGPoint(x: 0,y: 0)
         self.position = CGPoint(x: 0, y: 0)
-        self.size.height = repsonsive.getHeightScreen()
+        self.size.height = responsive.getHeightScreen()
         self.zPosition = -99
     }
 }

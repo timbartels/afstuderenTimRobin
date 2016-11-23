@@ -14,7 +14,6 @@ class Character: SKSpriteNode {
     func load() {
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
-        self.position = CGPoint(x: -100, y: 100)
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
         if let physics = self.physicsBody {
             physics.affectedByGravity = true
@@ -86,20 +85,6 @@ class Character: SKSpriteNode {
                      withKey:"idle")
         }
         
-    }
-    
-    func animateMove(l: Bool, r: Bool){
-        if (l){
-            moveLeft()
-        }
-        
-        if (r){
-            moveRight()
-        }
-        
-        if (self.action(forKey: "walking") == nil && self.action(forKey: "jump") == nil) {
-            animatePlayer(jump: false, move: true)
-        }
     }
     
     func moveLeft(){
