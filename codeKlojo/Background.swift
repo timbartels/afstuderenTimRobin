@@ -9,12 +9,24 @@
 import Foundation
 import SpriteKit
 
-class Background:SKSpriteNode {
+class Background {
     let responsive = Responsive()
-    func load(){
-        self.anchorPoint = CGPoint(x: 0,y: 0)
-        self.position = CGPoint(x: 0, y: 0)
-        self.size.height = responsive.getHeightScreen()
-        self.zPosition = -99
+    var backgroundPosition = 0
+    var bg = SKSpriteNode()
+    
+    var array = [SKSpriteNode]()
+    func load() -> Array<SKSpriteNode> {
+        for i in 1...3 {
+            bg = SKSpriteNode(imageNamed: "part\(i)")
+            bg.anchorPoint = CGPoint(x: 0,y: 0)
+            bg.position = CGPoint(x: backgroundPosition, y: 0)
+            backgroundPosition += 2000
+            bg.size.height = responsive.getHeightScreen()
+            bg.size.width = 2000
+            bg.zPosition = -99
+            array.append(bg)
+        }
+        
+       return array
     }
 }

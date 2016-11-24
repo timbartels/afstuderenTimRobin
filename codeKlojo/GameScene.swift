@@ -13,14 +13,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     var level = Level(rectOf: CGSize(width: 4000, height: 0))
-    let background = Background(imageNamed: "background")
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
     let buttons = Buttons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
- 
     
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
@@ -35,8 +33,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = cam
         
         // Init background
-        background.load()
-        addChild(background)
+        // self.addChild(Background().bg)
+        let backgrounds = Background().load()
+        for background in backgrounds {
+            self.addChild(background)
+        }
+
         
         // Init level
         level.loadFloor()
@@ -111,6 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: CFTimeInterval) {
         player.checkLives()
         
+        // Remove life image
         if (player.lives > 0){
             for i in 1...3 {
                 view?.viewWithTag(player.lives+1)?.alpha = 0.7
