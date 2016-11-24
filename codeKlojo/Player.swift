@@ -11,6 +11,9 @@ import SpriteKit
 
 class Player: Character {
     var gameover = 0
+    var lives = 3
+    var label = UILabel()
+
     override func load() {
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
@@ -25,6 +28,14 @@ class Player: Character {
         }
         
     }
+    
+    func loadLives() {
+        
+        label.text = "Levens \(lives)"
+        label.frame = CGRect(x: 50, y: 20, width: 800, height: 80)
+        
+    }
+    
     func animateMove(l: Bool, r: Bool){
         if (l){
             moveLeft()
@@ -38,13 +49,12 @@ class Player: Character {
             animatePlayer(jump: false, move: true)
         }
     }
-    func checkGameOver(){
+    func checkLives(){
         let positionPlayer = self.position
         let endLine = CGPoint(x: self.position.x, y: 0)
         if (positionPlayer.y <= endLine.y){
             self.load()
-            self.gameover += 1
-            
+            self.lives -= 1
         }
     }
 }

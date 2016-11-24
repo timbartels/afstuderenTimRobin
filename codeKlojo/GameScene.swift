@@ -31,22 +31,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
  
     override func didMove(to view: SKView) {
+        // Init camera
         self.camera = cam
+        
+        // Init background
         background.load()
         addChild(background)
+        
+        // Init level
         level.loadFloor()
         level.showLives()
-        print(player.gameover)
         self.addChild(level)
+        
+        // Init player
         player.load()
+        player.loadLives()
         addChild(player)
+        
+        // Init buttons
         buttons.loadButtonRight(button: buttonRight)
         buttons.loadButtonUp(button: buttonUp)
         buttons.loadButtonLeft(button: buttonLeft)
+        
+        // Place buttons
         view.addSubview(buttonLeft)
         view.addSubview(buttonRight)
         view.addSubview(buttonUp)
-        
+        view.addSubview(player.label)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -81,8 +92,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: CFTimeInterval) {
-        player.checkGameOver()
-        if (player.gameover == 3){
+        player.checkLives()
+        player.loadLives()
+        
+        // Gameover
+        if (player.lives == 0){
+            player.lives = 3
+            print(player.lives)
             goToGameOverScreenScene()
         }
         cam.position = player.position
@@ -118,6 +134,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func goToGameOverScreenScene(){
+        // Remove subview elements
+        for view in (self.view?.subviews)! {
+            view.removeFromSuperview()
+        }
         if #available(iOS 10.0, *) {
             if let scene = GKScene(fileNamed: "GameOverScreenScene") {
                 
