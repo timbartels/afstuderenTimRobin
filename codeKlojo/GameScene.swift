@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
-    var level = Level(rectOf: CGSize(width: 4000, height: 0))
+    var level = Level(rectOf: CGSize(width: 6000, height: 0))
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
