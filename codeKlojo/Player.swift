@@ -13,6 +13,7 @@ class Player: Character {
     var gameover = 0
     var lives = 3
     var label = UILabel()
+    var liveImage = UIImageView()
 
     override func load() {
         self.setScale(charSize)
@@ -31,8 +32,8 @@ class Player: Character {
     
     func loadLives() {
         
-        label.text = "Levens \(lives)"
-        label.frame = CGRect(x: 50, y: 20, width: 800, height: 80)
+        //label.text = "Levens \(lives)"
+        //label.frame = CGRect(x: 50, y: 20, width: 800, height: 80)
         
     }
     
@@ -55,6 +56,8 @@ class Player: Character {
         if (positionPlayer.y <= endLine.y){
             self.load()
             self.lives -= 1
+            
+            
         }
     }
 }

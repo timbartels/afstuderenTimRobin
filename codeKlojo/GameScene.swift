@@ -57,7 +57,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view.addSubview(buttonLeft)
         view.addSubview(buttonRight)
         view.addSubview(buttonUp)
-        view.addSubview(player.label)
+        
+        // Add lives
+        let imageName = "live.png"
+        let image = UIImage(named: imageName)!
+        var livePosition : CGFloat = 0
+        
+        for i in 1...3{
+            let liveImage = UIImageView(image: image)
+            liveImage.tag = i
+            liveImage.frame = CGRect(x: livePosition+60, y: 20, width: 50, height: 50)
+            livePosition += 60
+            liveImage.alpha = 1
+            view.addSubview(liveImage)
+        }
+        
+       
+
+        
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -93,12 +110,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: CFTimeInterval) {
         player.checkLives()
-        player.loadLives()
+        
+        if (player.lives > 0){
+            for i in 1...3 {
+                view?.viewWithTag(player.lives+1)?.alpha = 0.7
+            }
+        }
+       
         
         // Gameover
         if (player.lives == 0){
+            // Reset lives
             player.lives = 3
-            print(player.lives)
             goToGameOverScreenScene()
         }
         cam.position = player.position
