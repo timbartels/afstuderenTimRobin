@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0055497B1DE5AC6C00D5ED83 /* StartScreenScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0055497A1DE5AC6C00D5ED83 /* StartScreenScene.sks */; };
 		0055497D1DE5AE3B00D5ED83 /* StartScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */; };
+		00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */; };
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
 		2D01162A1DD1FE8E00324B9C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116291DD1FE8E00324B9C /* GameScene.sks */; };
 		2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162D1DD1FE8E00324B9C /* GameScene.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		0055497A1DE5AC6C00D5ED83 /* StartScreenScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScreenScene.sks; sourceTree = "<group>"; };
 		0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenScene.swift; sourceTree = "<group>"; };
+		00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D0116291DD1FE8E00324B9C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */,
 				2D5E7CC21DD4820200B5116E /* Background.swift */,
 				2D503F3E1DE5BF03007B8EB8 /* GameSceneLoader.swift */,
+				00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */,
+				00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */,
 				2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */,
 				2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */,
 				2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */,

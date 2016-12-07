@@ -19,7 +19,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let buttons = Buttons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
-    
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
 
@@ -38,7 +37,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for background in backgrounds {
             self.addChild(background)
         }
-
         
         // Init level
         level.loadFloor()
@@ -113,13 +111,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: CFTimeInterval) {
         player.checkLives()
         
+        // Check for checkpoint
+        Checkpoint().check(playerPosition: player.position)
+        
         // Remove life image
         if (player.lives > 0){
             for i in 1...3 {
                 view?.viewWithTag(player.lives+1)?.alpha = 0.7
             }
         }
-       
         
         // Gameover
         if (player.lives == 0){
