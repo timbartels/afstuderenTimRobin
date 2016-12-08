@@ -9,10 +9,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameOverScreenScene: SKScene {
+class GameOverScreenScene: SKScene, SceneManager {
     
     override func sceneDidLoad() {
-        
+        self.backgroundColor = SKColor.black
+        let textLabel = SKLabelNode()
+        textLabel.text = "Klik om overnieuw te beginnen"
+        textLabel.color = UIColor.white
+        textLabel.position = CGPoint(x: (Responsive().getWidthScreen()/2), y: (Responsive().getHeightScreen()/2))
+        addChild(textLabel)
     }
     
     override func didMove(to view: SKView) {
@@ -20,50 +25,8 @@ class GameOverScreenScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if #available(iOS 10.0, *) {
-            if let scene = GKScene(fileNamed: "GameScene") {
-                
-                // Get the SKScene from the loaded GKScene
-                if let sceneNode = scene.rootNode as! GameScene? {
-                    
-                    // Copy gameplay related content over to the scene
-                    sceneNode.entities = scene.entities
-                    sceneNode.graphs = scene.graphs
-                    
-                    // Set the scale mode to scale to fit the window
-                    sceneNode.scaleMode = .aspectFill
-                    
-                    // Present the scene
-                    if let view = self.view {
-                        
-                        sceneNode.scaleMode = SKSceneScaleMode.resizeFill
-                        
-                        let fade = SKTransition.crossFade(withDuration: 1.5)
-                        view.presentScene(sceneNode, transition: fade)
-                        
-                        view.ignoresSiblingOrder = true
-                        view.showsFPS = true
-                        view.showsNodeCount = true
-                    }
-                }
-            }
-        } else {
-            // Fallback on earlier versions
-            let scene = SKScene(fileNamed: "GameScene")
-            // Set the scale mode to scale to fit the window
-            scene?.scaleMode = .aspectFill
-            
-            // Present the scene
-            if let view = self.view {
-                
-                scene?.scaleMode = SKSceneScaleMode.resizeFill
-                view.presentScene(scene)
-                
-                view.ignoresSiblingOrder = true
-                view.showsFPS = true
-                view.showsNodeCount = true
-            }
-            
+        func loadGameScene() {
+            loadScene(withIdentifier: .game)
         }
     }
     

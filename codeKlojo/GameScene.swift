@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let cam = SKCameraNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     var level = Level(rectOf: CGSize(width: 6000, height: 0))
@@ -32,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = cam
         
         // Init background
+        self.backgroundColor = SKColor(red: CGFloat(116.0/255.0), green: CGFloat(226.0/255.0), blue: CGFloat(207.0/255.0), alpha: 0)
         // self.addChild(Background().bg)
         let backgrounds = Background().load()
         for background in backgrounds {
@@ -165,33 +166,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for view in (self.view?.subviews)! {
             view.removeFromSuperview()
         }
-        if #available(iOS 10.0, *) {
-            if let scene = GKScene(fileNamed: "GameOverScreenScene") {
-                
-                // Get the SKScene from the loaded GKScene
-                if let sceneNode = scene.rootNode as! GameOverScreenScene? {
-           
-                    
-                    // Set the scale mode to scale to fit the window
-                    sceneNode.scaleMode = .aspectFill
-                    
-                    // Present the scene
-                    if let view = self.view {
-                        
-                        sceneNode.scaleMode = SKSceneScaleMode.resizeFill
-                        
-                        let fade = SKTransition.crossFade(withDuration: 1.5)
-                        view.presentScene(sceneNode, transition: fade)
-                        
-                        view.ignoresSiblingOrder = true
-                        view.showsFPS = true
-                        view.showsNodeCount = true
-                    }
-                }
-        } else {
-            // Fallback on earlier versions
+        func loadGameScene() {
+            loadScene(withIdentifier: .gameOver)
         }
         
     }
 }
-}
+

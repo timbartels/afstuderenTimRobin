@@ -9,62 +9,24 @@
 import SpriteKit
 import GameplayKit
 
-class StartScreenScene: SKScene {
+class StartScreenScene: SKScene, SceneManager {
+    let textLabel = SKLabelNode(fontNamed: "Arial")
     
     override func sceneDidLoad() {
-       
     }
     
     override func didMove(to view: SKView) {
-        
+        self.backgroundColor = SKColor(red: CGFloat(116.0/255.0), green: CGFloat(226.0/255.0), blue: CGFloat(207.0/255.0), alpha: 1)
+        textLabel.text = "Raak het scherm aan om het spel te beginnen"
+        textLabel.position = CGPoint(x: (Responsive().getWidthScreen()/2), y: (Responsive().getHeightScreen()/2))
+        textLabel.fontSize = 22
+        textLabel.zPosition = 99
+        textLabel.color = UIColor.white
+        addChild(textLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if #available(iOS 10.0, *) {
-            if let scene = GKScene(fileNamed: "GameScene") {
-                
-                // Get the SKScene from the loaded GKScene
-                if let sceneNode = scene.rootNode as! GameScene? {
-                    
-                    // Copy gameplay related content over to the scene
-                    sceneNode.entities = scene.entities
-                    sceneNode.graphs = scene.graphs
-                    
-                    // Set the scale mode to scale to fit the window
-                    sceneNode.scaleMode = .aspectFill
-                    
-                    // Present the scene
-                    if let view = self.view {
-                        
-                        sceneNode.scaleMode = SKSceneScaleMode.resizeFill
-                        
-                        let fade = SKTransition.crossFade(withDuration: 1.5)
-                        view.presentScene(sceneNode, transition: fade)
-                        
-                        view.ignoresSiblingOrder = true
-                        view.showsFPS = true
-                        view.showsNodeCount = true
-                    }
-                }
-            }
-        } else {
-            // Fallback on earlier versions
-            let scene = SKScene(fileNamed: "GameScene")
-            // Set the scale mode to scale to fit the window
-            scene?.scaleMode = .aspectFill
-            
-            // Present the scene
-            if let view = self.view {
-                
-                scene?.scaleMode = SKSceneScaleMode.resizeFill
-                view.presentScene(scene)
-                
-                view.ignoresSiblingOrder = true
-                view.showsFPS = true
-                view.showsNodeCount = true
-            }
-            
-        }
+        loadScene(withIdentifier: .game)
     }
     
     
