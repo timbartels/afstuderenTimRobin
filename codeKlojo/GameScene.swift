@@ -127,6 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.lives = 3
             goToGameOverScreenScene()
         }
+        
         cam.position = player.position
         cam.position.y += (self.frame.height/2)-100
         if (buttons.buttonStateU == true){

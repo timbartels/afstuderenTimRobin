@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0055497B1DE5AC6C00D5ED83 /* StartScreenScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0055497A1DE5AC6C00D5ED83 /* StartScreenScene.sks */; };
 		0055497D1DE5AE3B00D5ED83 /* StartScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */; };
+		00F674C91DF8503100B6CE57 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F674C81DF8503100B6CE57 /* MissionViewController.swift */; };
 		00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */; };
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
 		2D01162A1DD1FE8E00324B9C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116291DD1FE8E00324B9C /* GameScene.sks */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		0055497A1DE5AC6C00D5ED83 /* StartScreenScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScreenScene.sks; sourceTree = "<group>"; };
 		0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenScene.swift; sourceTree = "<group>"; };
+		00F674C81DF8503100B6CE57 /* MissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
 		00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				2D01162F1DD1FE8E00324B9C /* GameViewController.swift */,
+				00F674C81DF8503100B6CE57 /* MissionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
 				2D503F391DE5B6C3007B8EB8 /* GameOverScreenScene.swift in Sources */,
 				2D503F3F1DE5BF03007B8EB8 /* GameSceneLoader.swift in Sources */,
+				00F674C91DF8503100B6CE57 /* MissionViewController.swift in Sources */,
 				2DB7F1031DD9E64000AACB19 /* Level.swift in Sources */,
 				2D503F411DE5C21C007B8EB8 /* sceneWithClassName.swift in Sources */,
 				2D503F351DE5AE06007B8EB8 /* Player.swift in Sources */,

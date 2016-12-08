@@ -9,32 +9,34 @@
 import Foundation
 import SpriteKit
 
+var cps: [Int:String] = [
+    200 : "School",
+    400 : "Winkel",
+    600 : "Achtbaan"
+]
+
 class Checkpoint {
-    var checkPoints = [200,2500,3500]
     
     func check(playerPosition: CGPoint){
         
-        let playerX = Int(playerPosition.x)
-        for (index, checkpoint) in checkPoints.enumerated() {
-            if(playerX > checkpoint){
+        for (position, mission) in cps {
+            let playerX = Int(playerPosition.x)
+            
+            if(playerX > position){
+                
+                print("Positie speler: \(playerX) - CheckPoint: \(position)")
                 
                 // Show mission screen
-                showMissionScreen(screen: index)
+                print(mission)
+                //let vc = MissionViewController() //change this to your class name
+                //self.present(vc, animated: true, completion: nil)
                 
                 // Remove checkpoint from array
-                removeCheckPoint(check: index)
+                cps.removeValue(forKey: position)
                 
             }
         }
     }
     
-    func removeCheckPoint(check: Int){
-        checkPoints.remove(at: check)
-        print(checkPoints)
-    }
-    
-    func showMissionScreen(screen: Int){
-        
-    }
 }
 
