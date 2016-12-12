@@ -10,5 +10,6 @@ import Foundation
 import SpriteKit
 
 struct Global {
+    //Saves the position of the player globally so it wont be affected
     static var savedPosition = CGPoint(x: 0, y: 100)
 }

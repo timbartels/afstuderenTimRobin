@@ -29,6 +29,8 @@ class Character: SKSpriteNode {
     
     func loadAnimation(animation: Int)->[SKTexture]{
         let movementAtlas = SKTextureAtlas(named: "movement")
+        //Checks which frames will set
+        //Double Check this function :S
         switch (animation) {
         case(1):
             let frames = [3,4,5,6,7,6,5,4,3,8,9,10,9,8]
@@ -55,6 +57,7 @@ class Character: SKSpriteNode {
     }
     
     func animatePlayer(jump: Bool, move: Bool){
+        //Sets the animation when move is pressed
         switch (jump, move) {
         case (true, false):
             self.run(

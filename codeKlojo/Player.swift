@@ -16,6 +16,9 @@ class Player: Character {
     var liveImage = UIImageView()
 
     override func load() {
+        //Sets the frames of the different animations in an Array, 
+        // so they won't load every time when used.
+        
         framesMove = loadAnimation(animation: 1)
         framesJump = loadAnimation(animation: 2)
         framesIdle = loadAnimation(animation: 3)

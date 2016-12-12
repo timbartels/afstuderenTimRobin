@@ -117,6 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             for view in (self.view?.subviews)! {
                 view.removeFromSuperview()
             }
+            //Saves the current player position
             Global.savedPosition = player.position
             loadScene(withIdentifier: .mission)
         }
