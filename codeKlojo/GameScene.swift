@@ -166,9 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         for view in (self.view?.subviews)! {
             view.removeFromSuperview()
         }
-        func loadGameScene() {
-            loadScene(withIdentifier: .gameOver)
-        }
+        loadScene(withIdentifier: .gameOver)
         
     }
 }

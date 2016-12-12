@@ -16,10 +16,12 @@ class Player: Character {
     var liveImage = UIImageView()
 
     override func load() {
+        framesMove = loadAnimation(animation: 1)
+        framesJump = loadAnimation(animation: 2)
+        framesIdle = loadAnimation(animation: 3)
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
         self.position = CGPoint(x: 0, y: 100)
-        
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
         if let physics = self.physicsBody {
             physics.affectedByGravity = true
@@ -27,7 +29,13 @@ class Player: Character {
             physics.restitution = 0
             physics.allowsRotation = false
         }
-        
+        self.run(SKAction.repeatForever(
+            SKAction.animate(with: framesIdle,
+                             timePerFrame: 0.4,
+                             resize: false,
+                             restore: true)),
+                 withKey:"idle")
+
     }
     
     func loadLives() {

@@ -25,9 +25,7 @@ class GameOverScreenScene: SKScene, SceneManager {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        func loadGameScene() {
-            loadScene(withIdentifier: .game)
-        }
+        loadScene(withIdentifier: .game)
     }
     
     
