@@ -21,7 +21,7 @@ class Player: Character {
         framesIdle = loadAnimation(animation: 3)
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
-        self.position = CGPoint(x: 0, y: 100)
+        self.position = Global.savedPosition
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
         if let physics = self.physicsBody {
             physics.affectedByGravity = true

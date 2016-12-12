@@ -10,14 +10,14 @@ import Foundation
 import SpriteKit
 
 var cps: [Int:String] = [
-    200 : "School",
-    400 : "Winkel",
-    600 : "Achtbaan"
+    1000 : "School",
+    3000 : "Winkel",
+    5000 : "Achtbaan"
 ]
 
-class Checkpoint {
+class Checkpoint{
     
-    func check(playerPosition: CGPoint){
+    func check(playerPosition: CGPoint)->Bool{
         
         for (position, mission) in cps {
             let playerX = Int(playerPosition.x)
@@ -27,15 +27,15 @@ class Checkpoint {
                 print("Positie speler: \(playerX) - CheckPoint: \(position)")
                 
                 // Show mission screen
-                print(mission)
+                
                 //let vc = MissionViewController() //change this to your class name
                 //self.present(vc, animated: true, completion: nil)
                 
                 // Remove checkpoint from array
                 cps.removeValue(forKey: position)
-                
+                return true
             }
-        }
+        };return false
     }
     
 }

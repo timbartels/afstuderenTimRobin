@@ -17,6 +17,8 @@
 		2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116341DD1FE8E00324B9C /* Assets.xcassets */; };
 		2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */; };
 		2D0116431DD1FE8E00324B9C /* codeKlojoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */; };
+		2D1A64471DFED54300433AEB /* MissionScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A64461DFED54300433AEB /* MissionScreenScene.swift */; };
+		2D1A64491DFEDCB600433AEB /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A64481DFEDCB600433AEB /* Global.swift */; };
 		2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D337F011DD9D10900F4AFE7 /* Responsive.swift */; };
 		2D503F351DE5AE06007B8EB8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D503F341DE5AE06007B8EB8 /* Player.swift */; };
 		2D503F391DE5B6C3007B8EB8 /* GameOverScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D503F381DE5B6C3007B8EB8 /* GameOverScreenScene.swift */; };
@@ -54,6 +56,8 @@
 		2D01163E1DD1FE8E00324B9C /* codeKlojoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = codeKlojoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeKlojoTests.swift; sourceTree = "<group>"; };
 		2D0116441DD1FE8E00324B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D1A64461DFED54300433AEB /* MissionScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionScreenScene.swift; sourceTree = "<group>"; };
+		2D1A64481DFEDCB600433AEB /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2D337F011DD9D10900F4AFE7 /* Responsive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responsive.swift; sourceTree = "<group>"; };
 		2D503F341DE5AE06007B8EB8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2D503F381DE5B6C3007B8EB8 /* GameOverScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScreenScene.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				2D01162D1DD1FE8E00324B9C /* GameScene.swift */,
+				2D1A64461DFED54300433AEB /* MissionScreenScene.swift */,
 				0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */,
 				2D503F381DE5B6C3007B8EB8 /* GameOverScreenScene.swift */,
 			);
@@ -166,6 +171,7 @@
 				2D5E7CC21DD4820200B5116E /* Background.swift */,
 				2D503F3E1DE5BF03007B8EB8 /* GameSceneManager.swift */,
 				00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */,
+				2D1A64481DFEDCB600433AEB /* Global.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */,
 				00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */,
 				2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */,
+				2D1A64471DFED54300433AEB /* MissionScreenScene.swift in Sources */,
 				2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */,
 				2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */,
 				2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */,
@@ -290,6 +297,7 @@
 				2D503F351DE5AE06007B8EB8 /* Player.swift in Sources */,
 				2D5E7CC31DD4820200B5116E /* Background.swift in Sources */,
 				0055497D1DE5AE3B00D5ED83 /* StartScreenScene.swift in Sources */,
+				2D1A64491DFEDCB600433AEB /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

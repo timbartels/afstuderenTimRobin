@@ -113,7 +113,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         player.checkLives()
         
         // Check for checkpoint
-        Checkpoint().check(playerPosition: player.position)
+        if Checkpoint().check(playerPosition: player.position){
+            for view in (self.view?.subviews)! {
+                view.removeFromSuperview()
+            }
+            Global.savedPosition = player.position
+            loadScene(withIdentifier: .mission)
+        }
         
         // Remove life image
         if (player.lives > 0){

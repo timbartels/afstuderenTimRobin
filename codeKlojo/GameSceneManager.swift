@@ -12,6 +12,7 @@ import GameplayKit
 enum SceneIdentifier: String {
     case start = "StartScene"
     case game = "GameScene"
+    case mission = "MissionScreenScene"
     case gameOver = "GameOverScene"
 }
 
@@ -31,6 +32,8 @@ extension SceneManager where Self: SKScene {
                 scene = StartScreenScene(size: sceneSize)
             case .game:
                 scene = GameScene(size: sceneSize)
+            case .mission:
+                scene = MissionScreenScene(size: sceneSize)
             case .gameOver:
                 scene = GameOverScreenScene(size: sceneSize)
         }
