@@ -15,6 +15,17 @@ class Buttons{
     var buttonStateL = false
     var buttonStateU = false
     
+    func loadButtonMenu(button: UIButton) {
+        _ = responsive.getHeightScreen()
+        let width = responsive.getWidthScreen()
+        let image = UIImage(named: "button") as UIImage?
+        
+        button.setImage(image, for: .normal)
+        button.frame = CGRect(x: width-100, y: 10, width: 80, height: 80)
+        button.alpha = 0.5
+        button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
+    }
+    
     func loadButtonRight(button: UIButton) {
         let height = responsive.getHeightScreen()
         let image = UIImage(named: "button") as UIImage?
@@ -74,4 +85,5 @@ class Buttons{
     @objc func ButtonUpL(sender:UIButton) {
         buttonStateL = false
     }
+
 }

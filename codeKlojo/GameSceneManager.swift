@@ -38,8 +38,8 @@ extension SceneManager where Self: SKScene {
                 scene = GameOverScreenScene(size: sceneSize)
         }
     
-    let transition = SKTransition.doorsOpenHorizontal(withDuration: 1)
-    scene.scaleMode = .aspectFill
+        let transition = SKTransition.doorsOpenHorizontal(withDuration: 1)
+        scene.scaleMode = .aspectFill
         view?.presentScene(scene, transition: transition)
     }
     

@@ -13,7 +13,6 @@ class Background {
     let responsive = Responsive()
     var backgroundPosition = 0
     var bg = SKSpriteNode()
-    
     var array = [SKSpriteNode]()
     func load() -> Array<SKSpriteNode> {
         for i in 1...3 {

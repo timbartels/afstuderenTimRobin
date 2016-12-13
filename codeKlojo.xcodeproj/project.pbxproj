@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0055497D1DE5AE3B00D5ED83 /* StartScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */; };
-		00F674C91DF8503100B6CE57 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F674C81DF8503100B6CE57 /* MissionViewController.swift */; };
 		00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */; };
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
 		2D01162E1DD1FE8E00324B9C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162D1DD1FE8E00324B9C /* GameScene.swift */; };
@@ -27,6 +26,7 @@
 		2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBB1DD46D2700B5116E /* Character.swift */; };
 		2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */; };
 		2D5E7CC31DD4820200B5116E /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CC21DD4820200B5116E /* Background.swift */; };
+		2D72AC1B1E001470001CF0B1 /* Glass_TTY_VT220.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D72AC1A1E001470001CF0B1 /* Glass_TTY_VT220.ttf */; };
 		2D8A627A1DDC96F100458D4F /* movement.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2D8A62791DDC96F100458D4F /* movement.atlas */; };
 		2DB7F1031DD9E64000AACB19 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7F1021DD9E64000AACB19 /* Level.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenScene.swift; sourceTree = "<group>"; };
-		00F674C81DF8503100B6CE57 /* MissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
 		00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		2D5E7CBB1DD46D2700B5116E /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerButtons.swift; sourceTree = "<group>"; };
 		2D5E7CC21DD4820200B5116E /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		2D72AC1A1E001470001CF0B1 /* Glass_TTY_VT220.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Glass_TTY_VT220.ttf; path = ../../../../.Trash/Glass_TTY_VT220.ttf; sourceTree = "<group>"; };
 		2D8A62791DDC96F100458D4F /* movement.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = movement.atlas; sourceTree = "<group>"; };
 		2DB7F1021DD9E64000AACB19 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +118,7 @@
 				2D0116271DD1FE8E00324B9C /* AppDelegate.swift */,
 				2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */,
 				2D0116391DD1FE8E00324B9C /* Info.plist */,
+				2D72AC1A1E001470001CF0B1 /* Glass_TTY_VT220.ttf */,
 				2D8A62791DDC96F100458D4F /* movement.atlas */,
 			);
 			path = codeKlojo;
@@ -147,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				2D01162F1DD1FE8E00324B9C /* GameViewController.swift */,
-				00F674C81DF8503100B6CE57 /* MissionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -261,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D8A627A1DDC96F100458D4F /* movement.atlas in Resources */,
+				2D72AC1B1E001470001CF0B1 /* Glass_TTY_VT220.ttf in Resources */,
 				2D0116331DD1FE8E00324B9C /* Main.storyboard in Resources */,
 				2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */,
 				2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */,
@@ -291,7 +292,6 @@
 				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
 				2D503F391DE5B6C3007B8EB8 /* GameOverScreenScene.swift in Sources */,
 				2D503F3F1DE5BF03007B8EB8 /* GameSceneManager.swift in Sources */,
-				00F674C91DF8503100B6CE57 /* MissionViewController.swift in Sources */,
 				2DB7F1031DD9E64000AACB19 /* Level.swift in Sources */,
 				2D503F411DE5C21C007B8EB8 /* sceneWithClassName.swift in Sources */,
 				2D503F351DE5AE06007B8EB8 /* Player.swift in Sources */,

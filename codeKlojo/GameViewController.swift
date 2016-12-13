@@ -14,10 +14,9 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-        // including entities and graphs.
         let scene: StartScreenScene = StartScreenScene()
         let viewAsSKView = self.view as! SKView
+        scene.scaleMode = .resizeFill
         viewAsSKView.presentScene(scene)
     }
 

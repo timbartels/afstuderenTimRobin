@@ -41,13 +41,6 @@ class Player: Character {
 
     }
     
-    func loadLives() {
-        
-        //label.text = "Levens \(lives)"
-        //label.frame = CGRect(x: 50, y: 20, width: 800, height: 80)
-        
-    }
-    
     func animateMove(l: Bool, r: Bool){
         if (l){
             moveLeft()
