@@ -9,17 +9,18 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
+class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
+    let sound = SKAudioNode(fileNamed: "blob-tales.wav")
     let cam = SKCameraNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
-    var floor = Level(rectOf: CGSize(width: 6000, height: 0))
-    var wall = Level(rectOf: CGSize(width: 10, height: Responsive().getHeightScreen()))
-    var level = Level()
+    var floor = Border(rectOf: CGSize(width: 6000, height: 0))
+    var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
+    var level = CityLevel()
     let buttonMenu = UIButton()
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
-    let buttons = Buttons()
+    let buttons = ControllerButtons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
@@ -31,6 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
  
     override func didMove(to view: SKView) {
+        //Init sound
+        self.addChild(sound)
         // Init camera
         self.camera = cam
         
@@ -42,10 +45,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
         
         // Init level
-        floor.loadFloor()
-        wall.loadWall()
+        floor.load(position: CGPoint(x: 0, y: 50))
+        wall.load(position: CGPoint(x: 0, y: 50))
         level.showLives()
-        self.addChild(level)
         self.addChild(wall)
         self.addChild(floor)
         
@@ -86,10 +88,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
 
     }
     
-    func touchMoved(toPoint pos : CGPoint) {
- 
-    }
-    
     func touchUp(atPoint pos : CGPoint) {
 
     }
@@ -106,18 +104,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.touchDown(atPoint: t.location(in: self))
             // Check if the location of the touch is within the button's bounds
         }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
     func calculateCamera(){
@@ -146,6 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, SceneManager {
 
     }
     override func update(_ currentTime: CFTimeInterval) {
+        
         player.checkLives()
         
         // Check for checkpoint

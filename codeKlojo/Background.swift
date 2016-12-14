@@ -10,7 +10,6 @@ import Foundation
 import SpriteKit
 
 class Background {
-    let responsive = Responsive()
     var backgroundPosition = 0
     var bg = SKSpriteNode()
     var array = [SKSpriteNode]()
@@ -20,7 +19,7 @@ class Background {
             bg.anchorPoint = CGPoint(x: 0,y: 0)
             bg.position = CGPoint(x: backgroundPosition, y: 0)
             backgroundPosition += 2000
-            bg.size.height = responsive.getHeightScreen()
+            bg.size.height = Responsive.getHeightScreen()
             bg.size.width = 2000
             bg.zPosition = -99
             array.append(bg)

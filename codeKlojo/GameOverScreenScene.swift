@@ -16,7 +16,7 @@ class GameOverScreenScene: SKScene, SceneManager {
         let textLabel = SKLabelNode()
         textLabel.text = "Klik om overnieuw te beginnen"
         textLabel.color = UIColor.white
-        textLabel.position = CGPoint(x: (Responsive().getWidthScreen()/2), y: (Responsive().getHeightScreen()/2))
+        textLabel.position = CGPoint(x: (Responsive.getWidthScreen()/2), y: (Responsive.getHeightScreen()/2))
         addChild(textLabel)
     }
     
@@ -25,7 +25,7 @@ class GameOverScreenScene: SKScene, SceneManager {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        loadScene(withIdentifier: .game)
+        loadScene(withIdentifier: .cityscreen)
     }
     
     

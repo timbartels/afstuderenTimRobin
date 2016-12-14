@@ -100,8 +100,9 @@ class Character: SKSpriteNode {
 
     func jump(){
         let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
+        let jumpSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
         // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
-        let jumpSequence = SKAction.sequence([jumpUpAction])
+        let jumpSequence = SKAction.sequence([jumpUpAction, jumpSound])
         self.run(jumpSequence)
         animatePlayer(jump: true, move: false)
     }

@@ -9,21 +9,21 @@
 import Foundation
 import UIKit
 
-class Responsive{
-    let bounds = UIScreen.main.bounds
-    func setHeightScreen(bounds: CGRect) -> CGFloat{
+struct Responsive{
+    static let bounds = UIScreen.main.bounds
+    static func setHeightScreen(bounds: CGRect) -> CGFloat{
         let height = bounds.size.height
         return height
     }
-    func getHeightScreen() -> CGFloat {
-        return setHeightScreen(bounds: bounds)
+    static func getHeightScreen() -> CGFloat {
+        return setHeightScreen(bounds: Responsive.bounds)
     }
-    func setWidthScreen(bounds: CGRect) -> CGFloat{
+    static func setWidthScreen(bounds: CGRect) -> CGFloat{
         let width = bounds.size.width
         return width
     }
-    func getWidthScreen() -> CGFloat {
-        return setWidthScreen(bounds: bounds)
+    static func getWidthScreen() -> CGFloat {
+        return setWidthScreen(bounds: Responsive.bounds)
     }
     
 }

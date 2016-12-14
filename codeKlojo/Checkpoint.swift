@@ -15,7 +15,7 @@ var cps: [Int:String] = [
     5000 : "Achtbaan"
 ]
 
-class Checkpoint{
+class Checkpoint: CityLevel{
     
     func check(playerPosition: CGPoint)->Bool{
         

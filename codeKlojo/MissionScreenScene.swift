@@ -10,6 +10,9 @@ import SpriteKit
 import UIKit
 
 class MissionScreenScene: SKScene, SceneManager {
+    let level = MissionLevel()
+    let sound = SKAudioNode(fileNamed: "find-the-exit.wav")
+    
     
     override func sceneDidLoad() {
     }
@@ -20,16 +23,10 @@ class MissionScreenScene: SKScene, SceneManager {
         self.addChild(Background().load().first!)
         
         //Init textfield
-        let textField = UITextView(frame: CGRect(x: self.frame.width/2, y: 0, width: self.frame.width/2, height: self.frame.height))
-        textField.backgroundColor = UIColor.black
-        textField.textColor = UIColor.green
-        textField.font = UIFont(name: "Glass_TTY_VT220", size: 30)
-        textField.textContainerInset = UIEdgeInsetsMake(30, 30, 30, 30)
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.becomeFirstResponder()
-        textField.spellCheckingType = .no
+        let textField = level.showTextEditor()
         self.view!.addSubview(textField)
+        
+        self.addChild(sound)
         
     }
     
@@ -37,9 +34,8 @@ class MissionScreenScene: SKScene, SceneManager {
         for view in (self.view?.subviews)!{
             view.removeFromSuperview()
         }
-        loadScene(withIdentifier: .game)
+        loadScene(withIdentifier: .cityscreen)
     }
-    
     
     override func update(_ currentTime: CFTimeInterval) {
         
