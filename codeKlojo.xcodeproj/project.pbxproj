@@ -109,9 +109,9 @@
 		2D01161B1DD1FE8E00324B9C = {
 			isa = PBXGroup;
 			children = (
+				2D0116251DD1FE8E00324B9C /* Products */,
 				2D0116261DD1FE8E00324B9C /* codeKlojo */,
 				2D0116411DD1FE8E00324B9C /* codeKlojoTests */,
-				2D0116251DD1FE8E00324B9C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,15 +127,15 @@
 		2D0116261DD1FE8E00324B9C /* codeKlojo */ = {
 			isa = PBXGroup;
 			children = (
-				2DE7068B1E01576800AAB222 /* Structures */,
-				2D5E7CC11DD481E000B5116E /* Classes */,
-				2D503F361DE5B5AD007B8EB8 /* Scenes */,
-				2D503F371DE5B5CD007B8EB8 /* ViewControllers */,
-				2D503F421DE5C221007B8EB8 /* Extensions */,
 				2DE706941E0159BB00AAB222 /* Assets */,
+				2D5E7CC11DD481E000B5116E /* Classes */,
+				2D503F421DE5C221007B8EB8 /* Extensions */,
+				2D503F361DE5B5AD007B8EB8 /* Scenes */,
+				2DE7068B1E01576800AAB222 /* Structures */,
+				2D503F371DE5B5CD007B8EB8 /* ViewControllers */,
 				2D0116271DD1FE8E00324B9C /* AppDelegate.swift */,
-				2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */,
 				2D0116391DD1FE8E00324B9C /* Info.plist */,
+				2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */,
 			);
 			path = codeKlojo;
 			sourceTree = "<group>";
@@ -143,8 +143,8 @@
 		2D0116411DD1FE8E00324B9C /* codeKlojoTests */ = {
 			isa = PBXGroup;
 			children = (
-				2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */,
 				2D0116441DD1FE8E00324B9C /* Info.plist */,
+				2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */,
 			);
 			path = codeKlojoTests;
 			sourceTree = "<group>";
@@ -154,29 +154,29 @@
 			children = (
 				2D4355391E0163A200ACDEAF /* MissionLevel.swift */,
 			);
-			name = MissionScreen;
+			path = MissionScreen;
 			sourceTree = "<group>";
 		};
 		2D43553B1E01666E00ACDEAF /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				2D43553E1E016D4100ACDEAF /* blob-tales.wav */,
+				2D43553C1E0168D700ACDEAF /* chubby-cat.wav */,
 				2D4355421E01819400ACDEAF /* find-the-exit.wav */,
 				2D4355401E017D2E00ACDEAF /* jump.wav */,
-				2D43553C1E0168D700ACDEAF /* chubby-cat.wav */,
-				2D43553E1E016D4100ACDEAF /* blob-tales.wav */,
 			);
-			name = Sounds;
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		2D503F361DE5B5AD007B8EB8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				2D01162D1DD1FE8E00324B9C /* CityScreenScene.swift */,
+				2D503F381DE5B6C3007B8EB8 /* GameOverScreenScene.swift */,
 				2D1A64461DFED54300433AEB /* MissionScreenScene.swift */,
 				0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */,
-				2D503F381DE5B6C3007B8EB8 /* GameOverScreenScene.swift */,
 			);
-			name = Scenes;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		2D503F371DE5B5CD007B8EB8 /* ViewControllers */ = {
@@ -184,7 +184,7 @@
 			children = (
 				2D01162F1DD1FE8E00324B9C /* GameViewController.swift */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		2D503F421DE5C221007B8EB8 /* Extensions */ = {
@@ -192,28 +192,28 @@
 			children = (
 				2D503F401DE5C21C007B8EB8 /* sceneWithClassName.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2D5E7CC11DD481E000B5116E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2DE7068C1E0157EA00AAB222 /* Global Classes */,
+				2DE7068F1E01588E00AAB222 /* Buttons */,
 				2DE7068D1E01583F00AAB222 /* Character */,
 				2DE7068E1E01587A00AAB222 /* CityScreen */,
+				2DE7068C1E0157EA00AAB222 /* Global Classes */,
 				2D4355381E01638200ACDEAF /* MissionScreen */,
-				2DE7068F1E01588E00AAB222 /* Buttons */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		2DE7068B1E01576800AAB222 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				2D337F011DD9D10900F4AFE7 /* Responsive.swift */,
 				2D1A64481DFEDCB600433AEB /* Global.swift */,
+				2D337F011DD9D10900F4AFE7 /* Responsive.swift */,
 			);
-			name = Structures;
+			path = Structures;
 			sourceTree = "<group>";
 		};
 		2DE7068C1E0157EA00AAB222 /* Global Classes */ = {
@@ -223,7 +223,7 @@
 				2D503F3E1DE5BF03007B8EB8 /* GameSceneManager.swift */,
 				2DE706901E0158B700AAB222 /* SoundEngine.swift */,
 			);
-			name = "Global Classes";
+			path = "Global Classes";
 			sourceTree = "<group>";
 		};
 		2DE7068D1E01583F00AAB222 /* Character */ = {
@@ -233,38 +233,38 @@
 				2DE706891E0099F600AAB222 /* Enemy.swift */,
 				2D503F341DE5AE06007B8EB8 /* Player.swift */,
 			);
-			name = Character;
+			path = Character;
 			sourceTree = "<group>";
 		};
 		2DE7068E1E01587A00AAB222 /* CityScreen */ = {
 			isa = PBXGroup;
 			children = (
-				2DB7F1021DD9E64000AACB19 /* CityLevel.swift */,
 				2DE706981E01610D00AAB222 /* Border.swift */,
 				00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */,
+				2DB7F1021DD9E64000AACB19 /* CityLevel.swift */,
 			);
-			name = CityScreen;
+			path = CityScreen;
 			sourceTree = "<group>";
 		};
 		2DE7068F1E01588E00AAB222 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */,
 				2DE706921E01595000AAB222 /* Buttons.swift */,
+				2D5E7CBD1DD470CC00B5116E /* ControllerButtons.swift */,
 			);
-			name = Buttons;
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		2DE706941E0159BB00AAB222 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2DE706951E0159C100AAB222 /* Fonts */,
 				2D43553B1E01666E00ACDEAF /* Sounds */,
+				2D0116341DD1FE8E00324B9C /* Assets.xcassets */,
 				2DE706961E015BF800AAB222 /* Main.storyboard */,
 				2D8A62791DDC96F100458D4F /* movement.atlas */,
-				2D0116341DD1FE8E00324B9C /* Assets.xcassets */,
-				2DE706951E0159C100AAB222 /* Fonts */,
 			);
-			name = Assets;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		2DE706951E0159C100AAB222 /* Fonts */ = {
@@ -272,7 +272,7 @@
 			children = (
 				2DE706871E00706800AAB222 /* Glass_TTY_VT220.ttf */,
 			);
-			name = Fonts;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +434,7 @@
 				2D0116371DD1FE8E00324B9C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
