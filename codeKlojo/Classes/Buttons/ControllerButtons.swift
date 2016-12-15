@@ -15,12 +15,11 @@ class ControllerButtons: Buttons{
     var buttonStateU = false
     
     func loadButtonMenu(button: UIButton) {
-        let image = UIImage(named: "button") as UIImage?
+        let image = UIImage(named: "MenuButton") as UIImage?
         
         button.setImage(image, for: .normal)
-        button.frame = CGRect(x: width-100, y: 10, width: 80, height: 80)
+        button.frame = CGRect(x: width-200, y: 10, width: 200, height: 80)
         button.alpha = 0.5
-        button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
     }
     
     func loadButtonRight(button: UIButton) {
