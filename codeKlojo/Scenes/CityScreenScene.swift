@@ -10,17 +10,21 @@ import SpriteKit
 import GameplayKit
 
 class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
-    let sound = SKAudioNode(fileNamed: "blob-tales.wav")
     let cam = SKCameraNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     var floor = Border(rectOf: CGSize(width: 6000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+    let menuButtons = MenuButtons()
+    let startButton = UIButton()
+    let muteButton = UIButton()
+    let resumeButton = UIButton()
     let buttonMenu = UIButton()
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
-    let buttons = ControllerButtons()
+    let controllerButtons = ControllerButtons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
@@ -33,7 +37,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
  
     override func didMove(to view: SKView) {
         //Init sound
-        self.addChild(sound)
+        self.run(SKAction.playSoundFileNamed("blob-tales.wav", waitForCompletion:false))
         // Init camera
         self.camera = cam
         
@@ -44,6 +48,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.addChild(background)
         }
         
+        blurEffectView.frame = (view.bounds)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.5
+
         // Init level
         floor.load(position: CGPoint(x: 0, y: 50))
         wall.load(position: CGPoint(x: 0, y: 50))
@@ -56,10 +64,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         addChild(player)
         
         // Init buttons
-        buttons.loadButtonRight(button: buttonRight)
-        buttons.loadButtonUp(button: buttonUp)
-        buttons.loadButtonLeft(button: buttonLeft)
-        buttons.loadButtonMenu(button: buttonMenu)
+        controllerButtons.loadButtonRight(button: buttonRight)
+        controllerButtons.loadButtonUp(button: buttonUp)
+        controllerButtons.loadButtonLeft(button: buttonLeft)
+        controllerButtons.loadButtonMenu(button: buttonMenu)
         buttonMenu.addTarget(self, action: #selector(ButtonUpMenu), for: .touchUpInside)
         
         // Place buttons
@@ -81,7 +89,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             liveImage.alpha = 1
             view.addSubview(liveImage)
         }
-        
+
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -91,13 +99,55 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func touchUp(atPoint pos : CGPoint) {
 
     }
-    
+
     @objc func ButtonUpMenu(sender:UIButton) {
-        for view in (self.view?.subviews)!{
+        view?.addSubview(blurEffectView)
+        
+        if scene?.view?.isPaused == false{
+            scene?.view?.isPaused = true
+            menuButtons.loadMuteButton(button: muteButton)
+            menuButtons.loadStartButton(button: startButton)
+            menuButtons.loadResumeButton(button: resumeButton)
+            view?.addSubview(muteButton)
+            view?.addSubview(startButton)
+            view?.addSubview(resumeButton)
+            resumeButton.addTarget(self, action: #selector(ResumeButton), for: .touchUpInside)
+            startButton.addTarget(self, action: #selector(StartButton), for: .touchUpInside)
+            
+        }else{
+            scene?.view?.isPaused = false
+
+        }
+
+    }
+    
+    @objc func ResumeButton(sender: UIButton) {
+        if scene?.view?.isPaused == true{
+            scene?.view?.isPaused = false
+            muteButton.removeFromSuperview()
+            startButton.removeFromSuperview()
+            resumeButton.removeFromSuperview()
+            blurEffectView.removeFromSuperview()
+        }
+        
+    }
+    
+    @objc func MuteButton(sender: UIButton) {
+        
+    }
+    
+    @objc func StartButton(sender: UIButton) {
+        // Remove subview elements
+        for view in (self.view?.subviews)! {
             view.removeFromSuperview()
         }
+        self.removeAllChildren()
+        Global.savedPosition = CGPoint(x: 0, y: 100)
         loadScene(withIdentifier: .start)
+
     }
+
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
@@ -117,12 +167,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func checkButtonState(){
-        if (buttons.buttonStateU == true){
+        if (controllerButtons.buttonStateU == true){
             player.jump()
-            buttons.buttonStateU = false
+            controllerButtons.buttonStateU = false
         }
-        if(buttons.buttonStateL == true || buttons.buttonStateR == true){
-            player.animateMove(l: buttons.buttonStateL, r: buttons.buttonStateR)
+        if(controllerButtons.buttonStateL == true || controllerButtons.buttonStateR == true){
+            player.animateMove(l: controllerButtons.buttonStateL, r: controllerButtons.buttonStateR)
         }else{
             self.run(SKAction.run({
                 self.player.moveEnded()
@@ -186,6 +236,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         for view in (self.view?.subviews)! {
             view.removeFromSuperview()
         }
+        self.removeAllChildren()
         Global.savedPosition = CGPoint(x: 0, y: 100)
         loadScene(withIdentifier: .gameOver)
         
