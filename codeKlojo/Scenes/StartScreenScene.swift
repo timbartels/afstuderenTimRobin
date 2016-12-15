@@ -11,7 +11,8 @@ import GameplayKit
 import UIKit
 
 class StartScreenScene: SKScene, SceneManager {
-    let sound = SKAudioNode(fileNamed: "chubby-cat.wav")
+    var backgroundMusic = SKAudioNode()
+    
     let titleScreen = SKSpriteNode(imageNamed: "Titlescreen_Normal")
     let startButton = UIButton()
     let title = UITextField()
@@ -21,7 +22,9 @@ class StartScreenScene: SKScene, SceneManager {
     }
     
     override func didMove(to view: SKView) {
-        
+        backgroundMusic = SKAudioNode(fileNamed: "chubby-cat.wav")
+        print(backgroundMusic)
+        self.addChild(backgroundMusic)
         titleScreen.anchorPoint = CGPoint(x: 0,y: 0)
         titleScreen.position = CGPoint(x: 0, y: 0)
         titleScreen.size.height = Responsive.getHeightScreen()
@@ -38,13 +41,14 @@ class StartScreenScene: SKScene, SceneManager {
         startButton.frame = CGRect(x: Responsive.getWidthScreen()/2-50, y: Responsive.getHeightScreen()/2, width: 150, height: 80)
         startButton.addTarget(self, action: #selector(ButtonDownStart), for: .touchUpInside)
         self.view!.addSubview(startButton)
-        self.addChild(sound)
+        
     }
     
     @objc func ButtonDownStart(sender:UIButton) {
         for view in (self.view?.subviews)!{
             view.removeFromSuperview()
         }
+        backgroundMusic.run(SKAction.stop())
         loadScene(withIdentifier: .cityscreen)
     }
     

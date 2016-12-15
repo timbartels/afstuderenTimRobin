@@ -10,18 +10,20 @@ import SpriteKit
 import GameplayKit
 
 class GameOverScreenScene: SKScene, SceneManager {
+    let textLabel = SKLabelNode()
     
     override func sceneDidLoad() {
-        self.backgroundColor = SKColor.black
-        let textLabel = SKLabelNode()
-        textLabel.text = "Klik om overnieuw te beginnen"
-        textLabel.color = UIColor.white
-        textLabel.position = CGPoint(x: (Responsive.getWidthScreen()/2), y: (Responsive.getHeightScreen()/2))
-        addChild(textLabel)
+        
     }
     
     override func didMove(to view: SKView) {
         
+        self.backgroundColor = SKColor.black
+        
+        textLabel.text = "Klik om overnieuw te beginnen"
+        textLabel.color = UIColor.white
+        textLabel.position = CGPoint(x: (Responsive.getWidthScreen()/2), y: (Responsive.getHeightScreen()/2))
+        addChild(textLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

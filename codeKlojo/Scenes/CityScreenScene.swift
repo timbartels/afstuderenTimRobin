@@ -10,7 +10,9 @@ import SpriteKit
 import GameplayKit
 
 class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
+    var mute = false
     let cam = SKCameraNode()
+    var backgroundMusic = SKAudioNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     var floor = Border(rectOf: CGSize(width: 6000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
@@ -37,7 +39,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
  
     override func didMove(to view: SKView) {
         //Init sound
-        self.run(SKAction.playSoundFileNamed("blob-tales.wav", waitForCompletion:false))
+        backgroundMusic = SKAudioNode(fileNamed: "blob-tales.wav")
+        self.addChild(backgroundMusic)
         // Init camera
         self.camera = cam
         
@@ -113,6 +116,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             view?.addSubview(resumeButton)
             resumeButton.addTarget(self, action: #selector(ResumeButton), for: .touchUpInside)
             startButton.addTarget(self, action: #selector(StartButton), for: .touchUpInside)
+            muteButton.addTarget(self, action: #selector(MuteButton), for: .touchUpInside)
             
         }else{
             scene?.view?.isPaused = false
@@ -133,7 +137,13 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     @objc func MuteButton(sender: UIButton) {
-        
+        if mute == false{
+            mute = true
+            backgroundMusic.run(SKAction.pause())
+        }else{
+            mute = false
+            backgroundMusic.run(SKAction.play())
+        }
     }
     
     @objc func StartButton(sender: UIButton) {
@@ -141,7 +151,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         for view in (self.view?.subviews)! {
             view.removeFromSuperview()
         }
-        self.removeAllChildren()
+        backgroundMusic.run(SKAction.stop())
         Global.savedPosition = CGPoint(x: 0, y: 100)
         loadScene(withIdentifier: .start)
 
@@ -190,6 +200,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             for view in (self.view?.subviews)! {
                 view.removeFromSuperview()
             }
+            backgroundMusic.run(SKAction.stop())
             //Saves the current player position
             Global.savedPosition = player.position
             loadScene(withIdentifier: .mission)
@@ -236,7 +247,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         for view in (self.view?.subviews)! {
             view.removeFromSuperview()
         }
-        self.removeAllChildren()
+        backgroundMusic.run(SKAction.stop())
         Global.savedPosition = CGPoint(x: 0, y: 100)
         loadScene(withIdentifier: .gameOver)
         
