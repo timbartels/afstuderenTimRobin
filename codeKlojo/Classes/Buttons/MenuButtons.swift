@@ -12,19 +12,16 @@ import UIKit
 
 class MenuButtons: Buttons{
     func loadResumeButton(button: UIButton){
-        let image = UIImage(named: "ResumeButton") as UIImage?
-        button.setImage(image, for: .normal)
+        prepareButtonController(imageName: "ResumeButton", button: button)
         button.frame = CGRect(x: width/2-70, y: height/2, width: 200, height: 70)
     }
     func loadMuteButton(button: UIButton){
-        let image = UIImage(named: "MuteButton") as UIImage?
-        button.setImage(image, for: .normal)
+        prepareButtonController(imageName: "MuteButton", button: button)
         button.frame = CGRect(x: width/2-70, y: height/2-100, width: 200, height: 70)
     }
     
     func loadStartButton(button: UIButton){
-        let image = UIImage(named: "HomeButton") as UIImage?
-        button.setImage(image, for: .normal)
+        prepareButtonController(imageName: "HomeButton", button: button)
         button.frame = CGRect(x: width/2-70, y: height/2-200, width: 200, height: 70)
     }
 }

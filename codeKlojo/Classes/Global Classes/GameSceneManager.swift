@@ -23,7 +23,9 @@ extension SceneManager where Self: SKScene {
     
     // No xCode level editor
     func loadScene(withIdentifier identifier: SceneIdentifier) {
-    
+        for view in (self.view?.subviews)!{
+            view.removeFromSuperview()
+        }
         let scene: SKScene
     
         switch identifier {

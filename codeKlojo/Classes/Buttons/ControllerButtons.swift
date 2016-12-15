@@ -15,17 +15,13 @@ class ControllerButtons: Buttons{
     var buttonStateU = false
     
     func loadButtonMenu(button: UIButton) {
-        let image = UIImage(named: "MenuButton") as UIImage?
-        
-        button.setImage(image, for: .normal)
+        prepareButtonController(imageName: "MenuButton", button: button)
         button.frame = CGRect(x: width-200, y: 10, width: 200, height: 80)
         button.alpha = 0.5
     }
     
     func loadButtonRight(button: UIButton) {
-        let image = UIImage(named: "button") as UIImage?
-        
-        button.setImage(image, for: .normal)
+        prepareButtonController(imageName: "button", button: button)
         button.frame = CGRect(x: 150, y: height-100, width: 80, height: 80)
         button.alpha = 0.5
         button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
@@ -34,20 +30,15 @@ class ControllerButtons: Buttons{
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpOutside)
     }
     func loadButtonUp(button: UIButton) {
-        
-        let image = UIImage(named: "button") as UIImage?
-        
-        button.setImage(image, for: .normal)
-        button.frame = CGRect(x: width-100, y: height-100, width: 80, height: 80)
+        prepareButtonController(imageName: "button", button: button)
         button.alpha = 0.5
+        button.frame = CGRect(x: width-100, y: height-100, width: 80, height: 80)
         button.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2 )
         button.addTarget(self, action: #selector(ButtonDownU), for: .touchDown)
         
     }
     func loadButtonLeft(button: UIButton) {
-        let image = UIImage(named: "button") as UIImage?
-        
-        button.setImage(image, for: .normal)
+        prepareButtonController(imageName: "button", button: button)
         button.frame = CGRect(x: 50, y: height-100, width: 80, height: 80)
         button.alpha = 0.5
         button.addTarget(self, action: #selector(ButtonDownL), for: .touchDown)

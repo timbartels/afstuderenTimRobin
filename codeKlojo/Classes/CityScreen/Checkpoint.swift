@@ -19,7 +19,7 @@ class Checkpoint: CityLevel{
     
     func check(playerPosition: CGPoint)->Bool{
         
-        for (position, mission) in cps {
+        for (position, _) in cps {
             let playerX = Int(playerPosition.x)
             
             if(playerX > position){

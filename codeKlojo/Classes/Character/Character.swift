@@ -16,6 +16,11 @@ class Character: SKSpriteNode {
     var framesIdle = [SKTexture]()
     
     func load() {
+        //Sets the frames of the different animations in an Array,
+        // so they won't load every time when used.
+        framesMove = loadAnimation(animation: 1)
+        framesJump = loadAnimation(animation: 2)
+        framesIdle = loadAnimation(animation: 3)
         self.setScale(charSize)
         self.anchorPoint = CGPoint(x: 0.5,y: 0)
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))

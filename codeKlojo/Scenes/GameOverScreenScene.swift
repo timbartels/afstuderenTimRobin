@@ -17,9 +17,11 @@ class GameOverScreenScene: SKScene, SceneManager {
     }
     
     override func didMove(to view: SKView) {
-        
         self.backgroundColor = SKColor.black
-        
+        initText()
+    }
+    
+    func initText(){
         textLabel.text = "Klik om overnieuw te beginnen"
         textLabel.color = UIColor.white
         textLabel.position = CGPoint(x: (Responsive.getWidthScreen()/2), y: (Responsive.getHeightScreen()/2))

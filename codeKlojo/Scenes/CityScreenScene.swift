@@ -38,34 +38,36 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
  
     override func didMove(to view: SKView) {
-        //Init sound
-        backgroundMusic = SKAudioNode(fileNamed: "blob-tales.wav")
-        self.addChild(backgroundMusic)
-        // Init camera
-        self.camera = cam
-        
+        initBackground()
+        prepareBlur()
+        initLevel()
+        initMusic()
+        initCamera()
+        initPlayer()
+        initController()
+        initLives()
+    }
+    
+    func initBackground(){
         // Init background
         self.backgroundColor = SKColor(red: CGFloat(116.0/255.0), green: CGFloat(226.0/255.0), blue: CGFloat(207.0/255.0), alpha: 0)
         let backgrounds = Background().load()
         for background in backgrounds {
             self.addChild(background)
         }
-        
-        blurEffectView.frame = (view.bounds)
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.5
 
+    }
+    
+    func initLevel(){
         // Init level
         floor.load(position: CGPoint(x: 0, y: 50))
         wall.load(position: CGPoint(x: 0, y: 50))
         level.showLives()
         self.addChild(wall)
         self.addChild(floor)
-        
-        // Init player
-        player.load()
-        addChild(player)
-        
+    }
+    
+    func initController(){
         // Init buttons
         controllerButtons.loadButtonRight(button: buttonRight)
         controllerButtons.loadButtonUp(button: buttonUp)
@@ -74,11 +76,18 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         buttonMenu.addTarget(self, action: #selector(ButtonUpMenu), for: .touchUpInside)
         
         // Place buttons
-        view.addSubview(buttonLeft)
-        view.addSubview(buttonRight)
-        view.addSubview(buttonUp)
-        view.addSubview(buttonMenu)
-        
+        view?.addSubview(buttonLeft)
+        view?.addSubview(buttonRight)
+        view?.addSubview(buttonUp)
+        view?.addSubview(buttonMenu)
+
+    }
+    func prepareBlur(){
+        blurEffectView.frame = (view?.bounds)!
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.5
+    }
+    func initLives(){
         // Add lives
         let imageName = "live.png"
         let image = UIImage(named: imageName)!
@@ -90,10 +99,54 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             liveImage.frame = CGRect(x: livePosition+60, y: 20, width: 50, height: 50)
             livePosition += 60
             liveImage.alpha = 1
-            view.addSubview(liveImage)
+            view?.addSubview(liveImage)
         }
 
     }
+    
+    func initCamera(){
+        // Init camera
+        self.camera = cam
+    }
+    
+    func initMusic(){
+        //Init sound
+        backgroundMusic = SKAudioNode(fileNamed: "blob-tales.wav")
+        self.addChild(backgroundMusic)
+    }
+    
+    func initPlayer(){
+        // Init player
+        player.load()
+        addChild(player)
+    }
+    
+    func calculateCamera(){
+        //Calculate position when player reaches half of screen
+        if player.position.x > self.frame.width/2{
+            cam.position = player.position
+        }else{
+            cam.position = CGPoint(x: self.frame.width/2, y: player.position.y)
+        }
+        cam.position.y += (self.frame.height/2)-100
+    }
+    
+    func checkButtonState(){
+        if (controllerButtons.buttonStateU == true){
+            player.jump()
+            controllerButtons.buttonStateU = false
+        }
+        if(controllerButtons.buttonStateL == true || controllerButtons.buttonStateR == true){
+            player.animateMove(l: controllerButtons.buttonStateL, r: controllerButtons.buttonStateR)
+        }else{
+            self.run(SKAction.run({
+                self.player.moveEnded()
+            }))
+            
+        }
+        
+    }
+
     
     func touchDown(atPoint pos : CGPoint) {
 
@@ -166,31 +219,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
     }
     
-    func calculateCamera(){
-        //Calculate position when player reaches half of screen
-        if player.position.x > self.frame.width/2{
-            cam.position = player.position
-        }else{
-            cam.position = CGPoint(x: self.frame.width/2, y: player.position.y)
-        }
-        cam.position.y += (self.frame.height/2)-100
-    }
-    
-    func checkButtonState(){
-        if (controllerButtons.buttonStateU == true){
-            player.jump()
-            controllerButtons.buttonStateU = false
-        }
-        if(controllerButtons.buttonStateL == true || controllerButtons.buttonStateR == true){
-            player.animateMove(l: controllerButtons.buttonStateL, r: controllerButtons.buttonStateR)
-        }else{
-            self.run(SKAction.run({
-                self.player.moveEnded()
-            }))
-            
-        }
-
-    }
     override func update(_ currentTime: CFTimeInterval) {
         
         player.checkLives()
@@ -243,10 +271,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func goToGameOverScreenScene(){
-        // Remove subview elements
-        for view in (self.view?.subviews)! {
-            view.removeFromSuperview()
-        }
         backgroundMusic.run(SKAction.stop())
         Global.savedPosition = CGPoint(x: 0, y: 100)
         loadScene(withIdentifier: .gameOver)
