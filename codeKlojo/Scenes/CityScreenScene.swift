@@ -70,6 +70,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         level.showLives()
         self.addChild(wall)
         self.addChild(floor)
+        
+        // Save floor position globally so it can be used for calculations
+        Global.floorPosition = floor.position
     }
     
     func initController(){
@@ -218,7 +221,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             view.removeFromSuperview()
         }
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 50, y: 130)
+        Global.savedPosition = CGPoint(x: 100, y: 230)
+        scene?.view?.isPaused = false
         loadScene(withIdentifier: .start)
 
     }
