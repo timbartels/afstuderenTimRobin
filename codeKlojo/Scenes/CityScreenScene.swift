@@ -13,7 +13,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var mute = false
     let cam = SKCameraNode()
     var backgroundMusic = SKAudioNode()
-    let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
+    let player = Player()
     var floor = Border(rectOf: CGSize(width: 10000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
@@ -108,7 +108,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             liveImage.alpha = 1
             view?.addSubview(liveImage)
         }
-
     }
     
     func initCamera(){

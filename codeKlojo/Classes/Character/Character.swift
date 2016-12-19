@@ -1,4 +1,4 @@
-    //
+
 //  Character.swift
 //  codeKlojo
 //
@@ -32,6 +32,8 @@ class Character: SKSpriteNode {
         }
         // idle stance
         self.animatePlayer(jump: false, move: false)
+        
+        self.texture = framesIdle.first
     }
     
     func loadAnimation(animation: Int)->[SKTexture]{
