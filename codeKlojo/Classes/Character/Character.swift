@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Character: SKSpriteNode {
-    var charSize = CGFloat(0.18)
+    var charSize = CGFloat(0.15)
     var framesMove = [SKTexture]()
     var framesJump = [SKTexture]()
     var framesIdle = [SKTexture]()
@@ -106,9 +106,10 @@ class Character: SKSpriteNode {
     }
 
     func jump(){
-        print(self.position.y)
-        // Fix this 195 var to sensible default calculated on floor position or something
-        if(self.position.y < 195){
+        // Allowed position to jump, so player cannot jump in air
+        let allowedPositionToJump = Global.floorPosition.y+self.size.height/2+5
+        
+        if(self.position.y < allowedPositionToJump){
             let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
             let jumpSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
             // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)

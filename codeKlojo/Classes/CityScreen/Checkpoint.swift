@@ -24,13 +24,6 @@ class Checkpoint: CityLevel{
             
             if(playerX > position){
                 
-                print("Positie speler: \(playerX) - CheckPoint: \(position)")
-                
-                // Show mission screen
-                
-                //let vc = MissionViewController() //change this to your class name
-                //self.present(vc, animated: true, completion: nil)
-                
                 // Remove checkpoint from array
                 cps.removeValue(forKey: position)
                 return true
