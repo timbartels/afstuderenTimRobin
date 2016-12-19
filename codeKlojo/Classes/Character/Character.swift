@@ -16,13 +16,13 @@ class Character: SKSpriteNode {
     var framesIdle = [SKTexture]()
     
     func load() {
-        //Sets the frames of the different animations in an Array,
-        // so they won't load every time when used.
+        // Sets the frames of the different animations in an Array,
+        // So they won't load every time when used.
         framesMove = loadAnimation(animation: 1)
         framesJump = loadAnimation(animation: 2)
         framesIdle = loadAnimation(animation: 3)
         self.setScale(charSize)
-        self.anchorPoint = CGPoint(x: 0.5,y: 0)
+        self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
         if let physics = self.physicsBody {
             physics.affectedByGravity = true
@@ -30,12 +30,14 @@ class Character: SKSpriteNode {
             physics.restitution = 0
             physics.allowsRotation = false
         }
+        // idle stance
+        self.animatePlayer(jump: false, move: false)
     }
     
     func loadAnimation(animation: Int)->[SKTexture]{
         let movementAtlas = SKTextureAtlas(named: "movement")
-        //Checks which frames will set
-        //Double Check this function :S
+        // Checks which frames will set
+        // Double Check this function :S
         switch (animation) {
         case(1):
             let frames = [3,4,5,6,7,6,5,4,3,8,9,10,9,8]
@@ -104,12 +106,16 @@ class Character: SKSpriteNode {
     }
 
     func jump(){
-        let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
-        let jumpSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
-        // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
-        let jumpSequence = SKAction.sequence([jumpUpAction, jumpSound])
-        self.run(jumpSequence)
-        animatePlayer(jump: true, move: false)
+        print(self.position.y)
+        // Fix this 195 var to sensible default calculated on floor position or something
+        if(self.position.y < 195){
+            let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
+            let jumpSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
+            // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
+            let jumpSequence = SKAction.sequence([jumpUpAction, jumpSound])
+            self.run(jumpSequence)
+            animatePlayer(jump: true, move: false)
+        }
     }
 
 }

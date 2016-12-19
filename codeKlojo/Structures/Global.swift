@@ -11,5 +11,5 @@ import SpriteKit
 
 struct Global {
     //Saves the position of the player globally so it wont be affected
-    static var savedPosition = CGPoint(x: 20, y: 100)
+    static var savedPosition = CGPoint(x: 30, y: 125)
 }

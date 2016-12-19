@@ -14,7 +14,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let cam = SKCameraNode()
     var backgroundMusic = SKAudioNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
-    var floor = Border(rectOf: CGSize(width: 6000, height: 0))
+    var floor = Border(rectOf: CGSize(width: 10000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
@@ -38,14 +38,19 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
  
     override func didMove(to view: SKView) {
+        prepareLevel()
+    }
+    
+    func prepareLevel(){
         initBackground()
         prepareBlur()
         initLevel()
         initMusic()
-        initCamera()
         initPlayer()
+        initCamera()
         initController()
         initLives()
+
     }
     
     func initBackground(){
@@ -60,7 +65,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initLevel(){
         // Init level
-        floor.load(position: CGPoint(x: 0, y: 50))
+        floor.load(position: CGPoint(x: 0, y: 120))
         wall.load(position: CGPoint(x: 0, y: 50))
         level.showLives()
         self.addChild(wall)
@@ -85,7 +90,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func prepareBlur(){
         blurEffectView.frame = (view?.bounds)!
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.5
     }
     func initLives(){
         // Add lives
@@ -107,6 +111,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func initCamera(){
         // Init camera
         self.camera = cam
+        cam.position.y += (self.frame.height/2)
+        // calculateCamera()
     }
     
     func initMusic(){
@@ -124,11 +130,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func calculateCamera(){
         //Calculate position when player reaches half of screen
         if player.position.x > self.frame.width/2{
-            cam.position = player.position
+            cam.position.x = player.position.x
+           
         }else{
-            cam.position = CGPoint(x: self.frame.width/2, y: player.position.y)
+            cam.position.x = self.frame.width/2
         }
-        cam.position.y += (self.frame.height/2)-100
+        
     }
     
     func checkButtonState(){
@@ -157,6 +164,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
 
     @objc func ButtonUpMenu(sender:UIButton) {
+        for view in (self.view?.subviews)!{
+            view.removeFromSuperview()
+        }
         view?.addSubview(blurEffectView)
         
         if scene?.view?.isPaused == false{
@@ -185,6 +195,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             startButton.removeFromSuperview()
             resumeButton.removeFromSuperview()
             blurEffectView.removeFromSuperview()
+            initController()
+            initLives()
+            
         }
         
     }
@@ -205,7 +218,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             view.removeFromSuperview()
         }
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 0, y: 100)
+        Global.savedPosition = CGPoint(x: 50, y: 130)
         loadScene(withIdentifier: .start)
 
     }
@@ -220,7 +233,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     override func update(_ currentTime: CFTimeInterval) {
-        
         player.checkLives()
         
         // Check for checkpoint
@@ -272,7 +284,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func goToGameOverScreenScene(){
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 0, y: 100)
+        Global.savedPosition = CGPoint(x: 50, y: 125)
         loadScene(withIdentifier: .gameOver)
         
     }
