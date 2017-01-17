@@ -10,9 +10,18 @@ import Foundation
 import SpriteKit
 
 class Bullet: SKSpriteNode {
-    func shoot(obj: SKSpriteNode){
-        self.position = obj.position
-        self.move(toParent: Player())
+    var shooting = false
+       
+    func load() {
+        self.setScale(2)
+        self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
+        if let physics = self.physicsBody {
+            physics.affectedByGravity = false
+            physics.isDynamic = true
+            physics.restitution = 0
+            physics.allowsRotation = false
+        }
     }
     
 }

@@ -24,7 +24,6 @@ class Enemy: Character {
     }
     func moveTo(pos: CGPoint){
         let diff = Int(pos.x) - Int(self.position.x)
-        print(diff)
         if -(maxRange) ... -(minRange) ~= diff{
             self.run(SKAction.moveBy(x: -5, y:0, duration: 0.2))
             self.xScale = (enemySize)
@@ -33,5 +32,6 @@ class Enemy: Character {
             self.xScale = -(enemySize)
         }
     }
+
 
 }
