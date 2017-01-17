@@ -12,6 +12,7 @@ import UIKit
 class MissionScreenScene: SKScene, SceneManager {
     let level = MissionLevel()
     var backgroundMusic = SKAudioNode()
+    var textField = UITextView()
     
     override func sceneDidLoad() {
     }
@@ -35,18 +36,25 @@ class MissionScreenScene: SKScene, SceneManager {
     
     func initTextField(){
         //Init textfield
-        let textField = level.showTextEditor()
+        textField = level.showTextEditor()
         self.view!.addSubview(textField)
+        textField.text = "appel = 1"
 
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        backgroundMusic.run(SKAction.stop())
-        loadScene(withIdentifier: .cityscreen)
+        
+    }
+    
+    func checkTextEditor(){
+        if(textField.text == "appel = 2"){
+            backgroundMusic.run(SKAction.stop())
+            loadScene(withIdentifier: .cityscreen)
+        }
     }
     
     override func update(_ currentTime: CFTimeInterval) {
-        
+        checkTextEditor()
     }
 
 }

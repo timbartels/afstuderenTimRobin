@@ -30,10 +30,6 @@ class Character: SKSpriteNode {
             physics.restitution = 0
             physics.allowsRotation = false
         }
-        // idle stance
-        self.animatePlayer(jump: false, move: false)
-        
-        self.texture = framesIdle.first
     }
     
     func loadAnimation(animation: Int)->[SKTexture]{

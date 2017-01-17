@@ -14,6 +14,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let cam = SKCameraNode()
     var backgroundMusic = SKAudioNode()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
+    let bullet = Bullet(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
+    let enemy = Enemy(imageNamed: "robot")
     var floor = Border(rectOf: CGSize(width: 10000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
@@ -47,6 +49,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initLevel()
         initMusic()
         initPlayer()
+        // initBullet()
+        initEnemy()
         initCamera()
         initController()
         initLives()
@@ -131,6 +135,19 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         print(player.framesMove)
 
     }
+    
+    func initBullet(){
+        // Init bullet
+        addChild(bullet)
+    }
+
+    
+    func initEnemy(){
+        // Init enemy
+        enemy.load()
+        addChild(enemy)
+    }
+
     
     func calculateCamera(){
         //Calculate position when player reaches half of screen
@@ -240,6 +257,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     override func update(_ currentTime: CFTimeInterval) {
         player.checkLives()
+        bullet.shoot(obj: enemy)
+        enemy.moveTo(pos: player.position)
         
         // Check for checkpoint
         if Checkpoint().check(playerPosition: player.position){

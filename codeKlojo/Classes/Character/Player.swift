@@ -18,6 +18,11 @@ class Player: Character {
     override func load() {        
         super.load()
         self.position = Global.savedPosition
+        // idle stance
+        self.animatePlayer(jump: false, move: false)
+        
+        self.texture = framesIdle.first
+
     }
     
     func animateMove(l: Bool, r: Bool){
