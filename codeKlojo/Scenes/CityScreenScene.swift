@@ -54,12 +54,11 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initCamera()
         initController()
         initLives()
-        invokeFire()
     }
     
     func initBackground(){
         // Init background
-        self.backgroundColor = SKColor(red: CGFloat(116.0/255.0), green: CGFloat(226.0/255.0), blue: CGFloat(207.0/255.0), alpha: 0)
+        self.backgroundColor = SKColor(red: CGFloat(169.0/255.0), green: CGFloat(212.0/255.0), blue: CGFloat(217.0/255.0), alpha: 0)
         let backgrounds = Background().load()
         for background in backgrounds {
             self.addChild(background)
@@ -69,7 +68,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initLevel(){
         // Init level
-        floor.load(position: CGPoint(x: 0, y: 120))
+        floor.load(position: CGPoint(x: 0, y: 100))
         wall.load(position: CGPoint(x: 0, y: 50))
         level.showLives()
         self.addChild(wall)
@@ -178,14 +177,24 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func invokeFire(){
+        // Start firebullet action mayfire is false till sequence is done running
         let fireBullet = SKAction.run(){
             self.enemy.fireBullet(scene: self)
+            self.enemy.mayFire = false
         }
-        let waitToFireInvaderBullet = SKAction.wait(forDuration: 1.5)
-        let invaderFire = SKAction.sequence([fireBullet,waitToFireInvaderBullet])
-        let repeatForeverAction = SKAction.repeatForever(invaderFire)
-        run(repeatForeverAction)
+        // Enemy may only fire when sequence is done running
+        let completion = SKAction.run(){
+            self.enemy.mayFire = true
+        }
+        let waitToFireEnemyBullet = SKAction.wait(forDuration: 1.5)
+        let enemyFire = SKAction.sequence([fireBullet,waitToFireEnemyBullet,completion])
+        
+       // Enemy may only fire when sequence is done running
+        if self.enemy.mayFire == true {
+            self.run(enemyFire)
+        }
     }
+    
     func enemyAttack(){
         enemy.moveTo(pos: player.position)
     }
@@ -253,7 +262,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             view.removeFromSuperview()
         }
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 100, y: 230)
+        Global.savedPosition = CGPoint(x: 30, y: 125)
         scene?.view?.isPaused = false
         loadScene(withIdentifier: .start)
 
@@ -271,8 +280,13 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     override func update(_ currentTime: CFTimeInterval) {
         player.checkLives()
         
+        // Move to player position when in range
         enemyAttack()
         
+        // Fire bullet when enemy is in range of player
+        if enemy.inRange == true {
+            invokeFire()
+        }
         
         // Check for checkpoint
         if Checkpoint().check(playerPosition: player.position){
@@ -323,7 +337,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func goToGameOverScreenScene(){
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 50, y: 125)
+        Global.savedPosition = CGPoint(x: 30, y: 125)
         loadScene(withIdentifier: .gameOver)
         
     }
