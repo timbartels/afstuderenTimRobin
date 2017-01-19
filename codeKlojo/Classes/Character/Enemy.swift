@@ -32,6 +32,17 @@ class Enemy: Character {
             self.xScale = -(enemySize)
         }
     }
+    
+    func fireBullet(scene: SKScene){
+        let bullet = Bullet(imageNamed: "bullet")
+        bullet.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+        bullet.position.x = self.position.x
+        bullet.position.y = self.position.y
+        scene.addChild(bullet)
+        let moveBulletAction = SKAction.move(to: CGPoint(x:self.position.x-1000, y: self.position.y), duration: 2.0)
+        let removeBulletAction = SKAction.removeFromParent()
+        bullet.run(SKAction.sequence([moveBulletAction,removeBulletAction]))
+    }
 
 
 }

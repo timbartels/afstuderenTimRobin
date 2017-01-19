@@ -23,5 +23,5 @@ class Bullet: SKSpriteNode {
             physics.allowsRotation = false
         }
     }
-    
+        
 }

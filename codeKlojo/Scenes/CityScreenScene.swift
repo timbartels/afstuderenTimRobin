@@ -54,6 +54,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initCamera()
         initController()
         initLives()
+        invokeFire()
     }
     
     func initBackground(){
@@ -175,7 +176,19 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
         
     }
-
+    
+    func invokeFire(){
+        let fireBullet = SKAction.run(){
+            self.enemy.fireBullet(scene: self)
+        }
+        let waitToFireInvaderBullet = SKAction.wait(forDuration: 1.5)
+        let invaderFire = SKAction.sequence([fireBullet,waitToFireInvaderBullet])
+        let repeatForeverAction = SKAction.repeatForever(invaderFire)
+        run(repeatForeverAction)
+    }
+    func enemyAttack(){
+        enemy.moveTo(pos: player.position)
+    }
     
     func touchDown(atPoint pos : CGPoint) {
 
@@ -257,7 +270,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     override func update(_ currentTime: CFTimeInterval) {
         player.checkLives()
-        enemy.moveTo(pos: player.position)
+        
+        enemyAttack()
+        
         
         // Check for checkpoint
         if Checkpoint().check(playerPosition: player.position){
