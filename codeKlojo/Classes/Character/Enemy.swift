@@ -44,14 +44,16 @@ class Enemy: Character {
     }
     
     func fireBullet(scene: SKScene){
-        let bullet = Bullet(imageNamed: "bullet")
+        var bullet = Bullet(imageNamed: "bullet")
         bullet.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-        bullet.position.x = self.position.x
+        bullet.position.x = self.position.x-100
         bullet.position.y = self.position.y
+        bullet.setScale(0.5)
         
         var direction = self.position.x-bulletRange
         if enemyDirection == "right" {
-            bullet.xScale = -(CGFloat(1))
+            bullet.xScale = -(CGFloat(0.5))
+            bullet.position.x = self.position.x+100
             direction = self.position.x+bulletRange
         }
         

@@ -13,7 +13,7 @@ class Bullet: SKSpriteNode {
     var shooting = false
        
     func load() {
-        self.setScale(2)
+        self.setScale(0.5)
         self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
         if let physics = self.physicsBody {
