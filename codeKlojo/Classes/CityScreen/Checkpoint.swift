@@ -28,7 +28,8 @@ class Checkpoint: CityLevel{
                 cps.removeValue(forKey: position)
                 return true
             }
-        };return false
+        };
+        return false
     }
     
 }

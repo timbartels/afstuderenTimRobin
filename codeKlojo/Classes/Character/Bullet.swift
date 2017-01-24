@@ -16,11 +16,15 @@ class Bullet: SKSpriteNode {
         self.setScale(0.5)
         self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
+        self.physicsBody?.categoryBitMask = PhysicsCategory.bullet
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.player
+
         if let physics = self.physicsBody {
             physics.affectedByGravity = false
             physics.isDynamic = true
             physics.restitution = 0
             physics.allowsRotation = false
+            
         }
     }
         

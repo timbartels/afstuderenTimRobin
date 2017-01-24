@@ -16,3 +16,9 @@ struct Global {
     // Save the position of the floor globally so it can be used for calculations
     static var floorPosition = CGPoint()
 }
+
+struct PhysicsCategory {
+    static let player : UInt32 = 1
+    static let bullet : UInt32 = 2
+    static let enemy : UInt32 = 2
+}

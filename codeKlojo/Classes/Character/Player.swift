@@ -15,13 +15,16 @@ class Player: Character {
     var label = UILabel()
     var liveImage = UIImageView()
 
-    override func load() {        
-        super.load()
+    override func load(scene: SKScene) {
+        super.load(scene: scene)
         self.position = Global.savedPosition
         // idle stance
         self.animatePlayer(jump: false, move: false)
-        
         self.texture = framesIdle.first
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.bullet
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy
+        self.physicsBody?.categoryBitMask = PhysicsCategory.player
+        scene.addChild(self)
 
     }
     
@@ -38,14 +41,13 @@ class Player: Character {
             animatePlayer(jump: false, move: true)
         }
     }
-    func checkLives(){
+    func checkLives(scene: SKScene){
         let positionPlayer = self.position
         let endLine = CGPoint(x: self.position.x, y: 0)
         if (positionPlayer.y <= endLine.y){
-            self.load()
+            self.load(scene: scene)
             self.lives -= 1
-            
-            
         }
     }
+
 }

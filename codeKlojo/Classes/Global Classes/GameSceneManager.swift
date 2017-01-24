@@ -32,10 +32,13 @@ extension SceneManager where Self: SKScene {
     
             case .start:
                 scene = StartScreenScene(size: sceneSize)
+                scene.name = "startscreen"
             case .cityscreen:
                 scene = CityScreenScene(size: sceneSize)
+                scene.name = "cityscreen"
             case .mission:
                 scene = MissionScreenScene(size: sceneSize)
+                scene.name = "missionscreen"
             case .gameOver:
                 scene = GameOverScreenScene(size: sceneSize)
         }

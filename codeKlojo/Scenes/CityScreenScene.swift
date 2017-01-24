@@ -12,13 +12,15 @@ import GameplayKit
 class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var mute = false
     let cam = SKCameraNode()
-    var backgroundMusic = SKAudioNode()
+    var backgroundMusic = SoundEngine()
+    let background = Background()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
     let bullet = Bullet(imageNamed: "bullet")
     let enemy = Enemy(imageNamed: "robot")
     var floor = Border(rectOf: CGSize(width: 10000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
+    let cloud = Clouds()
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
     let menuButtons = MenuButtons()
     let startButton = UIButton()
@@ -40,6 +42,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
  
     override func didMove(to view: SKView) {
+        self.physicsWorld.contactDelegate = self;
         prepareLevel()
     }
     
@@ -47,9 +50,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initBackground()
         prepareBlur()
         initLevel()
+        initClouds()
         initMusic()
         initPlayer()
-        initBullet()
         initEnemy()
         initCamera()
         initController()
@@ -59,20 +62,22 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func initBackground(){
         // Init background
         self.backgroundColor = SKColor(red: CGFloat(169.0/255.0), green: CGFloat(212.0/255.0), blue: CGFloat(217.0/255.0), alpha: 0)
-        let backgrounds = Background().load()
-        for background in backgrounds {
-            self.addChild(background)
-        }
+        background.load(scene: self)
+        
 
+    }
+    
+    func initClouds(){
+        for _ in 0...20{
+            cloud.move(scene: self)
+        }
     }
     
     func initLevel(){
         // Init level
-        floor.load(position: CGPoint(x: 0, y: 100))
-        wall.load(position: CGPoint(x: 0, y: 50))
+        floor.load(position: CGPoint(x: 0, y: 100), scene: self)
+        wall.load(position: CGPoint(x: 0, y: 50), scene: self)
         level.showLives()
-        self.addChild(wall)
-        self.addChild(floor)
         
         // Save floor position globally so it can be used for calculations
         Global.floorPosition = floor.position
@@ -122,30 +127,20 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initMusic(){
         //Init sound
-        backgroundMusic = SKAudioNode(fileNamed: "blob-tales.wav")
-        self.addChild(backgroundMusic)
+        backgroundMusic.play(scene: self)
     }
     
     func initPlayer(){
         // Init player
-        player.load()
-        addChild(player)
+        player.load(scene: self)
         //Magical print statement
         print(player.framesMove)
 
     }
     
-    func initBullet(){
-        // Init bullet
-        bullet.load()
-        addChild(bullet)
-    }
-
-    
     func initEnemy(){
         // Init enemy
-        enemy.load()
-        addChild(enemy)
+        enemy.load(scene: self)
     }
 
     
@@ -247,12 +242,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     @objc func MuteButton(sender: UIButton) {
-        if mute == false{
-            mute = true
-            backgroundMusic.run(SKAction.pause())
+        if backgroundMusic.mute == false{
+            backgroundMusic.mute = true
         }else{
-            mute = false
-            backgroundMusic.run(SKAction.play())
+            backgroundMusic.mute = false
         }
     }
     
@@ -268,21 +261,31 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
 
     }
 
-
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             self.touchDown(atPoint: t.location(in: self))
             // Check if the location of the touch is within the button's bounds
         }
     }
-    
-    override func update(_ currentTime: CFTimeInterval) {
-        player.checkLives()
+    func didBegin(_ contact: SKPhysicsContact) {
+        let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
+        switch contactMask {
+        case PhysicsCategory.enemy | PhysicsCategory.player:
+            player.lives -= 1
+        
+        case PhysicsCategory.bullet | PhysicsCategory.player:
+            player.lives -= 1
+            
+        default :
+            //Some other contact has occurred
+            print("Some other contact")
+        }
+    }
+    override func update(_ currentTime: CFTimeInterval) {
+        player.checkLives(scene: scene!)
         // Move to player position when in range
         enemyAttack()
-        
         // Fire bullet when enemy is in range of player
         if enemy.inRange == true {
             invokeFire()

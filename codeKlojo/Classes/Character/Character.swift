@@ -15,7 +15,7 @@ class Character: SKSpriteNode {
     var framesJump = [SKTexture]()
     var framesIdle = [SKTexture]()
     
-    func load() {
+    func load(scene: SKScene) {
         // Sets the frames of the different animations in an Array,
         // So they won't load every time when used.
         framesMove = loadAnimation(animation: 1)

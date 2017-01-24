@@ -11,7 +11,7 @@ import GameplayKit
 import UIKit
 
 class StartScreenScene: SKScene, SceneManager {
-    var backgroundMusic = SKAudioNode()
+    var backgroundMusic = SoundEngine()
     
     let titleScreen = SKSpriteNode(imageNamed: "Titlescreen_Normal")
     let startButton = UIButton()
@@ -29,7 +29,7 @@ class StartScreenScene: SKScene, SceneManager {
     }
     
     func initMusic(){
-        backgroundMusic = SKAudioNode(fileNamed: "chubby-cat.wav")
+        backgroundMusic.play(scene: self)  
         self.addChild(backgroundMusic)
     }
     

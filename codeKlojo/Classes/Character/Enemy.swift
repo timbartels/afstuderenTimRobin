@@ -18,10 +18,13 @@ class Enemy: Character {
     var inRange = false
     var mayFire = true
     
-    override func load() {
-        super.load()
+    override func load(scene: SKScene) {
+        super.load(scene: scene)
         self.position = CGPoint(x: 500,y: 150)
         self.setScale(enemySize)
+        self.physicsBody?.categoryBitMask = PhysicsCategory.enemy
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.player
+        scene.addChild(self)
 
     }
     func walking() {
@@ -44,7 +47,8 @@ class Enemy: Character {
     }
     
     func fireBullet(scene: SKScene){
-        var bullet = Bullet(imageNamed: "bullet")
+        let bullet = Bullet(imageNamed: "bullet")
+        bullet.load()
         bullet.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         bullet.position.x = self.position.x-100
         bullet.position.y = self.position.y
@@ -56,7 +60,6 @@ class Enemy: Character {
             bullet.position.x = self.position.x+100
             direction = self.position.x+bulletRange
         }
-        
         scene.addChild(bullet)
         let moveBulletAction = SKAction.move(to: CGPoint(x:direction, y: self.position.y), duration: 1)
         let removeBulletAction = SKAction.removeFromParent()

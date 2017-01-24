@@ -10,12 +10,13 @@ import Foundation
 import SpriteKit
 
 class Border: SKShapeNode{
-    func load(position: CGPoint) {
+    func load(position: CGPoint, scene: SKScene) {
         self.physicsBody = SKPhysicsBody(edgeChainFrom: self.path!)
         self.physicsBody?.restitution = 0
         self.physicsBody?.isDynamic = false
         self.position = position
         self.alpha = 0
+        scene.addChild(self)
     }
     
 }

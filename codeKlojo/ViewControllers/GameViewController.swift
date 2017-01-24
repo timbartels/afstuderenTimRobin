@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let scene: StartScreenScene = StartScreenScene()
+        scene.name = "startscreen"
         let viewAsSKView = self.view as! SKView
         scene.scaleMode = .resizeFill
         viewAsSKView.showsPhysics = true

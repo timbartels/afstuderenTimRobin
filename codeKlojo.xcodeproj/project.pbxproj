@@ -39,6 +39,7 @@
 		2DE706971E015BF800AAB222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE706961E015BF800AAB222 /* Main.storyboard */; };
 		2DE706991E01610D00AAB222 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE706981E01610D00AAB222 /* Border.swift */; };
 		2DEC6A6F1E2E3EB100F89FF6 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC6A6E1E2E3EB100F89FF6 /* Bullet.swift */; };
+		2DEC6A711E30EAD600F89FF6 /* Clouds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC6A701E30EAD600F89FF6 /* Clouds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		2DE706961E015BF800AAB222 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2DE706981E01610D00AAB222 /* Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		2DEC6A6E1E2E3EB100F89FF6 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		2DEC6A701E30EAD600F89FF6 /* Clouds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clouds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 				2DE706981E01610D00AAB222 /* Border.swift */,
 				00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */,
 				2DB7F1021DD9E64000AACB19 /* CityLevel.swift */,
+				2DEC6A701E30EAD600F89FF6 /* Clouds.swift */,
 			);
 			path = CityScreen;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				2D503F3F1DE5BF03007B8EB8 /* GameSceneManager.swift in Sources */,
 				2DE706911E0158B700AAB222 /* SoundEngine.swift in Sources */,
 				2DB7F1031DD9E64000AACB19 /* CityLevel.swift in Sources */,
+				2DEC6A711E30EAD600F89FF6 /* Clouds.swift in Sources */,
 				2D4355451E018D7B00ACDEAF /* MenuButtons.swift in Sources */,
 				2D503F351DE5AE06007B8EB8 /* Player.swift in Sources */,
 				2D5E7CC31DD4820200B5116E /* Background.swift in Sources */,

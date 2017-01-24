@@ -11,7 +11,8 @@ import UIKit
 
 class MissionScreenScene: SKScene, SceneManager {
     let level = MissionLevel()
-    var backgroundMusic = SKAudioNode()
+    var backgroundMusic = SoundEngine()
+    let background = Background()
     var textField = UITextView()
     
     override func sceneDidLoad() {
@@ -24,14 +25,14 @@ class MissionScreenScene: SKScene, SceneManager {
     }
     
     func initMusic(){
-        backgroundMusic = SKAudioNode(fileNamed: "find-the-exit.wav")
+        backgroundMusic.play(scene: self)
         self.addChild(backgroundMusic)
     }
     
     func initBackground(){
         // Init background
         self.backgroundColor = SKColor(red: CGFloat(116.0/255.0), green: CGFloat(226.0/255.0), blue: CGFloat(207.0/255.0), alpha: 0)
-        self.addChild(Background().load().first!)
+        background.load(scene: self)
     }
     
     func initTextField(){
