@@ -132,14 +132,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             enemy.invokeFire(scene: self)
         }
     }
-    func removeLive(){
-        // Remove life image
-        if (player.lives > 0){
-            for _ in 1...3 {
-                view?.viewWithTag(player.lives+1)?.alpha = 0.7
-            }
-        }
-    }
+   
     func checkGameOver(){
         // Gameover
         if (player.lives == 0){
@@ -239,7 +232,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // Called before each frame is rendered
         
         enemyAttack()
-        removeLive()
+        player.removeLive(view: view!)
         checkGameOver()
         calculateCamera()
         checkButtonState()

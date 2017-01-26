@@ -65,6 +65,15 @@ class Player: Character {
             view.addSubview(liveImage)
         }
     }
+    
+    func removeLive(view: UIView){
+        // Remove life image
+        if (self.lives > 0){
+            for _ in 1...3 {
+                view.viewWithTag(self.lives+1)?.alpha = 0.7
+            }
+        }
+    }
 
 
 }
