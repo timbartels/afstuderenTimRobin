@@ -49,5 +49,22 @@ class Player: Character {
             self.lives -= 1
         }
     }
+    
+    func initLives(view: UIView){
+        // Add lives
+        let imageName = "live.png"
+        let image = UIImage(named: imageName)!
+        var livePosition : CGFloat = 0
+        
+        for i in 1...3{
+            let liveImage = UIImageView(image: image)
+            liveImage.tag = i
+            liveImage.frame = CGRect(x: livePosition+60, y: 20, width: 50, height: 50)
+            livePosition += 60
+            liveImage.alpha = 1
+            view.addSubview(liveImage)
+        }
+    }
+
 
 }

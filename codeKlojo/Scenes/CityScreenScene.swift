@@ -20,7 +20,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var floor = Border(rectOf: CGSize(width: 10000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
-    let cloud = Clouds()
+    let clouds = Clouds()
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
     let menuButtons = MenuButtons()
     let startButton = UIButton()
@@ -50,34 +50,28 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initBackground()
         prepareBlur()
         initLevel()
-        initClouds()
-        initMusic()
-        initPlayer()
-        initEnemy()
+        clouds.load(scene: self, amount: 20)
+        backgroundMusic.play(scene: self)
+        player.load(scene: self)
+        //Magical print statement
+        print(player.framesMove)
+        enemy.load(scene: self)
         initCamera()
         initController()
-        initLives()
+        player.initLives(view: view!)
     }
     
     func initBackground(){
         // Init background
         self.backgroundColor = SKColor(red: CGFloat(169.0/255.0), green: CGFloat(212.0/255.0), blue: CGFloat(217.0/255.0), alpha: 0)
         background.load(scene: self)
-        
 
-    }
-    
-    func initClouds(){
-        for _ in 0...20{
-            cloud.move(scene: self)
-        }
     }
     
     func initLevel(){
         // Init level
         floor.load(position: CGPoint(x: 0, y: 100), scene: self)
         wall.load(position: CGPoint(x: 0, y: 50), scene: self)
-        level.showLives()
         
         // Save floor position globally so it can be used for calculations
         Global.floorPosition = floor.position
@@ -85,62 +79,21 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initController(){
         // Init buttons
-        controllerButtons.loadButtonRight(button: buttonRight)
-        controllerButtons.loadButtonUp(button: buttonUp)
-        controllerButtons.loadButtonLeft(button: buttonLeft)
-        controllerButtons.loadButtonMenu(button: buttonMenu)
+        controllerButtons.loadButtonRight(button: buttonRight, view: view!)
+        controllerButtons.loadButtonUp(button: buttonUp, view: view!)
+        controllerButtons.loadButtonLeft(button: buttonLeft, view: view!)
+        controllerButtons.loadButtonMenu(button: buttonMenu, view: view!)
         buttonMenu.addTarget(self, action: #selector(ButtonUpMenu), for: .touchUpInside)
-        
-        // Place buttons
-        view?.addSubview(buttonLeft)
-        view?.addSubview(buttonRight)
-        view?.addSubview(buttonUp)
-        view?.addSubview(buttonMenu)
-
     }
     func prepareBlur(){
         blurEffectView.frame = (view?.bounds)!
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
-    func initLives(){
-        // Add lives
-        let imageName = "live.png"
-        let image = UIImage(named: imageName)!
-        var livePosition : CGFloat = 0
         
-        for i in 1...3{
-            let liveImage = UIImageView(image: image)
-            liveImage.tag = i
-            liveImage.frame = CGRect(x: livePosition+60, y: 20, width: 50, height: 50)
-            livePosition += 60
-            liveImage.alpha = 1
-            view?.addSubview(liveImage)
-        }
-    }
-    
     func initCamera(){
         // Init camera
         self.camera = cam
         cam.position.y += (self.frame.height/2)
-        // calculateCamera()
-    }
-    
-    func initMusic(){
-        //Init sound
-        backgroundMusic.play(scene: self)
-    }
-    
-    func initPlayer(){
-        // Init player
-        player.load(scene: self)
-        //Magical print statement
-        print(player.framesMove)
-
-    }
-    
-    func initEnemy(){
-        // Init enemy
-        enemy.load(scene: self)
     }
 
     
@@ -171,27 +124,30 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
     }
     
-    func invokeFire(){
-        // Start firebullet action mayfire is false till sequence is done running
-        let fireBullet = SKAction.run(){
-            self.enemy.fireBullet(scene: self)
-            self.enemy.mayFire = false
-        }
-        // Enemy may only fire when sequence is done running
-        let completion = SKAction.run(){
-            self.enemy.mayFire = true
-        }
-        let waitToFireEnemyBullet = SKAction.wait(forDuration: 1.5)
-        let enemyFire = SKAction.sequence([fireBullet,waitToFireEnemyBullet,completion])
-        
-       // Enemy may only fire when sequence is done running
-        if self.enemy.mayFire == true {
-            self.run(enemyFire)
+    func enemyAttack(){
+        // Move to player position when in range
+        enemy.moveTo(pos: player.position)
+        // Fire bullet when enemy is in range of player
+        if enemy.inRange == true {
+            enemy.invokeFire(scene: self)
         }
     }
-    
-    func enemyAttack(){
-        enemy.moveTo(pos: player.position)
+    func removeLive(){
+        // Remove life image
+        if (player.lives > 0){
+            for _ in 1...3 {
+                view?.viewWithTag(player.lives+1)?.alpha = 0.7
+            }
+        }
+    }
+    func checkGameOver(){
+        // Gameover
+        if (player.lives == 0){
+            // Reset lives
+            player.lives = 3
+            goToGameOverScreenScene()
+        }
+
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -210,15 +166,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
         if scene?.view?.isPaused == false{
             scene?.view?.isPaused = true
-            menuButtons.loadMuteButton(button: muteButton)
-            menuButtons.loadStartButton(button: startButton)
-            menuButtons.loadResumeButton(button: resumeButton)
-            view?.addSubview(muteButton)
-            view?.addSubview(startButton)
-            view?.addSubview(resumeButton)
-            resumeButton.addTarget(self, action: #selector(ResumeButton), for: .touchUpInside)
-            startButton.addTarget(self, action: #selector(StartButton), for: .touchUpInside)
-            muteButton.addTarget(self, action: #selector(MuteButton), for: .touchUpInside)
+            menuButtons.loadMuteButton(button: muteButton, view: view!)
+            menuButtons.loadStartButton(button: startButton, view: view!)
+            menuButtons.loadResumeButton(button: resumeButton, view: view!)
             
         }else{
             scene?.view?.isPaused = false
@@ -235,7 +185,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             resumeButton.removeFromSuperview()
             blurEffectView.removeFromSuperview()
             initController()
-            initLives()
+            player.initLives(view: view!)
             
         }
         
@@ -267,29 +217,33 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             // Check if the location of the touch is within the button's bounds
         }
     }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         switch contactMask {
         case PhysicsCategory.enemy | PhysicsCategory.player:
-            player.lives -= 1
+            player.lives -= 0
         
         case PhysicsCategory.bullet | PhysicsCategory.player:
-            player.lives -= 1
+            bullet.removeFromParent()
+            player.lives -= 0
             
         default :
             //Some other contact has occurred
-            print("Some other contact")
+            print("")
         }
     }
+    
     override func update(_ currentTime: CFTimeInterval) {
-        player.checkLives(scene: scene!)
-        // Move to player position when in range
+        // Called before each frame is rendered
+        
         enemyAttack()
-        // Fire bullet when enemy is in range of player
-        if enemy.inRange == true {
-            invokeFire()
-        }
+        removeLive()
+        checkGameOver()
+        calculateCamera()
+        checkButtonState()
+        player.checkLives(scene: scene!)
         
         // Check for checkpoint
         if Checkpoint().check(playerPosition: player.position){
@@ -301,27 +255,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             Global.savedPosition = player.position
             loadScene(withIdentifier: .mission)
         }
-        
-        // Remove life image
-        if (player.lives > 0){
-            for _ in 1...3 {
-                view?.viewWithTag(player.lives+1)?.alpha = 0.7
-            }
-        }
-        
-        // Gameover
-        if (player.lives == 0){
-            // Reset lives
-            player.lives = 3
-            goToGameOverScreenScene()
-        }
-        
-        calculateCamera()
-        
-        checkButtonState()
-        
-        // Called before each frame is rendered
-        
+
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime

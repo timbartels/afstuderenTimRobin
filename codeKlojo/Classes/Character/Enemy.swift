@@ -27,9 +27,7 @@ class Enemy: Character {
         scene.addChild(self)
 
     }
-    func walking() {
 
-    }
     func moveTo(pos: CGPoint){
         inRange = false
         let diff = Int(pos.x) - Int(self.position.x)
@@ -64,6 +62,25 @@ class Enemy: Character {
         let moveBulletAction = SKAction.move(to: CGPoint(x:direction, y: self.position.y), duration: 1)
         let removeBulletAction = SKAction.removeFromParent()
         bullet.run(SKAction.sequence([moveBulletAction,removeBulletAction]))
+    }
+    
+    func invokeFire(scene: SKScene){
+        // Start firebullet action mayfire is false till sequence is done running
+        let fireBullet = SKAction.run(){
+            self.fireBullet(scene: scene)
+            self.mayFire = false
+        }
+        // Enemy may only fire when sequence is done running
+        let completion = SKAction.run(){
+            self.mayFire = true
+        }
+        let waitToFireEnemyBullet = SKAction.wait(forDuration: 1.5)
+        let enemyFire = SKAction.sequence([fireBullet,waitToFireEnemyBullet,completion])
+        
+        // Enemy may only fire when sequence is done running
+        if self.mayFire == true {
+            self.run(enemyFire)
+        }
     }
 
 
