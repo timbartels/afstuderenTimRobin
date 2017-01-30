@@ -162,6 +162,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             menuButtons.loadMuteButton(button: muteButton, view: view!)
             menuButtons.loadStartButton(button: startButton, view: view!)
             menuButtons.loadResumeButton(button: resumeButton, view: view!)
+            resumeButton.addTarget(self, action: #selector(ResumeButton), for: .touchUpInside)
+            startButton.addTarget(self, action: #selector(StartButton), for: .touchUpInside)
+            muteButton.addTarget(self, action: #selector(MuteButton), for: .touchUpInside)
             
         }else{
             scene?.view?.isPaused = false
