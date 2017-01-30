@@ -30,6 +30,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
+    let buttonAttack = UIButton()
     let controllerButtons = ControllerButtons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -81,6 +82,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // Init buttons
         controllerButtons.loadButtonRight(button: buttonRight, view: view!)
         controllerButtons.loadButtonUp(button: buttonUp, view: view!)
+        controllerButtons.loadButtonAttack(button: buttonAttack, view: view!)
         controllerButtons.loadButtonLeft(button: buttonLeft, view: view!)
         controllerButtons.loadButtonMenu(button: buttonMenu, view: view!)
         buttonMenu.addTarget(self, action: #selector(ButtonUpMenu), for: .touchUpInside)
@@ -112,6 +114,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         if (controllerButtons.buttonStateU == true){
             player.jump()
             controllerButtons.buttonStateU = false
+        }
+        if (controllerButtons.buttonStateAttack == true){
+            player.attack()
+            controllerButtons.buttonStateAttack = false
         }
         if(controllerButtons.buttonStateL == true || controllerButtons.buttonStateR == true){
             player.animateMove(l: controllerButtons.buttonStateL, r: controllerButtons.buttonStateR)

@@ -116,5 +116,7 @@ class Character: SKSpriteNode {
             animatePlayer(jump: true, move: false)
         }
     }
+    
+   
 
 }

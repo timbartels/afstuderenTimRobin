@@ -14,6 +14,7 @@ class Player: Character {
     var lives = 3
     var label = UILabel()
     var liveImage = UIImageView()
+    var viewDirection = "Right"
 
     override func load(scene: SKScene) {
         super.load(scene: scene)
@@ -31,10 +32,12 @@ class Player: Character {
     func animateMove(l: Bool, r: Bool){
         if (l){
             moveLeft()
+            viewDirection = "Left"
         }
         
         if (r){
             moveRight()
+            viewDirection = "Right"
         }
         
         if (self.action(forKey: "walking") == nil && self.action(forKey: "jump") == nil) {
@@ -73,6 +76,26 @@ class Player: Character {
                 view.viewWithTag(self.lives+1)?.alpha = 0.7
             }
         }
+    }
+    
+    func attack(){
+        //self.zRotation = CGFloat(1.4)
+        var attackMoveBy = CGFloat(200)
+        var rotationAngle = CGFloat(1.50)
+       
+        if self.viewDirection == "Left" {
+            attackMoveBy = CGFloat(-200)
+            rotationAngle = CGFloat(-1.50)
+        }
+        
+        let attackAction = SKAction.moveBy(x: attackMoveBy, y:0, duration:0.2)
+        let attackRotation = SKAction.rotate(byAngle: rotationAngle, duration: 0.1)
+        let attackSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
+        let attackRotationDone = SKAction.rotate(byAngle: -rotationAngle, duration: 0.1)
+        // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
+        let attackSequence = SKAction.sequence([attackRotation, attackAction, attackSound, attackRotationDone])
+        self.run(attackSequence)
+        //animatePlayer(jump: true, move: false)
     }
 
 

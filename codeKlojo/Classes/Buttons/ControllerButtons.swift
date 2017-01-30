@@ -13,6 +13,8 @@ class ControllerButtons: Buttons{
     var buttonStateR = false
     var buttonStateL = false
     var buttonStateU = false
+    var buttonStateAttack = false
+
     
     func loadButtonMenu(button: UIButton, view: UIView) {
         prepareButtonController(imageName: "MenuButton", button: button)
@@ -34,9 +36,18 @@ class ControllerButtons: Buttons{
     func loadButtonUp(button: UIButton, view: UIView) {
         prepareButtonController(imageName: "button", button: button)
         button.alpha = 0.5
-        button.frame = CGRect(x: width-100, y: height-100, width: 80, height: 80)
+        button.frame = CGRect(x: width-200, y: height-100, width: 80, height: 80)
         button.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2 )
         button.addTarget(self, action: #selector(ButtonDownU), for: .touchDown)
+        view.addSubview(button)
+        
+    }
+    func loadButtonAttack(button: UIButton, view: UIView) {
+        prepareButtonController(imageName: "button", button: button)
+        button.alpha = 0.5
+        button.frame = CGRect(x: width-100, y: height-100, width: 80, height: 80)
+        button.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        button.addTarget(self, action: #selector(ButtonDownAttack), for: .touchDown)
         view.addSubview(button)
         
     }
@@ -62,8 +73,13 @@ class ControllerButtons: Buttons{
         buttonStateU = true
     }
     
-    @objc func ButtonUpU(sender:UIButton) {
-        buttonStateU = false
+// This func not necessary??
+//    @objc func ButtonUpU(sender:UIButton) {
+//        buttonStateU = false
+//    }
+    
+    @objc func ButtonDownAttack(sender:UIButton) {
+        buttonStateAttack = true
     }
     
     @objc func ButtonDownL(sender:UIButton) {
