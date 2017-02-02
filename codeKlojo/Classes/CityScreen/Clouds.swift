@@ -29,7 +29,7 @@ class Clouds: SKSpriteNode{
         let randomScale = CGFloat(arc4random_uniform(2))
         
         cloud.anchorPoint = CGPoint(x: 1,y: 1)
-        let moveCloudAction = SKAction.move(to: CGPoint(x: -100, y: yPosition), duration: Double(arc4random_uniform(90)+80))
+        let moveCloudAction = SKAction.move(to: CGPoint(x: -500, y: yPosition), duration: Double(arc4random_uniform(90)+80))
         cloud.position.x = xPosition
         cloud.position.y = yPosition
         cloud.setScale(scale)

@@ -20,13 +20,15 @@ class Player: Character {
         super.load(scene: scene)
         self.position = Global.savedPosition
         // idle stance
-        self.animatePlayer(jump: false, move: false)
-        self.texture = framesIdle.first
+        self.animatePlayer(jump: false, move: false, slide: false)
+        // self.texture = framesIdle.first
         self.physicsBody?.contactTestBitMask = PhysicsCategory.bullet
         self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy
         self.physicsBody?.categoryBitMask = PhysicsCategory.player
-        scene.addChild(self)
-
+        if self.parent == nil {
+            scene.addChild(self)
+        }
+        
     }
     
     func animateMove(l: Bool, r: Bool){
@@ -41,7 +43,7 @@ class Player: Character {
         }
         
         if (self.action(forKey: "walking") == nil && self.action(forKey: "jump") == nil) {
-            animatePlayer(jump: false, move: true)
+            animatePlayer(jump: false, move: true, slide: false)
         }
     }
     func checkLives(scene: SKScene){
@@ -81,21 +83,21 @@ class Player: Character {
     func attack(){
         //self.zRotation = CGFloat(1.4)
         var attackMoveBy = CGFloat(200)
-        var rotationAngle = CGFloat(1.50)
+//        var rotationAngle = CGFloat(1.50)
        
         if self.viewDirection == "Left" {
             attackMoveBy = CGFloat(-200)
-            rotationAngle = CGFloat(-1.50)
+//            rotationAngle = CGFloat(-1.50)
         }
         
         let attackAction = SKAction.moveBy(x: attackMoveBy, y:0, duration:0.2)
-        let attackRotation = SKAction.rotate(byAngle: rotationAngle, duration: 0.1)
+        // let attackRotation = SKAction.rotate(byAngle: rotationAngle, duration: 0.1)
         let attackSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
-        let attackRotationDone = SKAction.rotate(byAngle: -rotationAngle, duration: 0.1)
+        // let attackRotationDone = SKAction.rotate(byAngle: -rotationAngle, duration: 0.1)
         // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
-        let attackSequence = SKAction.sequence([attackRotation, attackAction, attackSound, attackRotationDone])
+        let attackSequence = SKAction.sequence([attackAction, attackSound])
         self.run(attackSequence)
-        //animatePlayer(jump: true, move: false)
+        animatePlayer(jump: false, move: false, slide: true)
     }
 
 

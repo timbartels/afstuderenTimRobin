@@ -11,13 +11,13 @@ import GameplayKit
 
 class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var mute = false
+    let widthLevel = 15000
     let cam = SKCameraNode()
     var backgroundMusic = SoundEngine()
     let background = Background()
-    let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement3"))
+    let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement1"))
     let bullet = Bullet(imageNamed: "bullet")
     let enemy = Enemy(imageNamed: "robot")
-    var floor = Border(rectOf: CGSize(width: 10000, height: 0))
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
     let clouds = Clouds()
@@ -70,8 +70,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func initLevel(){
+        let floor = Border(rectOf: CGSize(width: widthLevel, height: 0))
         // Init level
-        floor.load(position: CGPoint(x: 0, y: 100), scene: self)
+        floor.load(position: CGPoint(x: widthLevel/2, y: 100), scene: self)
         wall.load(position: CGPoint(x: 0, y: 50), scene: self)
         
         // Save floor position globally so it can be used for calculations

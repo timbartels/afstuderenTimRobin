@@ -11,7 +11,7 @@ import SpriteKit
 import AVFoundation
 
 class SoundEngine: SKNode{
-    var mute = false
+    var mute = true
     func play(scene: SKScene){
         var music = SKAudioNode()
         if let sceneTitle = scene.name{
