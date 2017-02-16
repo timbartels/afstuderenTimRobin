@@ -51,6 +51,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initBackground()
         prepareBlur()
         initLevel()
+        initPlatforms()
         clouds.load(scene: self, amount: 20)
         backgroundMusic.play(scene: self)
         player.load(scene: self)
@@ -66,7 +67,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // Init background
         self.backgroundColor = SKColor(red: CGFloat(188.0/255.0), green: CGFloat(228.0/255.0), blue: CGFloat(227.0/255.0), alpha: 0)
         background.load(scene: self)
-
     }
     
     func initLevel(){
@@ -78,6 +78,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // Save floor position globally so it can be used for calculations
         Global.floorPosition = floor.position
     }
+    
+    func initPlatforms(){
+        Platform().load()
+        Platform().placePlatforms(scene: self)
+    }
+    
     
     func initController(){
         // Init buttons
@@ -240,13 +246,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
-        
         enemyAttack()
         player.removeLive(view: view!)
         checkGameOver()
         calculateCamera()
         checkButtonState()
         player.checkLives(scene: scene!)
+        
+        //print(player.position)
         
         // Check for checkpoint
         if Checkpoint().check(playerPosition: player.position){

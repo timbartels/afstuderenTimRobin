@@ -10,9 +10,7 @@ import Foundation
 import SpriteKit
 
 var cps: [Int:String] = [
-    1000 : "School",
-    3000 : "Winkel",
-    5000 : "Achtbaan"
+    10000 : "School",
 ]
 
 class Checkpoint: CityLevel{
