@@ -64,7 +64,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initBackground(){
         // Init background
-        self.backgroundColor = SKColor(red: CGFloat(169.0/255.0), green: CGFloat(212.0/255.0), blue: CGFloat(217.0/255.0), alpha: 0)
+        self.backgroundColor = SKColor(red: CGFloat(188.0/255.0), green: CGFloat(228.0/255.0), blue: CGFloat(227.0/255.0), alpha: 0)
         background.load(scene: self)
 
     }
