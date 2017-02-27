@@ -81,7 +81,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initPlatforms(){
         Platform().load()
-        Platform().placePlatforms(scene: self)
+        //Platform().placePlatforms(scene: self)
     }
     
     
@@ -120,6 +120,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func checkButtonState(){
         if (controllerButtons.buttonStateU == true){
             player.jump()
+            
             controllerButtons.buttonStateU = false
         }
         if (controllerButtons.buttonStateAttack == true){
@@ -252,6 +253,37 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         calculateCamera()
         checkButtonState()
         player.checkLives(scene: scene!)
+        
+        
+        let playersize = player.size.height/2
+        let playerpos = player.position.y-playersize
+                
+        for (index, object) in Platforms.enumerated() {
+            
+            if playerpos > object.positiony {
+                let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
+                //platform.fillColor = SKColor.red
+                platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
+                platform.name = "platform\(index)"
+                
+                // This creates body
+                platform.physicsBody = SKPhysicsBody(edgeChainFrom: platform.path!)
+            
+                platform.physicsBody?.restitution = 0
+                platform.physicsBody?.isDynamic = false
+                
+                if object.added == false {
+                    self.addChild(platform)
+                    Platforms[index].added = true
+                }
+            }
+            
+            if playerpos < object.positiony {
+                let child = self.childNode(withName: "platform\(index)")
+                child?.removeFromParent()
+                Platforms[index].added = false
+            }
+        }
         
         //print(player.position)
         

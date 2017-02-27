@@ -17,7 +17,7 @@ class Platform {
     var positiony = CGFloat()
     var width     = CGFloat()
     var height    = CGFloat()
-    var jumpable  = Bool()
+    var added  = Bool()
     
     func load(){
         let platform1 = Platform()
@@ -25,34 +25,27 @@ class Platform {
         platform1.positiony =   180
         platform1.width     =   50
         platform1.height    =   70
-        platform1.jumpable      =   false
+        platform1.added     =   false
         
         Platforms.append(platform1)
         
         let platform2 = Platform()
         platform2.positionx =   3885
-        platform2.positiony =   300
+        platform2.positiony =   280
         platform2.width     =   500
         platform2.height    =   50
-        platform2.jumpable      =   false
+        platform2.added     =   false
         
         Platforms.append(platform2)
         
+        let platform3 = Platform()
+        platform3.positionx =   4070
+        platform3.positiony =   410
+        platform3.width     =   300
+        platform3.height    =   50
+        platform3.added     =   false
+        
+        Platforms.append(platform3)
+        
     }
-    
-    func placePlatforms(scene: SKScene){
-        for object in Platforms {
-            
-            let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
-            platform.fillColor = SKColor.red
-            platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
-            platform.physicsBody = SKPhysicsBody(edgeChainFrom: platform.path!)
-            platform.physicsBody?.restitution = 0
-            platform.physicsBody?.isDynamic = false
-            
-            scene.addChild(platform)
-        }
-    }
-    
-    
 }
