@@ -245,6 +245,58 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
     }
     
+    func calculatePlatforms(){
+        
+    // playerposition at player feet
+    let playersize = player.size.height/2
+    let playerpos = player.position.y-playersize
+        
+        // Loop throught all platforms every frame
+        for (index, object) in Platforms.enumerated() {
+            
+            // If player is above platform object
+            if playerpos > object.positiony {
+                
+                // Create shapenode with size of given platform object
+                let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
+                
+                // Place created shapenode on given platform object position
+                platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
+                
+                // Increment name for platform object so it can be removed specifically
+                platform.name = "platform\(index)"
+                
+                // This gives body to shapenode so player can stand on it
+                platform.physicsBody = SKPhysicsBody(edgeChainFrom: platform.path!)
+                
+                // Other physics
+                platform.physicsBody?.restitution = 0
+                platform.physicsBody?.isDynamic = false
+                
+                // If object does not already exsist on scene
+                if object.added == false {
+                    
+                    // Add platform to scene
+                    self.addChild(platform)
+                    
+                    // Set added property to true
+                    Platforms[index].added = true
+                }
+                
+                // If playerpos is lower than platform object
+            } else {
+                // Get specific platform shapenode
+                let child = self.childNode(withName: "platform\(index)")
+                
+                // Remove specific shapenode from scene
+                child?.removeFromParent()
+                
+                // Set added property to false
+                Platforms[index].added = false
+            }
+        }
+    }
+    
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
         enemyAttack()
@@ -253,39 +305,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         calculateCamera()
         checkButtonState()
         player.checkLives(scene: scene!)
-        
-        
-        let playersize = player.size.height/2
-        let playerpos = player.position.y-playersize
-                
-        for (index, object) in Platforms.enumerated() {
-            
-            if playerpos > object.positiony {
-                let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
-                //platform.fillColor = SKColor.red
-                platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
-                platform.name = "platform\(index)"
-                
-                // This creates body
-                platform.physicsBody = SKPhysicsBody(edgeChainFrom: platform.path!)
-            
-                platform.physicsBody?.restitution = 0
-                platform.physicsBody?.isDynamic = false
-                
-                if object.added == false {
-                    self.addChild(platform)
-                    Platforms[index].added = true
-                }
-            }
-            
-            if playerpos < object.positiony {
-                let child = self.childNode(withName: "platform\(index)")
-                child?.removeFromParent()
-                Platforms[index].added = false
-            }
-        }
-        
-        //print(player.position)
+        calculatePlatforms()
         
         // Check for checkpoint
         if Checkpoint().check(playerPosition: player.position){
