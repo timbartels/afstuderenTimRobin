@@ -25,7 +25,7 @@ class ControllerButtons: Buttons{
     
     func loadButtonRight(button: UIButton, view: UIView) {
         prepareButtonController(imageName: "button", button: button)
-        button.frame = CGRect(x: 150, y: height-100, width: 80, height: 80)
+        button.frame = CGRect(x: width-300, y: height-100, width: 80, height: 80)
         button.alpha = 0.5
         button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
         button.addTarget(self, action: #selector(ButtonDownR), for: .touchDown)
