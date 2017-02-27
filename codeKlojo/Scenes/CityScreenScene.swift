@@ -254,24 +254,38 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // Loop throught all platforms every frame
         for (index, object) in Platforms.enumerated() {
             
+            // Create shapenode with size of given platform object
+            let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
+            
+            // Place created shapenode on given platform object position
+            platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
+            
+            // Increment name for platform object so it can be removed specifically
+            platform.name = "platform\(index)"
+            
+            // This gives body to shapenode so player can stand on it
+            platform.physicsBody = SKPhysicsBody(edgeChainFrom: platform.path!)
+            
+            // Other physics
+            platform.physicsBody?.restitution = 0
+            platform.physicsBody?.isDynamic = false
+            
+            // If player can not jump through platform object (so can also walk against it)
+            if object.jumpThrough == false {
+                
+                // If object does not already exsist on scene
+                if object.added == false {
+                    
+                    // Add platform to scene
+                    self.addChild(platform)
+                    
+                    // Set added property to true
+                    Platforms[index].added = true
+                }
+            }
+            
             // If player is above platform object
             if playerpos > object.positiony {
-                
-                // Create shapenode with size of given platform object
-                let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
-                
-                // Place created shapenode on given platform object position
-                platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
-                
-                // Increment name for platform object so it can be removed specifically
-                platform.name = "platform\(index)"
-                
-                // This gives body to shapenode so player can stand on it
-                platform.physicsBody = SKPhysicsBody(edgeChainFrom: platform.path!)
-                
-                // Other physics
-                platform.physicsBody?.restitution = 0
-                platform.physicsBody?.isDynamic = false
                 
                 // If object does not already exsist on scene
                 if object.added == false {
@@ -283,16 +297,21 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
                     Platforms[index].added = true
                 }
                 
-                // If playerpos is lower than platform object
+            // If playerpos is lower than platform object
             } else {
-                // Get specific platform shapenode
-                let child = self.childNode(withName: "platform\(index)")
                 
-                // Remove specific shapenode from scene
-                child?.removeFromParent()
-                
-                // Set added property to false
-                Platforms[index].added = false
+                // Only remove if object is a jumpThrough object
+                if object.jumpThrough == true {
+                    
+                    // Get specific platform shapenode
+                    let child = self.childNode(withName: "platform\(index)")
+                    
+                    // Remove specific shapenode from scene
+                    child?.removeFromParent()
+                    
+                    // Set added property to false
+                    Platforms[index].added = false
+                }
             }
         }
     }
