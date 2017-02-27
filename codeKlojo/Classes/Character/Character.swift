@@ -120,9 +120,6 @@ class Character: SKSpriteNode {
     }
 
     func jump(){
-        // Allowed position to jump, so player cannot jump in air
-        let allowedPositionToJump = Global.floorPosition.y+self.size.height/2+5
-        
         
         if(mayJump == true){
             let jumpUpAction = SKAction.moveBy(x: 0, y:200, duration:0.2)
@@ -132,14 +129,12 @@ class Character: SKSpriteNode {
             }
             
             let jumpCompleted = SKAction.run(){
-                self.mayJump = true
+                self.mayJump = true                
             }
             let jumpSequence = SKAction.sequence([jumpStarted, jumpUpAction, jumpSound, jumpCompleted])
             self.run(jumpSequence)
             animatePlayer(jump: true, move: false, slide: false)
         }
     }
-    
-   
 
 }
