@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0055497D1DE5AE3B00D5ED83 /* StartScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */; };
-		0072AD471E55CBB400524F85 /* Platforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072AD461E55CBB400524F85 /* Platforms.swift */; };
+		0072AD471E55CBB400524F85 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072AD461E55CBB400524F85 /* Platform.swift */; };
 		00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */; };
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
 		2D01162E1DD1FE8E00324B9C /* CityScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162D1DD1FE8E00324B9C /* CityScreenScene.swift */; };
@@ -55,7 +55,7 @@
 
 /* Begin PBXFileReference section */
 		0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenScene.swift; sourceTree = "<group>"; };
-		0072AD461E55CBB400524F85 /* Platforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platforms.swift; sourceTree = "<group>"; };
+		0072AD461E55CBB400524F85 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 				00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */,
 				2DB7F1021DD9E64000AACB19 /* CityLevel.swift */,
 				2DEC6A701E30EAD600F89FF6 /* Clouds.swift */,
-				0072AD461E55CBB400524F85 /* Platforms.swift */,
+				0072AD461E55CBB400524F85 /* Platform.swift */,
 			);
 			path = CityScreen;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 			files = (
 				2D01162E1DD1FE8E00324B9C /* CityScreenScene.swift in Sources */,
 				2DE706991E01610D00AAB222 /* Border.swift in Sources */,
-				0072AD471E55CBB400524F85 /* Platforms.swift in Sources */,
+				0072AD471E55CBB400524F85 /* Platform.swift in Sources */,
 				00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */,
 				2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */,
 				2D1A64471DFED54300433AEB /* MissionScreenScene.swift in Sources */,
