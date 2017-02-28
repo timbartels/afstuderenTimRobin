@@ -25,6 +25,16 @@ class Player: Character {
         self.physicsBody?.contactTestBitMask = PhysicsCategory.bullet
         self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy
         self.physicsBody?.categoryBitMask = PhysicsCategory.player
+        
+        // Override to reduce physicsbox size
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/2, height: self.size.height))
+        if let physics = self.physicsBody {
+            physics.affectedByGravity = true
+            physics.isDynamic = true
+            physics.restitution = 0
+            physics.allowsRotation = false
+        }
+        
         if self.parent == nil {
             scene.addChild(self)
         }
