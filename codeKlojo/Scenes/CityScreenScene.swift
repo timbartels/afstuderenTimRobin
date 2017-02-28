@@ -81,9 +81,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initPlatforms(){
         Platform().load()
-        //Platform().placePlatforms(scene: self)
     }
-    
     
     func initController(){
         // Init buttons
