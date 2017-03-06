@@ -54,7 +54,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         prepareBlur()
         initLevel()
         initPlatforms()
-        clouds.load(scene: self, amount: 20)
+        clouds.load(scene: self, amount: 30)
         backgroundMusic.play(scene: self)
         player.load(scene: self)
         //Magical print statement
@@ -243,7 +243,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             
         default :
             //Some other contact has occurred
-            print("")
+            print("Something went wrong in the enemy/bullet collision")
         }
     }
     
@@ -358,6 +358,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func hidePopup(){
+        scene?.view?.isPaused = false
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
         }, completion: { finished in })

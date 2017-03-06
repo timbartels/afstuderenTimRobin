@@ -11,7 +11,7 @@ import SpriteKit
 
 struct Global {
     // Save the position of the player globally so it wont be affected
-    static var savedPosition = CGPoint(x: 3000, y: 125)
+    static var savedPosition = CGPoint(x: 50, y: 125)
     
     // Save the position of the floor globally so it can be used for calculations
     static var floorPosition = CGPoint()

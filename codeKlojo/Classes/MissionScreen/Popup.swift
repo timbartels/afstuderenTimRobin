@@ -45,13 +45,9 @@ class Popup: NSObject {
         
         // Cannot select method from Popup class for some wierd reason
         //self.knop.addTarget(self, action:#selector(GameViewController().goToMission(sender:)), for: .touchUpInside)
-        knop.addTarget(self, action: #selector(self.functie), for: .touchDown)
+        //knop.addTarget(self, action: #selector(self.functie), for: .touchDown)
         popupbox.addSubview(knop)
         
-    }
-    
-    func functie(){
-        print("doe iets")
     }
     
     @objc func closePopupForMission(){
