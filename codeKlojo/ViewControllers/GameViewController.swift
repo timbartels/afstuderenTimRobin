@@ -22,8 +22,9 @@ class GameViewController: UIViewController {
         //viewAsSKView.showsNodeCount = true
         //viewAsSKView.showsFPS = true
         viewAsSKView.presentScene(scene)
-    }
 
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
