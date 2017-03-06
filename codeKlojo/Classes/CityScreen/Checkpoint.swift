@@ -10,25 +10,31 @@ import Foundation
 import SpriteKit
 
 var cps: [Int:String] = [
-    10000 : "School",
+    3100 : "Test",
+    8000 : "School",
 ]
 
 class Checkpoint: CityLevel{
     
-    func check(playerPosition: CGPoint)->Bool{
+    var cp : String = "empty"
+    
+    func check(playerPosition: CGPoint)->String{
         
-        for (position, _) in cps {
+        for (position, mission) in cps {
             let playerX = Int(playerPosition.x)
             
             if(playerX > position){
                 
+                cp = mission
+                
                 // Remove checkpoint from array
                 cps.removeValue(forKey: position)
-                return true
+                
+                //print(cp)
+                
             }
-        };
-        return false
+        }
+        return cp
     }
-    
 }
 
