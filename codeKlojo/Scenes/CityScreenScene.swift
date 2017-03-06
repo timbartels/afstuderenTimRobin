@@ -324,7 +324,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // If player stand on checkpoint
         if checkpoint != "empty" {
             //Popup().showPopupForMission(mission: checkpoint, view: view!)
-            
+            scene?.view?.isPaused = true
             
             missie = checkpoint
             
@@ -337,9 +337,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: -self.popupbox.bounds.height)
-            }, completion: { finished in
-                
-            })
+            }, completion: { finished in })
             
             // Add text to popup
             let text = UILabel(frame: CGRect(x: 50, y: 0, width: 400, height: 100))
@@ -353,18 +351,16 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.knop.setTitle("Button", for: .normal)
             self.knop.isUserInteractionEnabled = true
             
-            knop.addTarget(self, action: #selector(self.functie), for: .touchDown)
+            knop.addTarget(self, action: #selector(self.hidePopup), for: .touchDown)
             popupbox.addSubview(knop)
             
         }
     }
     
-    func functie(){
+    func hidePopup(){
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
-        }, completion: { finished in
-            
-        })
+        }, completion: { finished in })
     }
     
     
