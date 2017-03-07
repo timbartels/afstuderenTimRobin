@@ -20,5 +20,5 @@ struct Global {
 struct PhysicsCategory {
     static let player : UInt32 = 1
     static let bullet : UInt32 = 2
-    static let enemy : UInt32 = 2
+    static let enemy : UInt32 = 3
 }

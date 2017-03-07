@@ -16,8 +16,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var backgroundMusic = SoundEngine()
     let background = Background()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement1"))
+    let enemy = Enemy(imageNamed: "robot.png")
+    let enemy2 = Enemy(imageNamed: "robot.png")
     let bullet = Bullet(imageNamed: "bullet")
-    let enemy = Enemy(imageNamed: "robot")
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
     let clouds = Clouds()
@@ -57,7 +58,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         player.load(scene: self)
         //Magical print statement
         print(player.framesMove)
-        enemy.load(scene: self)
+        initEnemies()
         initCamera()
         initController()
         player.initLives(view: view!)
@@ -68,7 +69,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         self.backgroundColor = SKColor(red: CGFloat(188.0/255.0), green: CGFloat(228.0/255.0), blue: CGFloat(227.0/255.0), alpha: 0)
         background.load(scene: self)
     }
-    
+    func initEnemies(){
+        enemy.load(scene: self)
+        enemy2.load(scene: self)
+    }
     func initLevel(){
         let floor = Border(rectOf: CGSize(width: widthLevel, height: 0))
         // Init level
@@ -134,15 +138,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             
         }
         
-    }
-    
-    func enemyAttack(){
-        // Move to player position when in range
-        enemy.moveTo(pos: player.position)
-        // Fire bullet when enemy is in range of player
-        if enemy.inRange == true {
-            enemy.invokeFire(scene: self)
-        }
     }
    
     func checkGameOver(){
@@ -230,18 +225,24 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         switch contactMask {
-        case PhysicsCategory.enemy | PhysicsCategory.player:
-            player.lives -= 0
+        case PhysicsCategory.player | PhysicsCategory.enemy:
+            print("collision")
+            if player.attackState{
+                enemy.removeFromParent()
+            }else{
+              player.lives -= 1
+            }
         
         case PhysicsCategory.bullet | PhysicsCategory.player:
             bullet.removeFromParent()
-            player.lives -= 0
+            player.lives -= 1
             
         default :
             //Some other contact has occurred
             print("")
         }
     }
+    
     
     func calculatePlatforms(){
         
@@ -316,7 +317,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
-        enemyAttack()
+        enemy.enemyAttack(scene: self, position: player.position)
+        enemy2.enemyAttack(scene: self, position: player.position)
         player.removeLive(view: view!)
         checkGameOver()
         calculateCamera()
