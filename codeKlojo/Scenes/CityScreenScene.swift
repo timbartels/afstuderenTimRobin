@@ -32,6 +32,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
     let buttonAttack = UIButton()
+    let knop = UIButton()
+    let popupbox = UIView()
     let controllerButtons = ControllerButtons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -53,7 +55,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         prepareBlur()
         initLevel()
         initPlatforms()
-        clouds.load(scene: self, amount: 20)
+        clouds.load(scene: self, amount: 30)
         backgroundMusic.play(scene: self)
         player.load(scene: self)
         //Magical print statement
@@ -194,6 +196,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
     }
     
+    
+    
     @objc func MuteButton(sender: UIButton) {
         if backgroundMusic.mute == false{
             backgroundMusic.mute = true
@@ -239,7 +243,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             
         default :
             //Some other contact has occurred
-            print("")
+            print("Something went wrong in the enemy/bullet collision")
         }
     }
     
@@ -315,6 +319,53 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
     }
     
+    func checkForCheckpoint(){
+        let checkpoint = Checkpoint().check(playerPosition: player.position)
+        
+        // If player stand on checkpoint
+        if checkpoint != "empty" {
+            //Popup().showPopupForMission(mission: checkpoint, view: view!)
+            scene?.view?.isPaused = true
+            
+            missie = checkpoint
+            
+            self.popupbox.frame = CGRect(x: 0, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()), height: 250)
+            self.popupbox.backgroundColor = UIColor.white
+            self.popupbox.layer.borderWidth = 5
+            self.popupbox.isUserInteractionEnabled = true
+            
+            view?.addSubview(popupbox)
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: -self.popupbox.bounds.height)
+            }, completion: { finished in })
+            
+            // Add text to popup
+            let text = UILabel(frame: CGRect(x: 50, y: 0, width: 400, height: 100))
+            text.textAlignment = NSTextAlignment.center
+            text.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
+            
+            self.popupbox.addSubview(text)
+            
+            self.knop.frame = CGRect(x: 700, y: 100, width: 100, height: 80)
+            self.knop.backgroundColor = .red
+            self.knop.setTitle("Button", for: .normal)
+            self.knop.isUserInteractionEnabled = true
+            
+            knop.addTarget(self, action: #selector(self.hidePopup), for: .touchDown)
+            popupbox.addSubview(knop)
+            
+        }
+    }
+    
+    func hidePopup(){
+        scene?.view?.isPaused = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
+        }, completion: { finished in })
+    }
+    
+    
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
         enemy.enemyAttack(scene: self, position: player.position)
@@ -325,17 +376,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         checkButtonState()
         player.checkLives(scene: scene!)
         calculatePlatforms()
-        
-        // Check for checkpoint
-        if Checkpoint().check(playerPosition: player.position){
-            for view in (self.view?.subviews)! {
-                view.removeFromSuperview()
-            }
-            backgroundMusic.run(SKAction.stop())
-            //Saves the current player position
-            Global.savedPosition = player.position
-            loadScene(withIdentifier: .mission)
-        }
+        checkForCheckpoint()
 
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
