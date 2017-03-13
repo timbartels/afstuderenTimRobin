@@ -33,6 +33,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let buttonAttack = UIButton()
     let knop = UIButton()
     let popupbox = UIView()
+    let popupboxtext = UILabel()
     let controllerButtons = ControllerButtons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -332,7 +333,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.popupbox.backgroundColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1.0)
             self.popupbox.layer.borderColor = UIColor(red:242.0/255.0, green:155.0/255.0, blue:29.0/255.0, alpha: 1.0).cgColor
             self.popupbox.layer.borderWidth = 2
-            self.popupbox.alpha = 0.9
+            self.popupbox.alpha = 1.0
             self.popupbox.isUserInteractionEnabled = true
             self.popupbox.layer.cornerRadius = 10
             
@@ -344,18 +345,19 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             }, completion: { finished in })
             
             // Add text to popup
-            let text = UILabel(frame: CGRect(x: 50, y: 0, width: popupbox.bounds.width-100, height: 100))
-            text.textAlignment = NSTextAlignment.left
-            text.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
-            text.font = UIFont(name: "RifficFree-Bold", size: 25)
-            text.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
+            self.popupboxtext.frame = CGRect(x: 50, y: 0, width: self.popupbox.bounds.width-100, height: 100)
+            self.popupboxtext.textAlignment = NSTextAlignment.left
+            self.popupboxtext.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
+            self.popupboxtext.font = UIFont(name: "RifficFree-Bold", size: 25)
+            self.popupboxtext.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
             
-            self.popupbox.addSubview(text)
+            self.popupbox.addSubview(popupboxtext)
             
-            self.knop.frame = CGRect(x: popupbox.bounds.width-150, y: 150, width: 100, height: 60)
-            self.knop.backgroundColor = UIColor(red:119.0/255.0, green:168.0/255.0, blue:194.0/255.0, alpha: 1.0)
-            self.knop.setTitle("Ga verder", for: .normal)
+            // Add button to popup
+            self.knop.frame = CGRect(x: popupbox.bounds.width-300, y: 130, width: 250, height: 90)
             self.knop.isUserInteractionEnabled = true
+            let image = UIImage(named: "gaverder") as UIImage?
+            self.knop.setImage(image, for: .normal)
             
             knop.addTarget(self, action: #selector(self.hidePopup), for: .touchDown)
             popupbox.addSubview(knop)
@@ -370,6 +372,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +popupPosition)
         }, completion: { finished in
             self.popupbox.removeFromSuperview()
+            self.popupboxtext.removeFromSuperview()
         })
     }
     
