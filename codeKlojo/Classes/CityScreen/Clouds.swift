@@ -36,7 +36,11 @@ class Clouds: SKSpriteNode{
         let finalDuration = Double(Double(randomSpeed)+Double(test))
         
         cloud.anchorPoint = CGPoint(x: 1,y: 1)
-        let moveCloudAction = SKAction.move(to: CGPoint(x: -500, y: yPosition), duration: Double(arc4random_uniform(90)+200))
+        let moveCloudAction = SKAction.move(to: CGPoint(x: 100, y: yPosition), duration: finalDuration)
+        
+        let complete = SKAction.run(){
+            self.moveCloud(cloud: cloud, firstSpawn: false)
+        }
         cloud.position.x = xPosition
         cloud.position.y = yPosition
         

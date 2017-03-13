@@ -8,10 +8,16 @@
 
 import SpriteKit
 import GameplayKit
+import WebKit
 
 class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var mute = false
+    let textField = UITextView(frame: CGRect(x: screenSize.width/2, y: 0, width: screenSize.width/2, height: screenSize.height/2-10 ))
+    let webView = WKWebView()
+    let syntaxLabel = UILabel()
+    let returnLabel = UILabel()
     let widthLevel = 15000
+    let mission = Mission()
     let cam = SKCameraNode()
     var backgroundMusic = SoundEngine()
     let background = Background()
@@ -39,7 +45,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
-
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
@@ -65,7 +70,16 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initController()
         player.initLives(view: view!)
     }
-    
+    func submit(view: UIView){
+        let submit = UIButton()
+        submit.backgroundColor = UIColor.blue
+        submit.frame = CGRect(x: screenSize.width-50, y: 0, width: 50, height: 50)
+        submit.layer.zPosition = 10
+        submit.addTarget(self, action:#selector(checkJavascript(sender:)), for: .touchUpInside)
+        submit.setTitle("▶️", for: .normal)
+        view.addSubview(submit)
+    }
+
     func initBackground(){
         // Init background
         self.backgroundColor = SKColor(red: CGFloat(188.0/255.0), green: CGFloat(228.0/255.0), blue: CGFloat(227.0/255.0), alpha: 0)
@@ -152,6 +166,30 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
 
     }
     
+    func checkJavascript(sender: UIButton){
+        print(self.textField.text)
+        self.webView.evaluateJavaScript(self.textField.text!){ (result, error) in
+            var errorCode: Int
+            var errorMessage: String
+            var errorSyntax: String
+            var errorLine: Int
+            if error == nil {
+                self.mission.syntaxError = "✔︎"
+                self.returnLabel.text = "\(result!)"
+            }else{
+                print(error)
+                //let errorTest = (error! as NSError).userInfo
+                //errorLine = errorTest[AnyHashable("WKJavaScriptExceptionLineNumber")] as! Int
+                // errorSyntax = errorTest[AnyHashable("WKJavaScriptExceptionMessage")] as! String
+                errorMessage = (error?.localizedDescription)!
+                errorCode = (error?._code)!
+                self.mission.syntaxError = "\(errorMessage) on line \(errorCode)"
+            }
+        }
+        self.syntaxLabel.text = self.mission.syntaxError
+    }
+
+    
     func touchDown(atPoint pos : CGPoint) {
 
     }
@@ -195,8 +233,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
         
     }
-    
-    
     
     @objc func MuteButton(sender: UIButton) {
         if backgroundMusic.mute == false{
@@ -362,7 +398,37 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         scene?.view?.isPaused = false
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
-        }, completion: { finished in })
+        }, completion: { finished in
+            self.textField.backgroundColor = UIColor.black
+            self.textField.textColor = UIColor.white
+            self.textField.autocorrectionType = .no
+            self.textField.autocapitalizationType = .none
+            self.textField.spellCheckingType = .no
+            self.textField.font = UIFont(name: "Courier", size: 15)
+            self.textField.showsVerticalScrollIndicator = true
+            self.textField.layer.zPosition = 2
+            
+            self.syntaxLabel.font = UIFont(name: "Courier", size: 10)
+            self.syntaxLabel.textColor = UIColor.black
+            self.syntaxLabel.backgroundColor = UIColor.green
+            self.syntaxLabel.textAlignment = .center
+            self.syntaxLabel.layer.zPosition = 5
+            self.syntaxLabel.frame = CGRect(x: screenSize.width/2, y: screenSize.height/2-60, width: screenSize.width/2, height: 50)
+            
+            self.returnLabel.font = UIFont(name: "Courier", size: 40)
+            self.returnLabel.textColor = UIColor.black
+            self.returnLabel.backgroundColor = UIColor.red
+            self.returnLabel.textColor = UIColor.white
+            self.returnLabel.textAlignment = .center
+            self.returnLabel.layer.zPosition = 5
+            self.returnLabel.frame = CGRect(x: screenSize.width/6, y: screenSize.height/4-50, width: screenSize.width/4, height: 100)
+            
+            self.view?.addSubview(self.syntaxLabel)
+            self.view?.addSubview(self.returnLabel)
+            self.view?.addSubview(self.textField)
+
+            self.submit(view: self.view!)
+        })
     }
     
     
