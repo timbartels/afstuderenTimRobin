@@ -330,10 +330,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             missie = checkpoint
             
             self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
-            self.popupbox.backgroundColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1.0)
+            self.popupbox.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
             self.popupbox.layer.borderColor = UIColor(red:242.0/255.0, green:155.0/255.0, blue:29.0/255.0, alpha: 1.0).cgColor
-            self.popupbox.layer.borderWidth = 2
-            self.popupbox.alpha = 1.0
+            self.popupbox.layer.borderWidth = 0
+            self.popupbox.layer.shadowColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 0.8).cgColor
+            self.popupbox.layer.shadowOpacity = 1
+            self.popupbox.layer.shadowOffset = CGSize.zero
+            self.popupbox.layer.shadowRadius = 15
+            self.popupbox.layer.shadowPath = UIBezierPath(rect: self.popupbox.bounds).cgPath
             self.popupbox.isUserInteractionEnabled = true
             self.popupbox.layer.cornerRadius = 10
             
@@ -347,7 +351,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             // Add text to popup
             self.popupboxtext.frame = CGRect(x: 50, y: 0, width: self.popupbox.bounds.width-100, height: 100)
             self.popupboxtext.textAlignment = NSTextAlignment.left
-            self.popupboxtext.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
+            //self.popupboxtext.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
+            self.popupboxtext.textColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1.0)
             self.popupboxtext.font = UIFont(name: "RifficFree-Bold", size: 25)
             self.popupboxtext.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
             

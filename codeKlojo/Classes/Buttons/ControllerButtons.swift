@@ -24,7 +24,7 @@ class ControllerButtons: Buttons{
     }
     
     func loadButtonLeft(button: UIButton, view: UIView) {
-        prepareButtonController(imageName: "button", button: button)
+        prepareButtonController(imageName: "button_left", button: button)
         button.frame = CGRect(x: 50, y: height-130, width: 90, height: 90)
         button.alpha = 1.0
         button.addTarget(self, action: #selector(ButtonDownL), for: .touchDown)
@@ -33,10 +33,9 @@ class ControllerButtons: Buttons{
         view.addSubview(button)
     }
     func loadButtonRight(button: UIButton, view: UIView) {
-        prepareButtonController(imageName: "button", button: button)
+        prepareButtonController(imageName: "button_right", button: button)
         button.frame = CGRect(x: 165, y: height-130, width: 90, height: 90)
         button.alpha = 1.0
-        button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
         button.addTarget(self, action: #selector(ButtonDownR), for: .touchDown)
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpInside)
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpOutside)
