@@ -18,46 +18,41 @@ class ControllerButtons: Buttons{
     
     func loadButtonMenu(button: UIButton, view: UIView) {
         prepareButtonController(imageName: "MenuButton", button: button)
-        button.frame = CGRect(x: width-200, y: 10, width: 200, height: 80)
-        button.alpha = 0.5
+        button.frame = CGRect(x: width-140, y: 30, width: 90, height: 90)
+        button.alpha = 1.0
         view.addSubview(button)
     }
     
+    func loadButtonLeft(button: UIButton, view: UIView) {
+        prepareButtonController(imageName: "button_left", button: button)
+        button.frame = CGRect(x: 50, y: height-130, width: 90, height: 90)
+        button.alpha = 1.0
+        button.addTarget(self, action: #selector(ButtonDownL), for: .touchDown)
+        button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpInside)
+        button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpOutside)
+        view.addSubview(button)
+    }
     func loadButtonRight(button: UIButton, view: UIView) {
-        prepareButtonController(imageName: "button", button: button)
-        button.frame = CGRect(x: width-300, y: height-100, width: 80, height: 80)
-        button.alpha = 0.5
-        button.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
+        prepareButtonController(imageName: "button_right", button: button)
+        button.frame = CGRect(x: 165, y: height-130, width: 90, height: 90)
+        button.alpha = 1.0
         button.addTarget(self, action: #selector(ButtonDownR), for: .touchDown)
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpInside)
         button.addTarget(self, action: #selector(ButtonUpR), for: .touchUpOutside)
         view.addSubview(button)
     }
     func loadButtonUp(button: UIButton, view: UIView) {
-        prepareButtonController(imageName: "button", button: button)
-        button.alpha = 0.5
-        button.frame = CGRect(x: width-200, y: height-100, width: 80, height: 80)
-        button.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2 )
+        prepareButtonController(imageName: "jump", button: button)
+        button.alpha = 1.0
+        button.frame = CGRect(x: width-255, y: height-130, width: 90, height: 90)
         button.addTarget(self, action: #selector(ButtonDownU), for: .touchDown)
         view.addSubview(button)
-        
     }
     func loadButtonAttack(button: UIButton, view: UIView) {
-        prepareButtonController(imageName: "button", button: button)
-        button.alpha = 0.5
-        button.frame = CGRect(x: width-100, y: height-100, width: 80, height: 80)
-        button.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+        prepareButtonController(imageName: "attack", button: button)
+        button.alpha = 1.0
+        button.frame = CGRect(x: width-140, y: height-130, width: 90, height: 90)
         button.addTarget(self, action: #selector(ButtonDownAttack), for: .touchDown)
-        view.addSubview(button)
-        
-    }
-    func loadButtonLeft(button: UIButton, view: UIView) {
-        prepareButtonController(imageName: "button", button: button)
-        button.frame = CGRect(x: 50, y: height-100, width: 80, height: 80)
-        button.alpha = 0.5
-        button.addTarget(self, action: #selector(ButtonDownL), for: .touchDown)
-        button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpInside)
-        button.addTarget(self, action: #selector(ButtonUpL), for: .touchUpOutside)
         view.addSubview(button)
     }
     

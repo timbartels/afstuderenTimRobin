@@ -23,6 +23,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Glass_TTY_VT220.ttf</string>
+		<string>Riffic.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

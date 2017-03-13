@@ -40,6 +40,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let buttonAttack = UIButton()
     let knop = UIButton()
     let popupbox = UIView()
+    let popupboxtext = UILabel()
     let controllerButtons = ControllerButtons()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -365,28 +366,40 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             
             missie = checkpoint
             
-            self.popupbox.frame = CGRect(x: 0, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()), height: 250)
-            self.popupbox.backgroundColor = UIColor.white
-            self.popupbox.layer.borderWidth = 5
+            self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
+            self.popupbox.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
+            self.popupbox.layer.borderColor = UIColor(red:242.0/255.0, green:155.0/255.0, blue:29.0/255.0, alpha: 1.0).cgColor
+            self.popupbox.layer.borderWidth = 0
+            self.popupbox.layer.shadowColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 0.8).cgColor
+            self.popupbox.layer.shadowOpacity = 1
+            self.popupbox.layer.shadowOffset = CGSize.zero
+            self.popupbox.layer.shadowRadius = 15
+            self.popupbox.layer.shadowPath = UIBezierPath(rect: self.popupbox.bounds).cgPath
             self.popupbox.isUserInteractionEnabled = true
+            self.popupbox.layer.cornerRadius = 10
             
             view?.addSubview(popupbox)
             
+            let popupPosition = self.popupbox.bounds.height+25
             UIView.animate(withDuration: 0.3, animations: {
-                self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: -self.popupbox.bounds.height)
+                self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: -popupPosition)
             }, completion: { finished in })
             
             // Add text to popup
-            let text = UILabel(frame: CGRect(x: 50, y: 0, width: 400, height: 100))
-            text.textAlignment = NSTextAlignment.center
-            text.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
+            self.popupboxtext.frame = CGRect(x: 50, y: 0, width: self.popupbox.bounds.width-100, height: 100)
+            self.popupboxtext.textAlignment = NSTextAlignment.left
+            //self.popupboxtext.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
+            self.popupboxtext.textColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1.0)
+            self.popupboxtext.font = UIFont(name: "RifficFree-Bold", size: 25)
+            self.popupboxtext.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
             
-            self.popupbox.addSubview(text)
+            self.popupbox.addSubview(popupboxtext)
             
-            self.knop.frame = CGRect(x: 700, y: 100, width: 100, height: 80)
-            self.knop.backgroundColor = .red
-            self.knop.setTitle("Button", for: .normal)
+            // Add button to popup
+            self.knop.frame = CGRect(x: popupbox.bounds.width-300, y: 130, width: 250, height: 90)
             self.knop.isUserInteractionEnabled = true
+            let image = UIImage(named: "gaverder") as UIImage?
+            self.knop.setImage(image, for: .normal)
             
             knop.addTarget(self, action: #selector(self.hidePopup), for: .touchDown)
             popupbox.addSubview(knop)
@@ -396,6 +409,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func hidePopup(){
         scene?.view?.isPaused = false
+        let popupPosition = self.popupbox.bounds.height+25
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
         }, completion: { finished in
