@@ -16,6 +16,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let webView = WKWebView()
     let syntaxLabel = UILabel()
     let returnLabel = UILabel()
+    let submit = UIButton()
     let widthLevel = 15000
     let mission = Mission()
     let cam = SKCameraNode()
@@ -72,7 +73,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         player.initLives(view: view!)
     }
     func submit(view: UIView){
-        let submit = UIButton()
         submit.backgroundColor = UIColor.blue
         submit.frame = CGRect(x: screenSize.width-50, y: 0, width: 50, height: 50)
         submit.layer.zPosition = 10
@@ -172,13 +172,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         self.webView.evaluateJavaScript(self.textField.text!){ (result, error) in
             var errorCode: Int
             var errorMessage: String
-            var errorSyntax: String
-            var errorLine: Int
+            //var errorSyntax: String
+            //var errorLine: Int
             if error == nil {
                 self.mission.syntaxError = "✔︎"
                 self.returnLabel.text = "\(result!)"
+                self.checkResult(answer: self.returnLabel.text!)
             }else{
-                print(error)
+                print(error!)
                 //let errorTest = (error! as NSError).userInfo
                 //errorLine = errorTest[AnyHashable("WKJavaScriptExceptionLineNumber")] as! Int
                 // errorSyntax = errorTest[AnyHashable("WKJavaScriptExceptionMessage")] as! String
@@ -190,7 +191,20 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         self.syntaxLabel.text = self.mission.syntaxError
     }
 
-    
+    func checkResult(answer: String){
+        if answer == "4"{
+            scene?.view?.isPaused = false
+            textField.removeFromSuperview()
+            returnLabel.removeFromSuperview()
+            syntaxLabel.removeFromSuperview()
+            submit.removeFromSuperview()
+            initController()
+            controllerButtons.buttonStateL = false
+            controllerButtons.buttonStateR = false
+            player.initLives(view: view!)
+            
+        }
+    }
     func touchDown(atPoint pos : CGPoint) {
 
     }
@@ -363,7 +377,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         if checkpoint != "empty" {
             //Popup().showPopupForMission(mission: checkpoint, view: view!)
             scene?.view?.isPaused = true
-            
+            for view in (self.view?.subviews)! {
+                view.removeFromSuperview()
+            }
             missie = checkpoint
             
             self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
@@ -408,12 +424,16 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func hidePopup(){
-        scene?.view?.isPaused = false
+        let opdracht = "1+1;"
+        // scene?.view?.isPaused = false
         let popupPosition = self.popupbox.bounds.height+25
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
         }, completion: { finished in
+            self.popupbox.removeFromSuperview()
+            self.popupboxtext.removeFromSuperview()
             self.textField.backgroundColor = UIColor.black
+            self.textField.becomeFirstResponder()
             self.textField.textColor = UIColor.white
             self.textField.autocorrectionType = .no
             self.textField.autocapitalizationType = .none
@@ -436,7 +456,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.returnLabel.textAlignment = .center
             self.returnLabel.layer.zPosition = 5
             self.returnLabel.frame = CGRect(x: screenSize.width/6, y: screenSize.height/4-50, width: screenSize.width/4, height: 100)
-            
+            self.textField.text = opdracht
             self.view?.addSubview(self.syntaxLabel)
             self.view?.addSubview(self.returnLabel)
             self.view?.addSubview(self.textField)

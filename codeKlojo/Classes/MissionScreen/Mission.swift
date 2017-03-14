@@ -57,7 +57,7 @@ class Mission: NSObject {
             var errorLine: Int
             if error == nil {
                 self.syntaxError = "✔︎"
-                print(result)
+                print(result!)
                 //self.returnLabel.text = "\(result!)"
             }else{
                 let errorTest = (error! as NSError).userInfo
