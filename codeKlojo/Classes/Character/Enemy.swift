@@ -17,6 +17,7 @@ class Enemy: Character {
     var enemyDirection = "left"
     var inRange = false
     var mayFire = true
+    var hit = false
     
     override func load(scene: SKScene) {
         super.load(scene: scene)
@@ -28,6 +29,15 @@ class Enemy: Character {
 
     }
 
+    func enemyAttack(scene: SKScene, position: CGPoint){
+        // Move to player position when in range
+        self.moveTo(pos: position)
+        // Fire bullet when enemy is in range of player
+        if self.inRange == true {
+            self.invokeFire(scene: scene)
+        }
+    }
+    
     func moveTo(pos: CGPoint){
         inRange = false
         let diff = Int(pos.x) - Int(self.position.x)
@@ -82,6 +92,4 @@ class Enemy: Character {
             self.run(enemyFire)
         }
     }
-
-
 }

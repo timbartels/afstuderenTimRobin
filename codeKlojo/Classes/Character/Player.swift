@@ -15,6 +15,7 @@ class Player: Character {
     var label = UILabel()
     var liveImage = UIImageView()
     var viewDirection = "Right"
+    var attackState = false
 
     override func load(scene: SKScene) {
         super.load(scene: scene)
@@ -22,13 +23,13 @@ class Player: Character {
         // idle stance
         self.animatePlayer(jump: false, move: false, slide: false)
         // self.texture = framesIdle.first
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.bullet
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy
-        self.physicsBody?.categoryBitMask = PhysicsCategory.player
         
         // Override to reduce physicsbox size
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/2, height: self.size.height))
         if let physics = self.physicsBody {
+            physics.contactTestBitMask = PhysicsCategory.bullet
+            physics.contactTestBitMask = PhysicsCategory.enemy
+            physics.categoryBitMask = PhysicsCategory.player
             physics.affectedByGravity = true
             physics.isDynamic = true
             physics.restitution = 0
@@ -91,6 +92,7 @@ class Player: Character {
     }
     
     func attack(){
+        attackState = true
         //self.zRotation = CGFloat(1.4)
         var attackMoveBy = CGFloat(200)
 //        var rotationAngle = CGFloat(1.50)
