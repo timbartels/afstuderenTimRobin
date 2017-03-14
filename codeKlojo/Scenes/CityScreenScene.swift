@@ -128,7 +128,21 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         self.camera = cam
         cam.position.y += (self.frame.height/2)
     }
-
+    
+    func removeUI(){
+        for view in (self.view?.subviews)! {
+            view.removeFromSuperview()
+        }
+        
+        self.controllerButtons.buttonStateL = false
+        self.controllerButtons.buttonStateR = false
+    }
+    
+    
+    func addUI(){
+        initController()
+        player.initLives(view: view!)
+    }
     
     func calculateCamera(){
         //Calculate position when player reaches half of screen
@@ -203,10 +217,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             returnLabel.removeFromSuperview()
             syntaxLabel.removeFromSuperview()
             submit.removeFromSuperview()
-            initController()
-            controllerButtons.buttonStateL = false
-            controllerButtons.buttonStateR = false
-            player.initLives(view: view!)
+            addUI()
             
         }
     }
@@ -472,13 +483,18 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         for (object) in Traps {
             if player.position.x > object.positionx && object.positionx != 0.0 && player.position.x < object.positionx+object.width && player.position.y < object.positiony {
                 
+                removeUI()
+                
+                let fin = SKAction.run(){
+                    self.addUI()
+                }
+        
                 let fadeOut = SKAction.fadeOut(withDuration: 0.3)
                 let fadeIn = SKAction.fadeIn(withDuration: 0.3)
                 let wait = SKAction.wait(forDuration: 1.0)
                 let movetocheckpoint = SKAction.move(to: Global.savedPosition, duration: 0.5)
-                let sequence = SKAction.sequence([fadeOut, wait, movetocheckpoint, wait, fadeIn])
+                let sequence = SKAction.sequence([fadeOut, wait, movetocheckpoint, wait, fadeIn, fin])
                 player.run(sequence)
-                
             }
         }
     }
