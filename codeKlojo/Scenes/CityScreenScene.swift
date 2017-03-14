@@ -198,7 +198,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
 
     func checkResult(answer: String){
         if answer == "4"{
-            scene?.view?.isPaused = false
+            play()
             textField.removeFromSuperview()
             returnLabel.removeFromSuperview()
             syntaxLabel.removeFromSuperview()
@@ -225,7 +225,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         view?.addSubview(blurEffectView)
         
         if scene?.view?.isPaused == false{
-            scene?.view?.isPaused = true
+            pause()
             menuButtons.loadMuteButton(button: muteButton, view: view!)
             menuButtons.loadStartButton(button: startButton, view: view!)
             menuButtons.loadResumeButton(button: resumeButton, view: view!)
@@ -234,15 +234,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             muteButton.addTarget(self, action: #selector(MuteButton), for: .touchUpInside)
             
         }else{
-            scene?.view?.isPaused = false
-
+            play()
         }
 
     }
     
     @objc func ResumeButton(sender: UIButton) {
         if scene?.view?.isPaused == true{
-            scene?.view?.isPaused = false
+            play()
             muteButton.removeFromSuperview()
             startButton.removeFromSuperview()
             resumeButton.removeFromSuperview()
@@ -269,7 +268,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
         backgroundMusic.run(SKAction.stop())
         Global.savedPosition = CGPoint(x: 30, y: 125)
-        scene?.view?.isPaused = false
+        play()
         loadScene(withIdentifier: .start)
 
     }
@@ -381,7 +380,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // If player stand on checkpoint
         if checkpoint != "empty" {
             //Popup().showPopupForMission(mission: checkpoint, view: view!)
-            scene?.view?.isPaused = true
+            pause()
             for view in (self.view?.subviews)! {
                 view.removeFromSuperview()
             }
@@ -430,7 +429,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func hidePopup(){
         let opdracht = "1+1;"
-        // scene?.view?.isPaused = false
         let popupPosition = self.popupbox.bounds.height+25
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
@@ -485,6 +483,13 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
     }
     
+    func pause(){
+        scene?.view?.isPaused = true
+    }
+    
+    func play(){
+         scene?.view?.isPaused = false
+    }
     
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
