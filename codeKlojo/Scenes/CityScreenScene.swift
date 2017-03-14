@@ -55,6 +55,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         prepareBlur()
         initLevel()
         initPlatforms()
+        initTraps()
         clouds.load(scene: self, amount: 30)
         backgroundMusic.play(scene: self)
         player.load(scene: self)
@@ -84,6 +85,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initPlatforms(){
         Platform().load()
+    }
+    
+    func initTraps(){
+        Trap().load()
     }
     
     func initController(){
@@ -201,8 +206,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
         
     }
-    
-    
     
     @objc func MuteButton(sender: UIButton) {
         if backgroundMusic.mute == false{
@@ -381,6 +384,21 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         })
     }
     
+    func checkTraps(){
+        for (object) in Traps {
+            if player.position.x > object.positionx && object.positionx != 0.0 && player.position.x < object.positionx+object.width && player.position.y < object.positiony {
+                
+                let fadeOut = SKAction.fadeOut(withDuration: 0.3)
+                let fadeIn = SKAction.fadeIn(withDuration: 0.3)
+                let wait = SKAction.wait(forDuration: 1.0)
+                let movetocheckpoint = SKAction.move(to: Global.savedPosition, duration: 0.5)
+                let sequence = SKAction.sequence([fadeOut, wait, movetocheckpoint, wait, fadeIn])
+                player.run(sequence)
+                
+            }
+        }
+    }
+    
     
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
@@ -392,6 +410,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         player.checkLives(scene: scene!)
         calculatePlatforms()
         checkForCheckpoint()
+        checkTraps()
+        
 
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {

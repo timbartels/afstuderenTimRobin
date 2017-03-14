@@ -11,6 +11,7 @@
 		003116211E6844AE00B53250 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003116201E6844AE00B53250 /* Mission.swift */; };
 		0055497D1DE5AE3B00D5ED83 /* StartScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */; };
 		0065891F1E76E8E1008E9EC9 /* Riffic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0065891E1E76E819008E9EC9 /* Riffic.ttf */; };
+		006589211E77FE4B008E9EC9 /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006589201E77FE4B008E9EC9 /* Trap.swift */; };
 		0072AD471E55CBB400524F85 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072AD461E55CBB400524F85 /* Platform.swift */; };
 		00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */; };
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		003116201E6844AE00B53250 /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenScene.swift; sourceTree = "<group>"; };
 		0065891E1E76E819008E9EC9 /* Riffic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Riffic.ttf; sourceTree = "<group>"; };
+		006589201E77FE4B008E9EC9 /* Trap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
 		0072AD461E55CBB400524F85 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +253,7 @@
 				2DB7F1021DD9E64000AACB19 /* CityLevel.swift */,
 				2DEC6A701E30EAD600F89FF6 /* Clouds.swift */,
 				0072AD461E55CBB400524F85 /* Platform.swift */,
+				006589201E77FE4B008E9EC9 /* Trap.swift */,
 			);
 			path = CityScreen;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				2D5E7CBE1DD470CC00B5116E /* ControllerButtons.swift in Sources */,
 				2DE7068A1E0099F600AAB222 /* Enemy.swift in Sources */,
 				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
+				006589211E77FE4B008E9EC9 /* Trap.swift in Sources */,
 				2D43553A1E0163A200ACDEAF /* MissionLevel.swift in Sources */,
 				2D503F391DE5B6C3007B8EB8 /* GameOverScreenScene.swift in Sources */,
 				2D503F3F1DE5BF03007B8EB8 /* GameSceneManager.swift in Sources */,

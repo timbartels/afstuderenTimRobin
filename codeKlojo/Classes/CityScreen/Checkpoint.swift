@@ -30,7 +30,8 @@ class Checkpoint: CityLevel{
                 // Remove checkpoint from array
                 cps.removeValue(forKey: position)
                 
-                //print(cp)
+                // Set latest checkpoint
+                Global.savedPosition = CGPoint(x: position, y: 165)
                 
             }
         }
