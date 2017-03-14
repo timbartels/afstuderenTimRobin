@@ -62,33 +62,13 @@ class Player: Character {
         let endLine = CGPoint(x: self.position.x, y: 0)
         if (positionPlayer.y <= endLine.y){
             self.load(scene: scene)
-            self.lives -= 1
+            self.removeLive()
         }
     }
     
-    func initLives(view: UIView){
-        // Add lives
-        let imageName = "live.png"
-        let image = UIImage(named: imageName)!
-        var livePosition : CGFloat = 0
-        
-        for i in 1...3{
-            let liveImage = UIImageView(image: image)
-            liveImage.tag = i
-            liveImage.frame = CGRect(x: livePosition+60, y: 20, width: 50, height: 50)
-            livePosition += 60
-            liveImage.alpha = 1
-            view.addSubview(liveImage)
-        }
-    }
-    
-    func removeLive(view: UIView){
-        // Remove life image
-        if (self.lives > 0){
-            for _ in 1...3 {
-                view.viewWithTag(self.lives+1)?.alpha = 0.7
-            }
-        }
+    func removeLive(){
+        self.lives -= 1
+        CityScreenScene().updateLives()
     }
     
     func attack(){

@@ -38,8 +38,11 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let buttonRight = UIButton()
     let buttonLeft = UIButton()
     let buttonUp = UIButton()
+    var myMutableString = NSMutableAttributedString()
     let buttonAttack = UIButton()
+    let lives = UILabel()
     let knop = UIButton()
+    var trapped = Bool(false)
     let popupbox = UIView()
     let popupboxtext = UILabel()
     let controllerButtons = ControllerButtons()
@@ -70,8 +73,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         print(player.framesMove)
         initEnemies()
         initCamera()
-        initController()
-        player.initLives(view: view!)
+        addUI()
     }
     func submit(view: UIView){
         submit.backgroundColor = UIColor.blue
@@ -118,6 +120,42 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         controllerButtons.loadButtonMenu(button: buttonMenu, view: view!)
         buttonMenu.addTarget(self, action: #selector(ButtonUpMenu), for: .touchUpInside)
     }
+    
+    func initLives(){
+        self.lives.frame = CGRect(x: 25, y: 25, width:200, height: 50)
+        //self.lives.textColor = UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1.0)
+        //self.lives.font = UIFont(name: "RifficFree-Bold", size: 50)
+        
+        myMutableString = NSMutableAttributedString(
+            string: "X\(player.lives)",
+            attributes: [NSFontAttributeName:UIFont(
+                name: "RifficFree-Bold",
+                size: 50.0)!])
+        
+        myMutableString.addAttribute(
+            NSForegroundColorAttributeName,
+            value: UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1.0),
+            range: NSRange(location:0,length:2))
+        
+        myMutableString.addAttribute(
+            NSStrokeColorAttributeName,
+            value: UIColor(red:239.0/255.0, green:173.0/255.0, blue:33.0/255.0, alpha: 1.0),
+            range:  NSRange(location: 0,length: 2))
+        
+        myMutableString.addAttribute(
+            NSStrokeWidthAttributeName,
+            value: -8,
+            range: NSRange(location: 0,length: 2))
+        
+        
+        self.lives.attributedText = myMutableString
+        view?.addSubview(lives)
+    }
+    
+    func updateLives(){
+        myMutableString.mutableString.setString("X\(player.lives)")
+    }
+    
     func prepareBlur(){
         blurEffectView.frame = (view?.bounds)!
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -141,7 +179,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func addUI(){
         initController()
-        player.initLives(view: view!)
+        initLives()
     }
     
     func calculateCamera(){
@@ -257,8 +295,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             startButton.removeFromSuperview()
             resumeButton.removeFromSuperview()
             blurEffectView.removeFromSuperview()
-            initController()
-            player.initLives(view: view!)
+            addUI()
             
         }
         
@@ -300,12 +337,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             if player.attackState{
                 enemy.removeFromParent()
             }else{
-              player.lives -= 1
+              //player.removeLive()
             }
         
         case PhysicsCategory.bullet | PhysicsCategory.player:
             bullet.removeFromParent()
-            player.lives -= 1
+            //player.removeLive()
             
         default :
             //Some other contact has occurred
@@ -481,12 +518,15 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func checkTraps(){
         for (object) in Traps {
-            if player.position.x > object.positionx && object.positionx != 0.0 && player.position.x < object.positionx+object.width && player.position.y < object.positiony {
+            if player.position.x > object.positionx && object.positionx != 0.0 && player.position.x < object.positionx+object.width && player.position.y < object.positiony && self.trapped == false {
                 
+                self.trapped = true
+                self.player.removeLive()
                 removeUI()
                 
                 let fin = SKAction.run(){
                     self.addUI()
+                    self.trapped = false
                 }
         
                 let fadeOut = SKAction.fadeOut(withDuration: 0.3)
@@ -511,7 +551,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         // Called before each frame is rendered
         enemy.enemyAttack(scene: self, position: player.position)
         enemy2.enemyAttack(scene: self, position: player.position)
-        player.removeLive(view: view!)
         checkGameOver()
         calculateCamera()
         checkButtonState()
@@ -520,7 +559,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         checkForCheckpoint()
         checkTraps()
         
-
+        print(player.lives)
+        
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
