@@ -334,18 +334,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             if player.attackState == true{
                 contact.bodyB.node?.removeFromParent()
             }else{
-              //player.removeLive()
+              player.removeLive()
             }
-        
-        case PhysicsCategory.bullet | PhysicsCategory.player:
-            bullet.removeFromParent()
-            //player.removeLive()
-            
         }
+        
         if (contact.bodyA.categoryBitMask == PhysicsCategory.player &&
             contact.bodyB.categoryBitMask == PhysicsCategory.bullet) {
             contact.bodyB.node?.removeFromParent()
-            player.lives -= 1
+            player.removeLive()
         }
     }
     
@@ -550,7 +546,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
         enemy.enemyAttack(scene: self, position: player.position)
-        enemy2.enemyAttack(scene: self, position: player.position)
+        enemy1.enemyAttack(scene: self, position: player.position)
         checkGameOver()
         calculateCamera()
         checkButtonState()
