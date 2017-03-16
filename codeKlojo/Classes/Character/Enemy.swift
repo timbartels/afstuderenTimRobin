@@ -19,9 +19,10 @@ class Enemy: Character {
     var mayFire = true
     var hit = false
     
-    override func load(scene: SKScene) {
+    func load(scene: SKScene, position: CGPoint) {
         super.load(scene: scene)
-        self.position = CGPoint(x: 500,y: 150)
+        self.position = position
+        self.name = "1"
         self.setScale(enemySize)
         self.physicsBody?.categoryBitMask = PhysicsCategory.enemy
         self.physicsBody?.contactTestBitMask = PhysicsCategory.player

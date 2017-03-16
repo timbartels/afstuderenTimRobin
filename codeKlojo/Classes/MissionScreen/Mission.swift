@@ -26,7 +26,7 @@ class Mission: NSObject {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.spellCheckingType = .no
-        textField.font = UIFont(name: "Courier", size: 15)
+        textField.font = UIFont(name: "Courier", size: 20)
         textField.showsVerticalScrollIndicator = true
         
         syntaxLabel.font = UIFont(name: "Courier", size: 10)
