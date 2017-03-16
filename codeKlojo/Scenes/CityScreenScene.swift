@@ -559,8 +559,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         checkForCheckpoint()
         checkTraps()
         
-        print(player.lives)
-        
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime

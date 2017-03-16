@@ -21,6 +21,7 @@ class Platform {
     var added       =   Bool()
     
     func load(){
+        // Trashcan
         let platform1 = Platform()
         platform1.positionx   =   3840
         platform1.positiony   =   180
@@ -31,6 +32,7 @@ class Platform {
         
         Platforms.append(platform1)
         
+        // Fashion lower
         let platform2 = Platform()
         platform2.positionx   =   3885
         platform2.positiony   =   310
@@ -41,6 +43,7 @@ class Platform {
         
         Platforms.append(platform2)
         
+        // Fashion top
         let platform3 = Platform()
         platform3.positionx   =   4070
         platform3.positiony   =   440
@@ -51,6 +54,7 @@ class Platform {
         
         Platforms.append(platform3)
         
+        // Restaurant
         let platform4 = Platform()
         platform4.positionx   =   4400
         platform4.positiony   =   355
@@ -61,6 +65,7 @@ class Platform {
         
         Platforms.append(platform4)
         
+        // Wall
         let platform5 = Platform()
         platform5.positionx   =   4830
         platform5.positiony   =   265
@@ -71,6 +76,7 @@ class Platform {
         
         Platforms.append(platform5)
         
+        // Wall
         let platform6 = Platform()
         platform6.positionx   =   5230
         platform6.positiony   =   265
@@ -81,5 +87,59 @@ class Platform {
         
         Platforms.append(platform6)
         
+        // Fountain lower
+        let platform7 = Platform()
+        platform7.positionx   =   1090
+        platform7.positiony   =   100
+        platform7.width       =   230
+        platform7.height      =   50
+        platform7.jumpThrough =   false
+        platform7.added       =   false
+        
+        Platforms.append(platform7)
+        
+        // Fountain middle
+        let platform8 = Platform()
+        platform8.positionx   =   1140
+        platform8.positiony   =   170
+        platform8.width       =   140
+        platform8.height      =   40
+        platform8.jumpThrough =   false
+        platform8.added       =   false
+        
+        Platforms.append(platform8)
+        
+        // Fountain top
+        let platform9 = Platform()
+        platform9.positionx   =   1175
+        platform9.positiony   =   210
+        platform9.width       =   75
+        platform9.height      =   40
+        platform9.jumpThrough =   false
+        platform9.added       =   false
+        
+        Platforms.append(platform9)
+        
+        // Pion
+        let platform10 = Platform()
+        platform10.positionx   =   4965
+        platform10.positiony   =   190
+        platform10.width       =   5
+        platform10.height      =   140
+        platform10.jumpThrough =   false
+        platform10.added       =   false
+        
+        Platforms.append(platform10)
+        
+        // Pion
+        let platform11 = Platform()
+        platform11.positionx   =   5250
+        platform11.positiony   =   190
+        platform11.width       =   5
+        platform11.height      =   140
+        platform11.jumpThrough =   false
+        platform11.added       =   false
+        
+        Platforms.append(platform11)
     }
 }
