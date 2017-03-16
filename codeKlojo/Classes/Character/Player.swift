@@ -92,7 +92,7 @@ class Player: Character {
     }
     
     func attack(){
-        attackState = true
+        
         //self.zRotation = CGFloat(1.4)
         var attackMoveBy = CGFloat(200)
 //        var rotationAngle = CGFloat(1.50)
@@ -107,7 +107,13 @@ class Player: Character {
         let attackSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
         // let attackRotationDone = SKAction.rotate(byAngle: -rotationAngle, duration: 0.1)
         // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
-        let attackSequence = SKAction.sequence([attackAction, attackSound])
+        let beginState = SKAction.run {
+            self.attackState = true
+        }
+        let endState = SKAction.run {
+            self.attackState = false
+        }
+        let attackSequence = SKAction.sequence([beginState, attackAction, attackSound, endState])
         self.run(attackSequence)
         animatePlayer(jump: false, move: false, slide: true)
     }

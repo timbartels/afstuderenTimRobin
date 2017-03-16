@@ -23,12 +23,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var backgroundMusic = SoundEngine()
     let background = Background()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement1"))
-    let enemy = Enemy(imageNamed: "robot.png")
-    let enemy2 = Enemy(imageNamed: "robot.png")
     let bullet = Bullet(imageNamed: "bullet")
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
     let clouds = Clouds()
+    let enemy = Enemy(imageNamed: "robot.png")
+    let enemy1 = Enemy(imageNamed: "robot.png")
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
     let menuButtons = MenuButtons()
     let startButton = UIButton()
@@ -87,8 +87,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         background.load(scene: self)
     }
     func initEnemies(){
-        enemy.load(scene: self)
-        enemy2.load(scene: self)
+        enemy.load(scene: self, position: CGPoint(x: 500, y:150))
+        enemy1.load(scene: self, position: CGPoint(x: 1000, y:150))
     }
     func initLevel(){
         let floor = Border(rectOf: CGSize(width: widthLevel, height: 0))
@@ -168,7 +168,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func checkJavascript(sender: UIButton){
-        print(self.textField.text)
         self.webView.evaluateJavaScript(self.textField.text!){ (result, error) in
             var errorCode: Int
             var errorMessage: String
@@ -277,24 +276,20 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-        
-        switch contactMask {
-        case PhysicsCategory.player | PhysicsCategory.enemy:
-            print("collision")
-            if player.attackState{
-                enemy.removeFromParent()
+          
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.player &&
+            contact.bodyB.categoryBitMask == PhysicsCategory.enemy) {
+            if player.attackState == true{
+                contact.bodyB.node?.removeFromParent()
             }else{
-              player.lives -= 1
+               player.lives -= 1
             }
-        
-        case PhysicsCategory.bullet | PhysicsCategory.player:
-            bullet.removeFromParent()
-            player.lives -= 1
             
-        default :
-            //Some other contact has occurred
-            print("Something went wrong in the enemy/bullet collision")
+        }
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.player &&
+            contact.bodyB.categoryBitMask == PhysicsCategory.bullet) {
+            contact.bodyB.node?.removeFromParent()
+            player.lives -= 1
         }
     }
     
@@ -456,11 +451,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.returnLabel.textAlignment = .center
             self.returnLabel.layer.zPosition = 5
             self.returnLabel.frame = CGRect(x: screenSize.width/6, y: screenSize.height/4-50, width: screenSize.width/4, height: 100)
+            
             self.textField.text = opdracht
             self.view?.addSubview(self.syntaxLabel)
             self.view?.addSubview(self.returnLabel)
             self.view?.addSubview(self.textField)
-
+            self.textField.becomeFirstResponder()
             self.submit(view: self.view!)
         })
     }
@@ -469,7 +465,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
         enemy.enemyAttack(scene: self, position: player.position)
-        enemy2.enemyAttack(scene: self, position: player.position)
+        enemy1.enemyAttack(scene: self, position: player.position)
         player.removeLive(view: view!)
         checkGameOver()
         calculateCamera()
