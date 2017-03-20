@@ -41,6 +41,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var myMutableString = NSMutableAttributedString()
     let buttonAttack = UIButton()
     let lives = UILabel()
+    let livesHead = UIImage(named: "head")
     let knop = UIButton()
     var trapped = Bool(false)
     let popupbox = UIView()
@@ -122,15 +123,15 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func initLives(){
-        self.lives.frame = CGRect(x: 25, y: 25, width:200, height: 50)
-        //self.lives.textColor = UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1.0)
-        //self.lives.font = UIFont(name: "RifficFree-Bold", size: 50)
+        self.lives.frame = CGRect(x: 110, y: 35, width:200, height: 50)
+        let livesHeadImage = UIImageView(image: livesHead!)
+        livesHeadImage.frame = CGRect(x: 25, y: 25, width: 80, height: 70)
         
         myMutableString = NSMutableAttributedString(
             string: "X\(player.lives)",
             attributes: [NSFontAttributeName:UIFont(
                 name: "RifficFree-Bold",
-                size: 50.0)!])
+                size: 45.0)!])
         
         myMutableString.addAttribute(
             NSForegroundColorAttributeName,
@@ -150,6 +151,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
         self.lives.attributedText = myMutableString
         view?.addSubview(lives)
+        view?.addSubview(livesHeadImage)
     }
     
     func removeLive(){
