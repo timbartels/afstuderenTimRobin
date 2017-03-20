@@ -152,8 +152,18 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         view?.addSubview(lives)
     }
     
+    func removeLive(){
+        player.lives -= 1
+        self.updateLives()
+    }
+    
     func updateLives(){
-        myMutableString.mutableString.setString("X\(player.lives)")
+        print(player.lives)
+        lives.removeFromSuperview()
+        self.initLives()
+        
+        // This does not work :(
+        //myMutableString.mutableString.setString("X\(player.lives)")
     }
     
     func prepareBlur(){
@@ -334,14 +344,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             if player.attackState == true{
                 contact.bodyB.node?.removeFromParent()
             }else{
-              player.removeLive()
+              self.removeLive()
             }
         }
         
         if (contact.bodyA.categoryBitMask == PhysicsCategory.player &&
             contact.bodyB.categoryBitMask == PhysicsCategory.bullet) {
             contact.bodyB.node?.removeFromParent()
-            player.removeLive()
+            self.removeLive()
         }
     }
     
@@ -517,7 +527,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             if player.position.x > object.positionx && object.positionx != 0.0 && player.position.x < object.positionx+object.width && player.position.y < object.positiony && self.trapped == false {
                 
                 self.trapped = true
-                self.player.removeLive()
+                self.removeLive()
                 removeUI()
                 
                 let fin = SKAction.run(){

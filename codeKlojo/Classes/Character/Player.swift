@@ -62,14 +62,11 @@ class Player: Character {
         let endLine = CGPoint(x: self.position.x, y: 0)
         if (positionPlayer.y <= endLine.y){
             self.load(scene: scene)
-            self.removeLive()
+            //self.removeLive()
         }
     }
     
-    func removeLive(){
-        self.lives -= 1
-        CityScreenScene().updateLives()
-    }
+    
     
     func attack(){
         
