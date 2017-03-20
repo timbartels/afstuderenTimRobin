@@ -30,6 +30,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let enemy = Enemy(imageNamed: "robot.png")
     let enemy1 = Enemy(imageNamed: "robot.png")
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+    let menuOverlay = UIView()
     let menuButtons = MenuButtons()
     let startButton = UIButton()
     let muteButton = UIButton()
@@ -126,6 +127,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         self.lives.frame = CGRect(x: 110, y: 35, width:200, height: 50)
         let livesHeadImage = UIImageView(image: livesHead!)
         livesHeadImage.frame = CGRect(x: 25, y: 25, width: 80, height: 70)
+        self.lives.alpha = 0.0
+        livesHeadImage.alpha = 0.0
         
         myMutableString = NSMutableAttributedString(
             string: "X\(player.lives)",
@@ -152,6 +155,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         self.lives.attributedText = myMutableString
         view?.addSubview(lives)
         view?.addSubview(livesHeadImage)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.lives.alpha = 1.0
+        }, completion: { finished in })
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            livesHeadImage.alpha = 1.0
+        }, completion: { finished in })
     }
     
     func removeLive(){
@@ -282,8 +293,25 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         for view in (self.view?.subviews)!{
             view.removeFromSuperview()
         }
-        view?.addSubview(blurEffectView)
+        //view?.addSubview(blurEffectView)
         
+        self.menuOverlay.frame = CGRect(x: -Int(Responsive.getWidthScreen()), y: 0, width: Int(Responsive.getWidthScreen()), height: Int(Responsive.getHeightScreen()))
+        self.menuOverlay.backgroundColor = UIColor(red:226.0/255.0, green:139.0/255.0, blue:46.0/255.0, alpha: 1.0)
+        
+        view?.addSubview(menuOverlay)
+        
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.menuOverlay.frame = self.menuOverlay.frame.offsetBy(dx: Responsive.getWidthScreen(), dy: 0.0)
+        }, completion: { finished in
+            self.addMenuButtons()
+        })
+        
+        
+
+    }
+    
+    func addMenuButtons(){
         if scene?.view?.isPaused == false{
             pause()
             menuButtons.loadMuteButton(button: muteButton, view: view!)
@@ -296,20 +324,43 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }else{
             play()
         }
-
     }
     
     @objc func ResumeButton(sender: UIButton) {
         if scene?.view?.isPaused == true{
             play()
-            muteButton.removeFromSuperview()
-            startButton.removeFromSuperview()
-            resumeButton.removeFromSuperview()
-            blurEffectView.removeFromSuperview()
-            addUI()
             
+            //blurEffectView.removeFromSuperview()
+            
+            // Mute button
+            UIView.animate(withDuration: 0.3, animations: {
+                self.muteButton.alpha = 0.0
+            }, completion: { finished in
+                self.muteButton.removeFromSuperview()
+            })
+            
+            // Start button
+            UIView.animate(withDuration: 0.3, animations: {
+                self.startButton.alpha = 0.0
+            }, completion: { finished in
+                self.startButton.removeFromSuperview()
+            })
+            
+            // Resume button
+            UIView.animate(withDuration: 0.3, animations: {
+                self.resumeButton.alpha = 0.0
+            }, completion: { finished in
+                self.resumeButton.removeFromSuperview()
+            })
+            
+            // Open menu
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuOverlay.frame = self.menuOverlay.frame.offsetBy(dx: -Responsive.getWidthScreen(), dy: 0.0)
+            }, completion: { finished in
+                self.menuOverlay.removeFromSuperview()
+                self.addUI()
+            })
         }
-        
     }
     
     @objc func MuteButton(sender: UIButton) {

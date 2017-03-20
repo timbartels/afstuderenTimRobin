@@ -12,19 +12,40 @@ import UIKit
 
 class MenuButtons: Buttons{
     func loadResumeButton(button: UIButton, view: UIView){
-        prepareButtonController(imageName: "ResumeButton", button: button)
-        button.frame = CGRect(x: width/2-70, y: height/2, width: 200, height: 70)
+        button.setTitle("Doorgaan", for: .normal)
+        button.titleLabel!.font =  UIFont(name: "RifficFree-Bold", size: 35)
+        button.setTitleColor(.white, for: .normal)
+        button.frame = CGRect(x: width/2-150, y: height/2, width: 300, height: 70)
+        button.alpha = 0.0
         view.addSubview(button)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            button.alpha = 1.0
+        }, completion: { finished in })
     }
     func loadMuteButton(button: UIButton, view: UIView){
-        prepareButtonController(imageName: "MuteButton", button: button)
-        button.frame = CGRect(x: width/2-70, y: height/2-100, width: 200, height: 70)
+        button.setTitle("Geluid dempen", for: .normal)
+        button.titleLabel!.font =  UIFont(name: "RifficFree-Bold", size: 35)
+        button.setTitleColor(.white, for: .normal)
+        button.frame = CGRect(x: width/2-150, y: height/2-100, width: 300, height: 70)
+        button.alpha = 0.0
         view.addSubview(button)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            button.alpha = 1.0
+        }, completion: { finished in })
     }
     
     func loadStartButton(button: UIButton, view: UIView){
-        prepareButtonController(imageName: "HomeButton", button: button)
-        button.frame = CGRect(x: width/2-70, y: height/2-200, width: 200, height: 70)
+        button.setTitle("Startscherm", for: .normal)
+        button.titleLabel!.font =  UIFont(name: "RifficFree-Bold", size: 35)
+        button.setTitleColor(.white, for: .normal)
+        button.frame = CGRect(x: width/2-150, y: height/2-200, width: 300, height: 70)
+        button.alpha = 0.0
         view.addSubview(button)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            button.alpha = 1.0
+        }, completion: { finished in })
     }
 }
