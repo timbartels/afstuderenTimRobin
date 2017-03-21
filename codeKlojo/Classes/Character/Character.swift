@@ -41,7 +41,7 @@ class Character: SKSpriteNode {
         // Double Check this function :S
         switch (animation) {
         case(1):
-            let frames = [7,8,9,10,11,12,11,10,9,8]
+            let frames = [7,8,9,10,11,12]
             for move in frames{
                 let move = "movement\(move)"
                 framesMove.append(movementAtlas.textureNamed(move))

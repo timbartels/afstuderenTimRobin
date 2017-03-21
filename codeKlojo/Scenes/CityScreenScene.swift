@@ -12,11 +12,12 @@ import WebKit
 
 class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var mute = false
-    let textField = UITextView(frame: CGRect(x: screenSize.width/2, y: 0, width: screenSize.width/2, height: screenSize.height/2-10 ))
+    let textField = UITextView()
     let webView = WKWebView()
     let syntaxLabel = UILabel()
     var checkpoint: cps!
     let returnLabel = UILabel()
+    let explanationLabel = UITextView()
     let submit = UIButton()
     let widthLevel = 15000
     let mission = Mission()
@@ -79,11 +80,11 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         addUI()
     }
     func submit(view: UIView){
-        submit.backgroundColor = UIColor.blue
-        submit.frame = CGRect(x: screenSize.width-50, y: 0, width: 50, height: 50)
-        submit.layer.zPosition = 10
+        submit.frame = CGRect(x: screenSize.width/2+10, y: 0 , width: 50, height: 50)
+        submit.layer.zPosition = 100
         submit.addTarget(self, action:#selector(checkJavascript(sender:)), for: .touchUpInside)
-        submit.setTitle("▶️", for: .normal)
+        submit.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+        submit.alpha = 0.0
         view.addSubview(submit)
     }
 
@@ -251,6 +252,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func checkJavascript(sender: UIButton){
+        let sub1 = "console.log("
+        let sub2 = ")"
+        if self.textField.text!.contains(sub1) {
+            self.textField.text = self.textField.text.replacingOccurrences(of: sub1, with: "")
+        }
+        if self.textField.text!.contains(sub2) {
+            self.textField.text = self.textField.text.replacingOccurrences(of: sub2, with: "")
+        }
         self.webView.evaluateJavaScript(self.textField.text!){ (result, error) in
             var errorCode: Int
             var errorMessage: String
@@ -258,8 +267,10 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             //var errorLine: Int
             if error == nil {
                 self.mission.syntaxError = "✔︎"
-                self.returnLabel.text = "\(result!)"
-                self.checkResult(answer: self.returnLabel.text!)
+                if result != nil{
+                    self.returnLabel.text = "\(result!)"
+                    self.checkResult(answer: self.returnLabel.text!)
+                }
             }else{
                 print(error!)
                 //let errorTest = (error! as NSError).userInfo
@@ -279,6 +290,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             textField.removeFromSuperview()
             returnLabel.removeFromSuperview()
             syntaxLabel.removeFromSuperview()
+            explanationLabel.removeFromSuperview()
             submit.removeFromSuperview()
             addUI()
             
@@ -547,36 +559,68 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             self.popupbox.removeFromSuperview()
             self.popupboxtext.removeFromSuperview()
             self.textField.backgroundColor = UIColor.black
+            self.textField.frame = CGRect(x: screenSize.width/2, y: -(screenSize.height/2-10), width: screenSize.width/2, height: screenSize.height/2-10 )
             self.textField.becomeFirstResponder()
+            self.textField.alpha = 0.0
             self.textField.textColor = UIColor.white
             self.textField.autocorrectionType = .no
             self.textField.autocapitalizationType = .none
             self.textField.spellCheckingType = .no
-            self.textField.font = UIFont(name: "Courier", size: 15)
+            self.textField.font = UIFont(name: "Courier", size: 18)
             self.textField.showsVerticalScrollIndicator = true
             self.textField.layer.zPosition = 2
             
-            self.syntaxLabel.font = UIFont(name: "Courier", size: 10)
-            self.syntaxLabel.textColor = UIColor.black
-            self.syntaxLabel.backgroundColor = UIColor.green
+            self.syntaxLabel.font = UIFont(name: "Courier", size: 18)
+            self.syntaxLabel.textColor = UIColor(red:231.0/255.0, green:121.0/255.0, blue:36.0/255.0, alpha: 1.0)
+            self.syntaxLabel.backgroundColor = UIColor(red:67.0/255.0, green:67.0/255.0, blue:67.0/255.0, alpha: 1.0)
             self.syntaxLabel.textAlignment = .center
             self.syntaxLabel.layer.zPosition = 5
-            self.syntaxLabel.frame = CGRect(x: screenSize.width/2, y: screenSize.height/2-60, width: screenSize.width/2, height: 50)
+            self.syntaxLabel.alpha = 0.0
+            self.syntaxLabel.frame = CGRect(x: screenSize.width/2, y: 0, width: screenSize.width/2, height: 70)
             
+            self.returnLabel.text = ""
             self.returnLabel.font = UIFont(name: "Courier", size: 40)
             self.returnLabel.textColor = UIColor.black
-            self.returnLabel.backgroundColor = UIColor.red
-            self.returnLabel.textColor = UIColor.white
+            self.returnLabel.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
+            self.returnLabel.textColor = UIColor.black
             self.returnLabel.textAlignment = .center
             self.returnLabel.layer.zPosition = 5
-            self.returnLabel.frame = CGRect(x: screenSize.width/6, y: screenSize.height/4-50, width: screenSize.width/4, height: 100)
+            self.returnLabel.alpha = 0.0
+            self.returnLabel.frame = CGRect(x: 0, y: 0, width: screenSize.width/2, height: screenSize.height/4-5)
+            
+            self.explanationLabel.font = UIFont(name: "RifficFree-Bold", size: 20)
+            self.explanationLabel.textColor = UIColor.black
+            self.explanationLabel.text = self.checkpoint.explanation
+            self.explanationLabel.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
+            self.explanationLabel.textColor = UIColor.black
+            self.explanationLabel.textAlignment = .left
+            self.explanationLabel.layer.zPosition = 5
+            self.explanationLabel.allowsEditingTextAttributes = false
+            self.explanationLabel.isPagingEnabled = false
+            self.explanationLabel.isEditable = false
+            self.explanationLabel.isSelectable = false
+            self.explanationLabel.alpha = 0.0
+            self.explanationLabel.frame = CGRect(x: 0, y: -(screenSize.height/4-5), width: screenSize.width/2, height: screenSize.height/4-5)
             
             self.textField.text = opdracht
             self.view?.addSubview(self.syntaxLabel)
+            self.view?.addSubview(self.explanationLabel)
             self.view?.addSubview(self.returnLabel)
             self.view?.addSubview(self.textField)
             self.textField.becomeFirstResponder()
             self.submit(view: self.view!)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.textField.frame = self.textField.frame.offsetBy(dx: 0.0, dy: screenSize.height/2-10)
+                self.syntaxLabel.frame = self.syntaxLabel.frame.offsetBy(dx: 0.0, dy: screenSize.height/2-80)
+                self.syntaxLabel.alpha = 1.0
+                self.explanationLabel.alpha = 1.0
+                self.explanationLabel.frame = self.explanationLabel.frame.offsetBy(dx: 0.0, dy: screenSize.height/4-5)
+                self.returnLabel.alpha = 1.0
+                self.returnLabel.frame = self.returnLabel.frame.offsetBy(dx: 0.0, dy: screenSize.height/4-5)
+                self.textField.alpha = 1.0
+                self.submit.frame = self.submit.frame.offsetBy(dx: 0.0, dy: (screenSize.height/2)-70)
+                self.submit.alpha = 1.0
+            }, completion: { finished in })
         })
     }
     
