@@ -71,6 +71,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         initPlatforms()
         initTraps()
         clouds.load(scene: self, amount: 30)
+        Checkpoint().loadIcons(scene: self)
         backgroundMusic.play(scene: self)
         player.load(scene: self)
         //Magical print statement
@@ -508,6 +509,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             }
             print(checkpoint.title)
             missie = checkpoint.title
+            git
             
             self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
             self.popupbox.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)

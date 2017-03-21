@@ -26,6 +26,34 @@ class Checkpoint: CityLevel{
     
     var cp : cps = cps(position: 0, title: "empty", explanation: "empty", setup: "empty", answer: "empty")
     
+    func loadIcons(scene: SKScene){
+        
+        for (index, i) in missions.enumerated() {
+            let icon = SKSpriteNode(imageNamed: "mission")
+            
+            icon.position.x = CGFloat(i.position)
+            icon.position.y = Global.floorPosition.y+100
+            icon.name = "icon\(index)"
+            scene.addChild(icon)
+            
+            animateIcon(icon: icon)
+        }
+        
+    }
+    
+    func animateIcon(icon: SKSpriteNode){
+        var scale = SKAction.scale(to: 1.2, duration: 1.0)
+    
+        if icon.xScale > 1.0 {
+             scale = SKAction.scale(to: 1.0, duration: 1.0)
+        }
+        let completion = SKAction.run(){
+            self.animateIcon(icon: icon)
+        }
+        let Sequence = SKAction.sequence([scale, completion])
+        icon.run(Sequence)
+    }
+    
     func check(playerPosition: CGPoint)->cps{
         
         for (index, i) in missions.enumerated() {
@@ -37,9 +65,10 @@ class Checkpoint: CityLevel{
                 
                 // Remove checkpoint from array
                 missions.remove(at: index)
+                
                 // Set latest checkpoint
                 Global.savedPosition = CGPoint(x: i.position, y: 165)
-                
+                                
             }
         }
         return cp
