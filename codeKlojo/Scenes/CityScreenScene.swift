@@ -15,6 +15,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let textField = UITextView(frame: CGRect(x: screenSize.width/2, y: 0, width: screenSize.width/2, height: screenSize.height/2-10 ))
     let webView = WKWebView()
     let syntaxLabel = UILabel()
+    var checkpoint: cps!
     let returnLabel = UILabel()
     let submit = UIButton()
     let widthLevel = 15000
@@ -190,6 +191,8 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     
     func addUI(){
+        controllerButtons.buttonStateL = false
+        controllerButtons.buttonStateR = false
         initController()
         initLives()
     }
@@ -260,7 +263,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
 
     func checkResult(answer: String){
-        if answer == "4"{
+        if answer == checkpoint.answer{
             play()
             textField.removeFromSuperview()
             returnLabel.removeFromSuperview()
@@ -430,16 +433,17 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func checkForCheckpoint(){
-        let checkpoint = Checkpoint().check(playerPosition: player.position)
+        checkpoint = Checkpoint().check(playerPosition: player.position)
         
         // If player stand on checkpoint
-        if checkpoint != "empty" {
+        if checkpoint.title != "empty" {
             //Popup().showPopupForMission(mission: checkpoint, view: view!)
             pause()
             for view in (self.view?.subviews)! {
                 view.removeFromSuperview()
             }
-            missie = checkpoint
+            print(checkpoint.title)
+            missie = checkpoint.title
             
             self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
             self.popupbox.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
@@ -466,7 +470,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             //self.popupboxtext.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
             self.popupboxtext.textColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1.0)
             self.popupboxtext.font = UIFont(name: "RifficFree-Bold", size: 25)
-            self.popupboxtext.text = "Uitleg voor programmeeropdracht: \(checkpoint)"
+            self.popupboxtext.text = "Uitleg voor programmeeropdracht: \(checkpoint.explanation)"
             
             self.popupbox.addSubview(popupboxtext)
             
@@ -483,7 +487,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     func hidePopup(){
-        let opdracht = "1+1;"
+        let opdracht = checkpoint.setup
         let popupPosition = self.popupbox.bounds.height+25
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)

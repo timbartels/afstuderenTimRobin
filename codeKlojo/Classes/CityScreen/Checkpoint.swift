@@ -9,29 +9,36 @@
 import Foundation
 import SpriteKit
 
-var cps: [Int:String] = [
-    3100 : "Test",
-    8000 : "School",
+
+struct cps{
+    let position: Int
+    let title: String
+    let explanation: String
+    let setup: String
+    let answer: String
+}
+var missions: [cps] = [
+    cps(position: 3100, title: "Test", explanation: "Uitleg over deze opdracht", setup: "1+2", answer: "4"),
+    cps(position: 8000, title: "School", explanation: "We zijn nu bij school ", setup: "5+3", answer: "10")
 ]
 
 class Checkpoint: CityLevel{
     
-    var cp : String = "empty"
+    var cp : cps = cps(position: 0, title: "empty", explanation: "empty", setup: "empty", answer: "empty")
     
-    func check(playerPosition: CGPoint)->String{
+    func check(playerPosition: CGPoint)->cps{
         
-        for (position, mission) in cps {
+        for (index, i) in missions.enumerated() {
             let playerX = Int(playerPosition.x)
             
-            if(playerX > position){
+            if(playerX > i.position){
                 
-                cp = mission
+                cp = i
                 
                 // Remove checkpoint from array
-                cps.removeValue(forKey: position)
-                
+                missions.remove(at: index)
                 // Set latest checkpoint
-                Global.savedPosition = CGPoint(x: position, y: 165)
+                Global.savedPosition = CGPoint(x: i.position, y: 165)
                 
             }
         }
