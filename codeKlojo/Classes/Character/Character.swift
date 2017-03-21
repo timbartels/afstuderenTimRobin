@@ -106,12 +106,12 @@ class Character: SKSpriteNode {
     }
     
     func moveLeft(){
-        self.run(SKAction.moveBy(x: -10, y:0, duration: 0.1))
+        self.run(SKAction.moveBy(x: -6, y:0, duration: 0.1))
         self.xScale = -(charSize)
     }
     
     func moveRight(){
-        self.run(SKAction.moveBy(x: 10, y:0, duration: 0.1))
+        self.run(SKAction.moveBy(x: 6, y:0, duration: 0.1))
         self.xScale = (charSize)
     }
     

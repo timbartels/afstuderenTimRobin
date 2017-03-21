@@ -33,6 +33,9 @@ class Player: Character {
             physics.affectedByGravity = true
             physics.isDynamic = true
             physics.restitution = 0
+            //physics.angularDamping = 100
+            //physics.density = 100
+            physics.linearDamping = -1
             physics.allowsRotation = false
         }
         

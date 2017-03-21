@@ -18,9 +18,9 @@ class GameViewController: UIViewController {
         scene.name = "startscreen"
         let viewAsSKView = self.view as! SKView
         scene.scaleMode = .resizeFill
-        viewAsSKView.showsPhysics = true
+        viewAsSKView.showsPhysics = false
         //viewAsSKView.showsNodeCount = true
-        //viewAsSKView.showsFPS = true
+        viewAsSKView.showsFPS = true
         viewAsSKView.presentScene(scene)
 
     }

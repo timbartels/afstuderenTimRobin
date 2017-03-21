@@ -423,6 +423,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             
             // Create shapenode with size of given platform object
             let platform = SKShapeNode(rectOf: CGSize(width: object.width, height: object.height))
+            platform.lineWidth = 0.0
             
             // Place created shapenode on given platform object position
             platform.position = CGPoint(x: object.positionx+object.width/2, y: object.positiony)
