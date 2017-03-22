@@ -18,7 +18,7 @@ struct cps{
     let answer: String
 }
 var missions: [cps] = [
-    cps(position: 3100, title: "Voorbeeldopdracht: Rekenen", explanation: "Met een programmeertaal kun je heel gemakkelijk de moeilijkste rekensommen oplossen. \nZorg dat de uitkomst van alle rekensommen 10 is", setup: "var plus = 4+3", answer: "10"),
+    //cps(position: 3100, title: "Voorbeeldopdracht: Rekenen", explanation: "Met een programmeertaal kun je heel gemakkelijk de moeilijkste rekensommen oplossen. \nZorg dat de uitkomst van alle rekensommen 10 is", setup: "var plus = 4+3", answer: "10"),
     cps(position: 8000, title: "Opdracht 2 (School) - If/Else", explanation: "Blackhat heeft de tijden van de schoolbel aangepast. Pas de tijd aan naar 15:00", setup: "var begintijd = 8:30 \nvar eindtijd = 17:00 \nif(huidige_tijd == eindtijd){ \n    schoolBel() \n}", answer: "15:00")
 ]
 
