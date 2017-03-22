@@ -101,7 +101,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func initLevel(){
         let floor = Border(rectOf: CGSize(width: widthLevel, height: 0))
         // Init level
-        floor.load(position: CGPoint(x: widthLevel/2, y: 100), scene: self)
+        floor.load(position: CGPoint(x: widthLevel/2, y: 90), scene: self)
         wall.load(position: CGPoint(x: 0, y: 50), scene: self)
         
         // Save floor position globally so it can be used for calculations
