@@ -35,7 +35,7 @@ class Platform {
         // Fashion lower
         let platform2 = Platform()
         platform2.positionx   =   3935
-        platform2.positiony   =   295
+        platform2.positiony   =   290
         platform2.width       =   500
         platform2.height      =   5
         platform2.jumpThrough =   true
@@ -67,9 +67,9 @@ class Platform {
         
         // Wall
         let platform5 = Platform()
-        platform5.positionx   =   4880
-        platform5.positiony   =   250
-        platform5.width       =   180
+        platform5.positionx   =   4870
+        platform5.positiony   =   290
+        platform5.width       =   190
         platform5.height      =   5
         platform5.jumpThrough =   true
         platform5.added       =   false
@@ -78,9 +78,9 @@ class Platform {
         
         // Wall
         let platform6 = Platform()
-        platform6.positionx   =   5280
-        platform6.positiony   =   250
-        platform6.width       =   180
+        platform6.positionx   =   5260
+        platform6.positiony   =   270
+        platform6.width       =   190
         platform6.height      =   5
         platform6.jumpThrough =   true
         platform6.added       =   false
@@ -125,7 +125,7 @@ class Platform {
         platform10.positionx   =   5015
         platform10.positiony   =   175
         platform10.width       =   5
-        platform10.height      =   140
+        platform10.height      =   220
         platform10.jumpThrough =   false
         platform10.added       =   false
         
@@ -136,7 +136,7 @@ class Platform {
         platform11.positionx   =   5300
         platform11.positiony   =   175
         platform11.width       =   5
-        platform11.height      =   140
+        platform11.height      =   145
         platform11.jumpThrough =   false
         platform11.added       =   false
         
