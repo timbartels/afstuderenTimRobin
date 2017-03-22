@@ -33,7 +33,7 @@ class Checkpoint: CityLevel{
             
             icon.position.x = CGFloat(i.position)
             icon.position.y = Global.floorPosition.y+100
-            icon.name = "icon\(index)"
+            icon.name = "\(i.position)"
             scene.addChild(icon)
             
             animateIcon(icon: icon)

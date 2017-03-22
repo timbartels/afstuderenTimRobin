@@ -507,9 +507,14 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             for view in (self.view?.subviews)! {
                 view.removeFromSuperview()
             }
-            print(checkpoint.title)
+            
             missie = checkpoint.title
-            git
+            
+            // Get specific platform shapenode
+            let child = self.childNode(withName: "\(checkpoint.position)")
+            
+            // Remove specific shapenode from scene
+            child?.removeFromParent()
             
             self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
             self.popupbox.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
