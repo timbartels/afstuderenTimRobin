@@ -34,6 +34,7 @@ class Checkpoint: CityLevel{
             icon.position.x = CGFloat(i.position)
             icon.position.y = Global.floorPosition.y+100
             icon.name = "\(i.position)"
+            icon.setScale(0.5)
             scene.addChild(icon)
             
             animateIcon(icon: icon)
@@ -42,10 +43,10 @@ class Checkpoint: CityLevel{
     }
     
     func animateIcon(icon: SKSpriteNode){
-        var scale = SKAction.scale(to: 1.2, duration: 1.0)
+        var scale = SKAction.scale(to: 1.0, duration: 1.0)
     
-        if icon.xScale > 1.0 {
-             scale = SKAction.scale(to: 1.0, duration: 1.0)
+        if icon.xScale > 0.5 {
+             scale = SKAction.scale(to: 0.5, duration: 1.0)
         }
         let completion = SKAction.run(){
             self.animateIcon(icon: icon)
