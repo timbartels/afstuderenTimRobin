@@ -122,16 +122,18 @@ class Character: SKSpriteNode {
     func jump(){
         
         if(mayJump == true){
-            let jumpUpAction = SKAction.moveBy(x: 0, y:190, duration:0.2)
+            let jumpUpAction = SKAction.moveBy(x: 0, y:160, duration:0.2)
             let jumpSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
             let jumpStarted = SKAction.run(){
                 self.mayJump = false
             }
             
+            let wait = SKAction.wait(forDuration: 0.25)
+            
             let jumpCompleted = SKAction.run(){
                 self.mayJump = true                
             }
-            let jumpSequence = SKAction.sequence([jumpStarted, jumpUpAction, jumpSound, jumpCompleted])
+            let jumpSequence = SKAction.sequence([jumpStarted, jumpUpAction, jumpSound, wait, jumpCompleted])
             self.run(jumpSequence)
             animatePlayer(jump: true, move: false, slide: false)
         }
