@@ -19,9 +19,9 @@ class Trap {
     
     func load(){
         let trap1 = Trap()
-        trap1.positionx   =   5030
-        trap1.positiony   =   300
-        trap1.width       =   160
+        trap1.positionx   =   5020
+        trap1.positiony   =   280
+        trap1.width       =   260
         
         Traps.append(trap1)
         
