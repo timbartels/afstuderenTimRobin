@@ -60,7 +60,7 @@ class Platform {
         platform4.positiony   =   340
         platform4.width       =   400
         platform4.height      =   5
-        platform4.jumpThrough =   true
+        platform4.jumpThrough =   false
         platform4.added       =   false
         
         Platforms.append(platform4)

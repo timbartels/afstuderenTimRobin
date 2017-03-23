@@ -29,8 +29,11 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
     let clouds = Clouds()
-    let enemy = Enemy(imageNamed: "robot.png")
     let enemy1 = Enemy(imageNamed: "robot.png")
+    let enemy2 = Enemy(imageNamed: "robot.png")
+    let enemy3 = Enemy(imageNamed: "robot.png")
+    let enemy4 = Enemy(imageNamed: "robot.png")
+    let enemy5 = Enemy(imageNamed: "robot.png")
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
     let menuOverlay = UIView()
     let menuButtons = MenuButtons()
@@ -95,8 +98,11 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         background.load(scene: self)
     }
     func initEnemies(){
-        enemy.load(scene: self, position: CGPoint(x: 500, y:150))
-        enemy1.load(scene: self, position: CGPoint(x: 1000, y:150))
+        enemy1.load(scene: self, position: CGPoint(x: 1850, y:150))
+        enemy2.load(scene: self, position: CGPoint(x: 4750, y:150))
+        enemy3.load(scene: self, position: CGPoint(x: 4730, y:405))
+        enemy4.load(scene: self, position: CGPoint(x: 5820, y:150))
+        enemy5.load(scene: self, position: CGPoint(x: 7230, y:150))
     }
     func initLevel(){
         let floor = Border(rectOf: CGSize(width: widthLevel, height: 0))
@@ -671,8 +677,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     override func update(_ currentTime: CFTimeInterval) {
         // Called before each frame is rendered
-        enemy.enemyAttack(scene: self, position: player.position)
         enemy1.enemyAttack(scene: self, position: player.position)
+        enemy2.enemyAttack(scene: self, position: player.position)
+        enemy3.enemyAttack(scene: self, position: player.position)
+        enemy4.enemyAttack(scene: self, position: player.position)
+        enemy5.enemyAttack(scene: self, position: player.position)
+
         checkGameOver()
         calculateCamera()
         checkButtonState()
