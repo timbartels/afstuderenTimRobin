@@ -99,7 +99,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     func initEnemies(){
         enemy1.load(scene: self, position: CGPoint(x: 1850, y:150))
-        enemy2.load(scene: self, position: CGPoint(x: 4750, y:150))
+        enemy2.load(scene: self, position: CGPoint(x: 4270, y:150))
         enemy3.load(scene: self, position: CGPoint(x: 4730, y:405))
         enemy4.load(scene: self, position: CGPoint(x: 5820, y:150))
         enemy5.load(scene: self, position: CGPoint(x: 7230, y:150))
@@ -690,6 +690,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         calculatePlatforms()
         checkForCheckpoint()
         checkTraps()
+        
         
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
