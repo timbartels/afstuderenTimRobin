@@ -81,7 +81,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         addUI()
     }
     func submit(view: UIView){
-        submit.frame = CGRect(x: screenSize.width/2+10, y: 0 , width: 50, height: 50)
+        submit.frame = CGRect(x: screenSize.width-60, y: 0 , width: 50, height: 50)
         submit.layer.zPosition = 100
         submit.addTarget(self, action:#selector(checkJavascript(sender:)), for: .touchUpInside)
         submit.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
@@ -255,12 +255,19 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func checkJavascript(sender: UIButton){
         let sub1 = "console.log("
         let sub2 = ")"
-        if self.textField.text!.contains(sub1) {
-            self.textField.text = self.textField.text.replacingOccurrences(of: sub1, with: "")
+        let sub3 = "schoolBel()"
+        
+        if self.textField.text!.contains(sub3) {
+            self.textField.text! += "function schoolBel(){ return huidige_tijd; }"
+        }else{
+            if self.textField.text!.contains(sub2) {
+                self.textField.text = self.textField.text.replacingOccurrences(of: sub2, with: "")
+            }
+            if self.textField.text!.contains(sub1) {
+                self.textField.text = self.textField.text.replacingOccurrences(of: sub1, with: "")
+            }
         }
-        if self.textField.text!.contains(sub2) {
-            self.textField.text = self.textField.text.replacingOccurrences(of: sub2, with: "")
-        }
+
         self.webView.evaluateJavaScript(self.textField.text!){ (result, error) in
             var errorCode: Int
             var errorMessage: String
@@ -509,7 +516,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             }
             print(checkpoint.title)
             missie = checkpoint.title
-            git
             
             self.popupbox.frame = CGRect(x: 25, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()-50), height: 250)
             self.popupbox.backgroundColor = UIColor(red:254.0/255.0, green:247.0/255.0, blue:192.0/255.0, alpha: 1.0)
