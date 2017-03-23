@@ -40,7 +40,7 @@ extension SceneManager where Self: SKScene {
         }
     
         let transition = SKTransition.fade(withDuration: 1)
-        scene.scaleMode = .aspectFill
+        
         
         view?.presentScene(scene, transition: transition)
     }

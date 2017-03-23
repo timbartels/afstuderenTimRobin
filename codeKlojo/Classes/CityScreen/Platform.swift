@@ -23,8 +23,8 @@ class Platform {
     func load(){
         // Trashcan
         let platform1 = Platform()
-        platform1.positionx   =   3840
-        platform1.positiony   =   180
+        platform1.positionx   =   3900
+        platform1.positiony   =   165
         platform1.width       =   50
         platform1.height      =   70
         platform1.jumpThrough =   true
@@ -34,8 +34,8 @@ class Platform {
         
         // Fashion lower
         let platform2 = Platform()
-        platform2.positionx   =   3885
-        platform2.positiony   =   310
+        platform2.positionx   =   3935
+        platform2.positiony   =   290
         platform2.width       =   500
         platform2.height      =   5
         platform2.jumpThrough =   true
@@ -45,8 +45,8 @@ class Platform {
         
         // Fashion top
         let platform3 = Platform()
-        platform3.positionx   =   4070
-        platform3.positiony   =   440
+        platform3.positionx   =   4120
+        platform3.positiony   =   417
         platform3.width       =   300
         platform3.height      =   5
         platform3.jumpThrough =   true
@@ -56,8 +56,8 @@ class Platform {
         
         // Restaurant
         let platform4 = Platform()
-        platform4.positionx   =   4400
-        platform4.positiony   =   355
+        platform4.positionx   =   4450
+        platform4.positiony   =   340
         platform4.width       =   400
         platform4.height      =   5
         platform4.jumpThrough =   true
@@ -67,9 +67,9 @@ class Platform {
         
         // Wall
         let platform5 = Platform()
-        platform5.positionx   =   4830
-        platform5.positiony   =   265
-        platform5.width       =   180
+        platform5.positionx   =   4870
+        platform5.positiony   =   290
+        platform5.width       =   190
         platform5.height      =   5
         platform5.jumpThrough =   true
         platform5.added       =   false
@@ -78,9 +78,9 @@ class Platform {
         
         // Wall
         let platform6 = Platform()
-        platform6.positionx   =   5230
-        platform6.positiony   =   265
-        platform6.width       =   180
+        platform6.positionx   =   5260
+        platform6.positiony   =   270
+        platform6.width       =   190
         platform6.height      =   5
         platform6.jumpThrough =   true
         platform6.added       =   false
@@ -89,8 +89,8 @@ class Platform {
         
         // Fountain lower
         let platform7 = Platform()
-        platform7.positionx   =   1090
-        platform7.positiony   =   100
+        platform7.positionx   =   1163
+        platform7.positiony   =   85
         platform7.width       =   230
         platform7.height      =   50
         platform7.jumpThrough =   false
@@ -100,8 +100,8 @@ class Platform {
         
         // Fountain middle
         let platform8 = Platform()
-        platform8.positionx   =   1140
-        platform8.positiony   =   170
+        platform8.positionx   =   1213
+        platform8.positiony   =   158
         platform8.width       =   140
         platform8.height      =   40
         platform8.jumpThrough =   false
@@ -111,8 +111,8 @@ class Platform {
         
         // Fountain top
         let platform9 = Platform()
-        platform9.positionx   =   1175
-        platform9.positiony   =   210
+        platform9.positionx   =   1248
+        platform9.positiony   =   195
         platform9.width       =   75
         platform9.height      =   40
         platform9.jumpThrough =   false
@@ -122,10 +122,10 @@ class Platform {
         
         // Pion
         let platform10 = Platform()
-        platform10.positionx   =   4965
-        platform10.positiony   =   190
+        platform10.positionx   =   5015
+        platform10.positiony   =   175
         platform10.width       =   5
-        platform10.height      =   140
+        platform10.height      =   220
         platform10.jumpThrough =   false
         platform10.added       =   false
         
@@ -133,10 +133,10 @@ class Platform {
         
         // Pion
         let platform11 = Platform()
-        platform11.positionx   =   5250
-        platform11.positiony   =   190
+        platform11.positionx   =   5300
+        platform11.positiony   =   175
         platform11.width       =   5
-        platform11.height      =   140
+        platform11.height      =   145
         platform11.jumpThrough =   false
         platform11.added       =   false
         

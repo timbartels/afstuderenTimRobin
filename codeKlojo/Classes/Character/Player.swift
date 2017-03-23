@@ -72,30 +72,29 @@ class Player: Character {
     
     
     func attack(){
-        
-        //self.zRotation = CGFloat(1.4)
-        var attackMoveBy = CGFloat(200)
-//        var rotationAngle = CGFloat(1.50)
-       
-        if self.viewDirection == "Left" {
-            attackMoveBy = CGFloat(-200)
-//            rotationAngle = CGFloat(-1.50)
+        if(attackState == false){
+            var attackMoveBy = CGFloat(200)
+           
+            if self.viewDirection == "Left" {
+                attackMoveBy = CGFloat(-200)
+            }
+            
+            let attackAction = SKAction.moveBy(x: attackMoveBy, y:0, duration:0.4)
+            // let attackRotation = SKAction.rotate(byAngle: rotationAngle, duration: 0.1)
+            let attackSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
+            // let attackRotationDone = SKAction.rotate(byAngle: -rotationAngle, duration: 0.1)
+            // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
+            let beginState = SKAction.run {
+                self.attackState = true
+            }
+            let endState = SKAction.run {
+                self.attackState = false
+            }
+            let wait = SKAction.wait(forDuration: 0.1)
+            let attackSequence = SKAction.sequence([beginState, attackAction, attackSound, wait, endState])
+            self.run(attackSequence)
+            animatePlayer(jump: false, move: false, slide: true)
         }
-        
-        let attackAction = SKAction.moveBy(x: attackMoveBy, y:0, duration:0.2)
-        // let attackRotation = SKAction.rotate(byAngle: rotationAngle, duration: 0.1)
-        let attackSound = SKAction.playSoundFileNamed("jump.wav", waitForCompletion:false)
-        // let attackRotationDone = SKAction.rotate(byAngle: -rotationAngle, duration: 0.1)
-        // let jumpDownAction = SKAction.moveBy(x: 0, y:100, duration:0.5)
-        let beginState = SKAction.run {
-            self.attackState = true
-        }
-        let endState = SKAction.run {
-            self.attackState = false
-        }
-        let attackSequence = SKAction.sequence([beginState, attackAction, attackSound, endState])
-        self.run(attackSequence)
-        animatePlayer(jump: false, move: false, slide: true)
     }
 
 
