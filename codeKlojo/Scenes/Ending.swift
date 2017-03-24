@@ -1,15 +1,15 @@
 //
-//  GameOverScreenScene.swift
+//  Ending.swift
 //  codeKlojo
 //
-//  Created by Tim Bartels on 23-11-16.
-//  Copyright © 2016 Tim Bartels. All rights reserved.
+//  Created by Robin Woudstra on 24-03-17.
+//  Copyright © 2017 Tim Bartels. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-class GameOverScreenScene: SKScene, SceneManager {
+class EndingScreenScene: SKScene, SceneManager {
     let textLabel = UILabel()
     
     override func sceneDidLoad() {
@@ -22,7 +22,7 @@ class GameOverScreenScene: SKScene, SceneManager {
     }
     
     func initText(){
-        textLabel.text = "Game over"
+        textLabel.text = "Bedankt voor het spelen!"
         textLabel.font = UIFont(name: "RifficFree-Bold", size: 50)
         textLabel.textColor = UIColor.white
         textLabel.textAlignment = NSTextAlignment.center
@@ -31,7 +31,7 @@ class GameOverScreenScene: SKScene, SceneManager {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        loadScene(withIdentifier: .cityscreen)
+        loadScene(withIdentifier: .start)
     }
     
     

@@ -21,4 +21,5 @@ struct PhysicsCategory {
     static let player : UInt32 = 1
     static let bullet : UInt32 = 2
     static let enemy : UInt32 = 3
+    static let flag : UInt32 = 4
 }

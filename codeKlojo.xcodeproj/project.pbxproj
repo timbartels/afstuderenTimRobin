@@ -13,6 +13,7 @@
 		0065891F1E76E8E1008E9EC9 /* Riffic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0065891E1E76E819008E9EC9 /* Riffic.ttf */; };
 		006589211E77FE4B008E9EC9 /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006589201E77FE4B008E9EC9 /* Trap.swift */; };
 		0072AD471E55CBB400524F85 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072AD461E55CBB400524F85 /* Platform.swift */; };
+		00DC3EAD1E853A2600D75508 /* Ending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC3EAC1E853A2600D75508 /* Ending.swift */; };
 		00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */; };
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
 		2D01162E1DD1FE8E00324B9C /* CityScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162D1DD1FE8E00324B9C /* CityScreenScene.swift */; };
@@ -62,6 +63,7 @@
 		0065891E1E76E819008E9EC9 /* Riffic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Riffic.ttf; sourceTree = "<group>"; };
 		006589201E77FE4B008E9EC9 /* Trap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
 		0072AD461E55CBB400524F85 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		00DC3EAC1E853A2600D75508 /* Ending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ending.swift; sourceTree = "<group>"; };
 		00FA92D51DF81D70003B3CA8 /* Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		2D0116241DD1FE8E00324B9C /* codeKlojo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codeKlojo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				2D01162D1DD1FE8E00324B9C /* CityScreenScene.swift */,
 				2D503F381DE5B6C3007B8EB8 /* GameOverScreenScene.swift */,
 				0055497C1DE5AE3B00D5ED83 /* StartScreenScene.swift */,
+				00DC3EAC1E853A2600D75508 /* Ending.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				2DE706991E01610D00AAB222 /* Border.swift in Sources */,
 				0072AD471E55CBB400524F85 /* Platform.swift in Sources */,
 				00FA92D61DF81D70003B3CA8 /* Checkpoint.swift in Sources */,
+				00DC3EAD1E853A2600D75508 /* Ending.swift in Sources */,
 				2D5E7CBC1DD46D2700B5116E /* Character.swift in Sources */,
 				2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */,
 				2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */,

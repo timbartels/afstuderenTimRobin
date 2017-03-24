@@ -29,6 +29,7 @@ class Player: Character {
         if let physics = self.physicsBody {
             physics.contactTestBitMask = PhysicsCategory.bullet
             physics.contactTestBitMask = PhysicsCategory.enemy
+            physics.contactTestBitMask = PhysicsCategory.flag
             physics.categoryBitMask = PhysicsCategory.player
             physics.affectedByGravity = true
             physics.isDynamic = true

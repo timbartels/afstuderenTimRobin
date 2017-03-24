@@ -36,6 +36,12 @@ class StartScreenScene: SKScene, SceneManager {
         startButton.setImage(startImage, for: .normal)
         startButton.frame = CGRect(x: Responsive.getWidthScreen()/2-150, y: Responsive.getHeightScreen()-150, width: 280, height: 100)
         startButton.addTarget(self, action: #selector(ButtonDownStart), for: .touchUpInside)
+        startButton.alpha = 0.0
+        
+        UIView.animate(withDuration: 1.0, animations: {
+            self.startButton.alpha = 1.0
+        }, completion: { finished in })
+        
         self.view!.addSubview(startButton)
     }
     
