@@ -549,12 +549,16 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             }, completion: { finished in })
             
             // Add text to popup
-            self.popupboxtext.frame = CGRect(x: 50, y: 0, width: self.popupbox.bounds.width-100, height: 100)
+            self.popupboxtext.frame = CGRect(x: 50, y: 50, width: self.popupbox.bounds.width-400, height: 100)
             self.popupboxtext.textAlignment = NSTextAlignment.left
+            self.popupboxtext.numberOfLines = 0
+            self.popupboxtext.frame.size.width = 600
+            self.popupboxtext.lineBreakMode = .byWordWrapping
+            // self.popupboxtext.sizeToFit()
             //self.popupboxtext.textColor = UIColor(red:239.0/255.0, green:196.0/255.0, blue:31.0/255.0, alpha: 1.0)
             self.popupboxtext.textColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha: 1.0)
             self.popupboxtext.font = UIFont(name: "RifficFree-Bold", size: 25)
-            self.popupboxtext.text = "Uitleg voor programmeeropdracht: \(checkpoint.explanation)"
+            self.popupboxtext.text = checkpoint.explanation
             
             self.popupbox.addSubview(popupboxtext)
             
