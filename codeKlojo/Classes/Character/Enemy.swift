@@ -24,6 +24,7 @@ class Enemy: Character {
         self.position = position
         self.name = "1"
         self.setScale(enemySize)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/2, height: self.size.height))
         self.physicsBody?.categoryBitMask = PhysicsCategory.enemy
         self.physicsBody?.contactTestBitMask = PhysicsCategory.player
         scene.addChild(self)
@@ -43,12 +44,12 @@ class Enemy: Character {
         inRange = false
         let diff = Int(pos.x) - Int(self.position.x)
         if -(maxRange) ... -(minRange) ~= diff{
-            self.run(SKAction.moveBy(x: -5, y:0, duration: 0.2))
+            self.run(SKAction.moveBy(x: -5, y:0, duration: 0.5))
             self.xScale = (enemySize)
             inRange = true
             enemyDirection = "left"
         }else if minRange ... maxRange ~= diff{
-            self.run(SKAction.moveBy(x: 5, y:0, duration: 0.2))
+            self.run(SKAction.moveBy(x: 5, y:0, duration: 0.5))
             self.xScale = -(enemySize)
             inRange = true
             enemyDirection = "right"
@@ -61,7 +62,7 @@ class Enemy: Character {
         bullet.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         bullet.position.x = self.position.x-100
         bullet.position.y = self.position.y
-        bullet.setScale(0.5)
+        bullet.setScale(0.4)
         
         var direction = self.position.x-bulletRange
         if enemyDirection == "right" {
@@ -85,7 +86,7 @@ class Enemy: Character {
         let completion = SKAction.run(){
             self.mayFire = true
         }
-        let waitToFireEnemyBullet = SKAction.wait(forDuration: 1.5)
+        let waitToFireEnemyBullet = SKAction.wait(forDuration: 2.5)
         let enemyFire = SKAction.sequence([fireBullet,waitToFireEnemyBullet,completion])
         
         // Enemy may only fire when sequence is done running

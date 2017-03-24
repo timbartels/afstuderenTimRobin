@@ -15,7 +15,7 @@ class Bullet: SKSpriteNode {
     func load() {
         self.setScale(0.5)
         self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height/2))
         self.physicsBody?.categoryBitMask = PhysicsCategory.bullet
         self.physicsBody?.contactTestBitMask = PhysicsCategory.player
 
