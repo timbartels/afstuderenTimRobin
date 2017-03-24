@@ -406,7 +406,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             view.removeFromSuperview()
         }
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 30, y: 125)
         play()
         loadScene(withIdentifier: .start)
 
@@ -524,7 +523,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             missie = checkpoint.title
             
             // Get specific platform shapenode
-            let child = self.childNode(withName: "\(checkpoint.position)")
+            let child = self.childNode(withName: "\(checkpoint.positionX)")
             
             // Remove specific shapenode from scene
             child?.removeFromParent()
@@ -680,6 +679,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     override func update(_ currentTime: CFTimeInterval) {
+        print(Global.savedPosition)
         // Called before each frame is rendered
         enemy1.enemyAttack(scene: self, position: player.position)
         enemy2.enemyAttack(scene: self, position: player.position)
@@ -714,7 +714,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func goToGameOverScreenScene(){
         backgroundMusic.run(SKAction.stop())
-        Global.savedPosition = CGPoint(x: 30, y: 125)
         loadScene(withIdentifier: .gameOver)
         
     }
