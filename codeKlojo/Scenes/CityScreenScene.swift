@@ -26,6 +26,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let background = Background()
     let player = Player(texture: SKTextureAtlas(named: "movement").textureNamed("movement1"))
     let bullet = Bullet(imageNamed: "bullet")
+    let flag = SKSpriteNode(imageNamed: "flag")
     var wall = Border(rectOf: CGSize(width: 10, height: Responsive.getHeightScreen()))
     var level = CityLevel()
     let clouds = Clouds()
@@ -81,6 +82,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         print(player.framesMove)
         initEnemies()
         initCamera()
+        initFinish()
         addUI()
     }
     func submit(view: UIView){
@@ -112,6 +114,19 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
         // Save floor position globally so it can be used for calculations
         Global.floorPosition = floor.position
+    }
+    
+    func initFinish(){
+        flag.position.x = 9500
+        flag.position.y = 200
+        flag.setScale(0.2)
+        flag.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: flag.size.width, height: flag.size.height))
+        flag.physicsBody?.affectedByGravity = false
+        flag.physicsBody?.isDynamic = false
+        flag.physicsBody?.restitution = 0
+        flag.physicsBody?.allowsRotation = false
+        flag.physicsBody?.categoryBitMask = PhysicsCategory.flag
+        addChild(flag)
     }
     
     func initPlatforms(){
@@ -434,6 +449,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
             contact.bodyB.categoryBitMask == PhysicsCategory.bullet) {
             contact.bodyB.node?.removeFromParent()
             self.removeLive()
+        }
+        
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.player &&
+            contact.bodyB.categoryBitMask == PhysicsCategory.flag) {
+            
+            loadScene(withIdentifier: .ending)
         }
     }
     
