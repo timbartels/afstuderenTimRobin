@@ -91,6 +91,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         submit.addTarget(self, action:#selector(checkJavascript(sender:)), for: .touchUpInside)
         submit.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         submit.alpha = 0.0
+        
         view.addSubview(submit)
     }
 
@@ -316,15 +317,43 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     func checkResult(answer: String){
         if answer == checkpoint.answer{
             play()
+            showFeedback()
             textField.removeFromSuperview()
             returnLabel.removeFromSuperview()
             syntaxLabel.removeFromSuperview()
             explanationLabel.removeFromSuperview()
             submit.removeFromSuperview()
             addUI()
-            
         }
     }
+    
+    func showFeedback(){
+        let textLabel = UILabel()
+        textLabel.text = "Goed gedaan!"
+        textLabel.font = UIFont(name: "RifficFree-Bold", size: 70)
+        textLabel.textColor = UIColor.white
+        textLabel.alpha = 0.0
+        textLabel.textAlignment = NSTextAlignment.center
+        textLabel.frame = CGRect(x: 0, y: (Responsive.getHeightScreen()/2-50), width: (Responsive.getWidthScreen()), height: 100)
+        view?.addSubview(textLabel)
+        
+        UIView.animate(withDuration: 0.7, animations: {
+            textLabel.alpha = 1.0
+            textLabel.transform = CGAffineTransform(rotationAngle: 0).scaledBy(x: 1.5, y: 1.5)
+        }, completion: { finished in
+            self.removeFeedback(textLabel: textLabel)
+        })
+    }
+    
+    func removeFeedback(textLabel: UILabel){
+        UIView.animate(withDuration: 1.5, animations: {
+            textLabel.alpha = 0.0
+        }, completion: { finished in
+            textLabel.removeFromSuperview()
+        })
+
+    }
+    
     func touchDown(atPoint pos : CGPoint) {
 
     }
