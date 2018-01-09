@@ -70,7 +70,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func prepareLevel(){
         initBackground()
-        prepareBlur()
+        //prepareBlur()
         initLevel()
         initPlatforms()
         initTraps()
@@ -157,22 +157,22 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
         myMutableString = NSMutableAttributedString(
             string: "X\(player.lives)",
-            attributes: [NSFontAttributeName:UIFont(
+            attributes: [NSAttributedStringKey.font:UIFont(
                 name: "RifficFree-Bold",
                 size: 45.0)!])
         
         myMutableString.addAttribute(
-            NSForegroundColorAttributeName,
+            NSAttributedStringKey.foregroundColor,
             value: UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1.0),
             range: NSRange(location:0,length:2))
         
         myMutableString.addAttribute(
-            NSStrokeColorAttributeName,
+            NSAttributedStringKey.strokeColor,
             value: UIColor(red:239.0/255.0, green:173.0/255.0, blue:33.0/255.0, alpha: 1.0),
             range:  NSRange(location: 0,length: 2))
         
         myMutableString.addAttribute(
-            NSStrokeWidthAttributeName,
+            NSAttributedStringKey.strokeWidth,
             value: -8,
             range: NSRange(location: 0,length: 2))
         
@@ -274,7 +274,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
 
     }
     
-    func checkJavascript(sender: UIButton){
+    @objc func checkJavascript(sender: UIButton){
         let sub1 = "console.log("
         let sub2 = ")"
         let sub3 = "schoolBel()"
@@ -623,9 +623,9 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         }
     }
     
-    func hidePopup(){
+    @objc func hidePopup(){
         let opdracht = checkpoint.setup
-        let popupPosition = self.popupbox.bounds.height+25
+        _ = self.popupbox.bounds.height+25
         UIView.animate(withDuration: 0.3, animations: {
             self.popupbox.frame = self.popupbox.frame.offsetBy(dx: 0.0, dy: +self.popupbox.bounds.height)
         }, completion: { finished in
@@ -729,7 +729,6 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     }
     
     override func update(_ currentTime: CFTimeInterval) {
-        print(Global.savedPosition)
         // Called before each frame is rendered
         enemy1.enemyAttack(scene: self, position: player.position)
         enemy2.enemyAttack(scene: self, position: player.position)

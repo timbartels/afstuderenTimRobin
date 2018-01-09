@@ -18,9 +18,9 @@
 		2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116271DD1FE8E00324B9C /* AppDelegate.swift */; };
 		2D01162E1DD1FE8E00324B9C /* CityScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162D1DD1FE8E00324B9C /* CityScreenScene.swift */; };
 		2D0116301DD1FE8E00324B9C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01162F1DD1FE8E00324B9C /* GameViewController.swift */; };
-		2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116341DD1FE8E00324B9C /* Assets.xcassets */; };
 		2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0116361DD1FE8E00324B9C /* LaunchScreen.storyboard */; };
 		2D0116431DD1FE8E00324B9C /* codeKlojoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */; };
+		2D1194E01EDD6277008C0E3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1194DF1EDD6277008C0E3D /* Assets.xcassets */; };
 		2D1A64491DFEDCB600433AEB /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A64481DFEDCB600433AEB /* Global.swift */; };
 		2D337F021DD9D10900F4AFE7 /* Responsive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D337F011DD9D10900F4AFE7 /* Responsive.swift */; };
 		2D43553D1E0168D700ACDEAF /* chubby-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D43553C1E0168D700ACDEAF /* chubby-cat.wav */; };
@@ -69,12 +69,12 @@
 		2D0116271DD1FE8E00324B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D01162D1DD1FE8E00324B9C /* CityScreenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityScreenScene.swift; sourceTree = "<group>"; };
 		2D01162F1DD1FE8E00324B9C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		2D0116341DD1FE8E00324B9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D0116371DD1FE8E00324B9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D0116391DD1FE8E00324B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D01163E1DD1FE8E00324B9C /* codeKlojoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = codeKlojoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0116421DD1FE8E00324B9C /* codeKlojoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeKlojoTests.swift; sourceTree = "<group>"; };
 		2D0116441DD1FE8E00324B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D1194DF1EDD6277008C0E3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1A64481DFEDCB600433AEB /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2D337F011DD9D10900F4AFE7 /* Responsive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responsive.swift; sourceTree = "<group>"; };
 		2D43553C1E0168D700ACDEAF /* chubby-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "chubby-cat.wav"; sourceTree = "<group>"; };
@@ -268,9 +268,9 @@
 		2DE706941E0159BB00AAB222 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2D1194DF1EDD6277008C0E3D /* Assets.xcassets */,
 				2DE706951E0159C100AAB222 /* Fonts */,
 				2D43553B1E01666E00ACDEAF /* Sounds */,
-				2D0116341DD1FE8E00324B9C /* Assets.xcassets */,
 				2DE706961E015BF800AAB222 /* Main.storyboard */,
 				2D8A62791DDC96F100458D4F /* movement.atlas */,
 			);
@@ -331,16 +331,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Tim Bartels";
 				TargetAttributes = {
 					2D0116231DD1FE8E00324B9C = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 6BF3VA8L3Y;
+						DevelopmentTeam = W3W6DY3F9D;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					2D01163D1DD1FE8E00324B9C = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D0116231DD1FE8E00324B9C;
 					};
@@ -374,11 +376,11 @@
 				2D43553F1E016D4100ACDEAF /* blob-tales.wav in Resources */,
 				2D8A627A1DDC96F100458D4F /* movement.atlas in Resources */,
 				0065891F1E76E8E1008E9EC9 /* Riffic.ttf in Resources */,
+				2D1194E01EDD6277008C0E3D /* Assets.xcassets in Resources */,
 				2D43553D1E0168D700ACDEAF /* chubby-cat.wav in Resources */,
 				2DE706971E015BF800AAB222 /* Main.storyboard in Resources */,
 				2D4355411E017D2E00ACDEAF /* jump.wav in Resources */,
 				2DE706881E00985500AAB222 /* Glass_TTY_VT220.ttf in Resources */,
-				2D0116351DD1FE8E00324B9C /* Assets.xcassets in Resources */,
 				2D0116381DD1FE8E00324B9C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +468,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -474,7 +478,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -517,7 +525,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -525,7 +535,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -557,13 +571,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6BF3VA8L3Y;
+				DEVELOPMENT_TEAM = W3W6DY3F9D;
 				INFOPLIST_FILE = codeKlojo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.coderCity;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.coderCity.tim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -572,13 +587,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6BF3VA8L3Y;
+				DEVELOPMENT_TEAM = W3W6DY3F9D;
 				INFOPLIST_FILE = codeKlojo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.coderCity;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.coderCity.tim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -591,7 +607,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.TimBartels.codeKlojoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/codeKlojo.app/codeKlojo";
 			};
 			name = Debug;
@@ -605,7 +622,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.TimBartels.codeKlojoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/codeKlojo.app/codeKlojo";
 			};
 			name = Release;

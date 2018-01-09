@@ -78,7 +78,7 @@ class Checkpoint: CityLevel{
     
     func loadIcons(scene: SKScene){
         
-        for (index, i) in missions.enumerated() {
+        for (_, i) in missions.enumerated() {
             let icon = SKSpriteNode(imageNamed: "mission")
             
             icon.position.x = CGFloat(i.positionX)
