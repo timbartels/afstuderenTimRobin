@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>PrefersOpenGL</key>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Glass_TTY_VT220.ttf</string>
@@ -45,7 +47,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>PrefersOpenGL</key>
-	<true/>
 </dict>
 </plist>

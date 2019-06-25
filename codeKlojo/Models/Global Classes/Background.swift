@@ -20,7 +20,7 @@ class Background {
             bg.position = CGPoint(x: backgroundPosition, y: 0)
             backgroundPosition += 1000 // width of every part
             
-            bg.size.height = Responsive.getHeightScreen()
+            // bg.size.height = Responsive.getHeightScreen()
             bg.size.width = 1000
             bg.zPosition = -99
             scene.addChild(bg)

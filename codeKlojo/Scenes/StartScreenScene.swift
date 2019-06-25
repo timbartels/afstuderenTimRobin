@@ -47,8 +47,7 @@ class StartScreenScene: SKScene, SceneManager {
     
     func initTitleScreen(){
         titleScreen.anchorPoint = CGPoint(x: 0,y: 0)
-        titleScreen.position = CGPoint(x: 0, y: 0)
-        titleScreen.size.height = Responsive.getHeightScreen()
+        titleScreen.position = CGPoint(x: 0, y: -150)
         titleScreen.zPosition = -99
         titleScreen.size.width = Responsive.getWidthScreen()
         self.addChild(titleScreen)

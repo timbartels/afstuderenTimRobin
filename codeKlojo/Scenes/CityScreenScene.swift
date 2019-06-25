@@ -35,7 +35,7 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     let enemy3 = Enemy(imageNamed: "robot.png")
     let enemy4 = Enemy(imageNamed: "robot.png")
     let enemy5 = Enemy(imageNamed: "robot.png")
-    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.dark))
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     let menuOverlay = UIView()
     let menuButtons = MenuButtons()
     let startButton = UIButton()
@@ -140,11 +140,12 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
     
     func initController(){
         // Init buttons
-        controllerButtons.loadButtonRight(button: buttonRight, view: view!)
-        controllerButtons.loadButtonUp(button: buttonUp, view: view!)
-        controllerButtons.loadButtonAttack(button: buttonAttack, view: view!)
-        controllerButtons.loadButtonLeft(button: buttonLeft, view: view!)
-        controllerButtons.loadButtonMenu(button: buttonMenu, view: view!)
+        buttonRight.setTitle("button_right", for: .normal)
+        buttonLeft.setTitle("button_left", for: .normal)
+        buttonUp.setTitle("jump", for: .normal)
+        buttonAttack.setTitle("attack", for: .normal)
+        buttonMenu.setTitle("MenuButton", for: .normal)
+        controllerButtons.initialize(buttons: [buttonRight, buttonLeft,buttonUp, buttonAttack, buttonMenu], view: view!)
         buttonMenu.addTarget(self, action: #selector(ButtonUpMenu), for: .touchUpInside)
     }
     
@@ -157,22 +158,22 @@ class CityScreenScene: SKScene, SKPhysicsContactDelegate, SceneManager {
         
         myMutableString = NSMutableAttributedString(
             string: "X\(player.lives)",
-            attributes: [NSAttributedStringKey.font:UIFont(
+            attributes: [NSAttributedString.Key.font:UIFont(
                 name: "RifficFree-Bold",
                 size: 45.0)!])
         
         myMutableString.addAttribute(
-            NSAttributedStringKey.foregroundColor,
+            NSAttributedString.Key.foregroundColor,
             value: UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1.0),
             range: NSRange(location:0,length:2))
         
         myMutableString.addAttribute(
-            NSAttributedStringKey.strokeColor,
+            NSAttributedString.Key.strokeColor,
             value: UIColor(red:239.0/255.0, green:173.0/255.0, blue:33.0/255.0, alpha: 1.0),
             range:  NSRange(location: 0,length: 2))
         
         myMutableString.addAttribute(
-            NSAttributedStringKey.strokeWidth,
+            NSAttributedString.Key.strokeWidth,
             value: -8,
             range: NSRange(location: 0,length: 2))
         
