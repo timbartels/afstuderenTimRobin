@@ -10,12 +10,11 @@
 import SpriteKit
 import UIKit
 
-class MenuButtons: Buttons{
+class MenuButtons: SKSpriteNode{
     func loadResumeButton(button: UIButton, view: UIView){
         button.setTitle("Doorgaan", for: .normal)
         button.titleLabel!.font =  UIFont(name: "RifficFree-Bold", size: 35)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: width/2-150, y: height/2, width: 300, height: 70)
         button.alpha = 0.0
         view.addSubview(button)
         
@@ -27,7 +26,6 @@ class MenuButtons: Buttons{
         button.setTitle("Geluid dempen", for: .normal)
         button.titleLabel!.font =  UIFont(name: "RifficFree-Bold", size: 35)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: width/2-150, y: height/2-100, width: 300, height: 70)
         button.alpha = 0.0
         view.addSubview(button)
         
@@ -40,7 +38,6 @@ class MenuButtons: Buttons{
         button.setTitle("Startscherm", for: .normal)
         button.titleLabel!.font =  UIFont(name: "RifficFree-Bold", size: 35)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: width/2-150, y: height/2-200, width: 300, height: 70)
         button.alpha = 0.0
         view.addSubview(button)
         

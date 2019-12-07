@@ -18,7 +18,7 @@ class Popup: NSObject {
         
         missie = mission
         
-        self.popupbox.frame = CGRect(x: 0, y: Int(Responsive.getHeightScreen()), width:Int(Responsive.getWidthScreen()), height: 250)
+        
         self.popupbox.backgroundColor = UIColor.white
         self.popupbox.layer.borderWidth = 5
         self.popupbox.isUserInteractionEnabled = true
@@ -48,13 +48,6 @@ class Popup: NSObject {
         //knop.addTarget(self, action: #selector(self.functie), for: .touchDown)
         popupbox.addSubview(knop)
         
-    }
-    
-    @objc func closePopupForMission(){
-        print("remove popup")
-        
-        // Cannot fetch self.popupbox when function is called from gameviewcontroller class for some wierd reason
-        popupbox.removeFromSuperview()
     }
 
 }
