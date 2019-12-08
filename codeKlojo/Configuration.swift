@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import UIKit
 
 struct Levels {
     static var levelsDictionary = [String:Any]()
@@ -46,6 +47,18 @@ extension CGPoint {
 }
 
 struct Position {
-    static var saved = CGPoint(x: 100, y: 125)
+    static var saved = CGPoint(x: 150, y: UIScreen.main.bounds.size.height/2)
+}
+
+struct Checkpoints {
+    static var available: [Checkpoint] = []
+}
+
+struct Enemies {
+    static var available: [Enemy] = []
+}
+
+struct State {
+    static var status: UInt32 = 0
 }
     

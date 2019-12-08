@@ -95,12 +95,12 @@ class Checkpoint: SKSpriteNode{
         run(sequence)
     }
     
-    func check(scene: CityScreenScene, position: CGPoint){
+    func check(scene: CityScreenScene, position: CGPoint) -> Bool {
         if(position.x > self.position.x && self.position.y-50 < position.y && position.y < self.position.y+50){
-            removeFromParent()
             Position.saved = CGPoint(x: self.position.x, y: self.position.y)
-            scene.sceneManagerDelegate?.presentMissionScreenScene(mission: missions[0])
+            return true
         }
+        return false
     }
 }
 

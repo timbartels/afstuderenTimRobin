@@ -21,18 +21,20 @@ class CityScreenScene: SKScene {
     let player = Player()
     
     var enemies = [Enemy]()
-    
-    var checkpoints = [Checkpoint]()
-    
+        
     let clouds = Clouds()
     
     var lives: Int = 3
+    let livesLabel = UILabel()
+    let livesHead = UIImage(named: "head")
+    var text = NSMutableAttributedString()
  
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         view.showsFPS = true
         view.showsNodeCount = true
         prepareLevel()
+        State.status = 1
     }
     
     func prepareLevel(){
@@ -40,6 +42,8 @@ class CityScreenScene: SKScene {
         if let mapNode = childNode(withName: "Tile Map Node") as? SKTileMapNode {
             self.mapNode = mapNode
         }
+
+        load(mapNode: mapNode)
         
         addCamera()
         
@@ -48,6 +52,17 @@ class CityScreenScene: SKScene {
         controller.controllerButtonHandlerDelegate = self
         gameCamera.addChild(controller)
         
+        clouds.load(scene: self, amount: 20)
+        
+        player.createPhysicsBody()
+        player.position = Position.saved
+        player.zPosition = ZPosition.player
+        mapNode.addChild(player)
+        
+        initLives()
+    }
+    
+    func load(mapNode: SKTileMapNode) {
         for child in mapNode.children {
             if let child = child as? SKSpriteNode {
                 guard let name = child.name else { continue }
@@ -58,33 +73,37 @@ class CityScreenScene: SKScene {
                             child.removeFromParent()
                         }
                     case "robot":
-                        if let enemy = createEnemy(from: child, name: name) {
-                            mapNode.addChild(enemy)
-                            child.removeFromParent()
-                            enemies.append(enemy)
+                        if State.status == 0 {
+                            if let enemy = createEnemy(from: child, name: name) {
+                                Enemies.available.append(enemy)
+                                mapNode.addChild(enemy)
+                                child.removeFromParent()
+                            }
+                        } else {
+                            for enemy in Enemies.available {
+                                enemy.removeFromParent()
+                                mapNode.addChild(enemy)
+                            }
                         }
                     case let name where name.contains("checkpoint"):
-                        if let checkpoint = createCheckpoint(from: child, name: name) {
-                            mapNode.addChild(checkpoint)
-                            child.removeFromParent()
-                            checkpoints.append(checkpoint)
+                        if State.status == 0 {
+                            if let checkpoint = createCheckpoint(from: child, name: name) {
+                                Checkpoints.available.append(checkpoint)
+                                mapNode.addChild(checkpoint)
+                                child.removeFromParent()
+                            }
+                        } else {
+                            for checkpoint in Checkpoints.available {
+                                checkpoint.removeFromParent()
+                                mapNode.addChild(checkpoint)
+                            }
                         }
-                       
                     default:
                         break
-                }
-                
+                    }
                 child.removeFromParent()
             }
         }
-        
-        clouds.load(scene: self, amount: 20)
-        
-        player.createPhysicsBody()
-        player.position = Position.saved        
-        player.aspectScale(to: mapNode.tileSize, width: false, multiplier: 4.0)
-        player.zPosition = ZPosition.player
-        mapNode.addChild(player)
     }
     
     func addCamera() {
@@ -104,8 +123,6 @@ class CityScreenScene: SKScene {
          let enemy = Enemy(type: type)
          enemy.size = placeholder.size
          enemy.position = placeholder.position
-         enemy.zPosition = ZPosition.obstacles
-         enemy.zRotation = placeholder.zRotation
          enemy.createPhysicsBody()
          return enemy
     }
@@ -114,7 +131,6 @@ class CityScreenScene: SKScene {
         let platform = Platform()
         platform.size = placeholder.size
         platform.position = placeholder.position
-        platform.zPosition = ZPosition.obstacles
         platform.zRotation = placeholder.zRotation
         platform.createPhysicsBody()
         return platform
@@ -125,8 +141,6 @@ class CityScreenScene: SKScene {
         checkpoint.name = name
         checkpoint.size = placeholder.size
         checkpoint.position = placeholder.position
-        checkpoint.zPosition = ZPosition.obstacles
-        checkpoint.zRotation = placeholder.zRotation
         return checkpoint
     }
 
@@ -134,11 +148,63 @@ class CityScreenScene: SKScene {
         sceneManagerDelegate?.presentGameOverScreenScene()
     }
     
+    func initLives(){
+        self.livesLabel.frame = CGRect(x: 110, y: 35, width:200, height: 50)
+        let livesHeadImage = UIImageView(image: livesHead!)
+        livesHeadImage.frame = CGRect(x: 25, y: 25, width: 80, height: 70)
+        self.livesLabel.alpha = 0.0
+        livesHeadImage.alpha = 0.0
+        
+        text = NSMutableAttributedString(
+            string: "X\(lives)",
+            attributes: [NSAttributedString.Key.font:UIFont(
+                name: "RifficFree-Bold",
+                size: 45.0)!])
+        
+        text.addAttribute(
+            NSAttributedString.Key.foregroundColor,
+            value: UIColor(red:255.0/255.0, green:255.0/255.0, blue:255.0/255.0, alpha: 1.0),
+            range: NSRange(location:0,length:2))
+        
+        text.addAttribute(
+            NSAttributedString.Key.strokeColor,
+            value: UIColor(red:239.0/255.0, green:173.0/255.0, blue:33.0/255.0, alpha: 1.0),
+            range:  NSRange(location: 0,length: 2))
+        
+        text.addAttribute(
+            NSAttributedString.Key.strokeWidth,
+            value: -8,
+            range: NSRange(location: 0,length: 2))
+        
+        
+        self.livesLabel.attributedText = text
+        view?.addSubview(livesLabel)
+        view?.addSubview(livesHeadImage)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.livesLabel.alpha = 1.0
+        }, completion: { finished in })
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            livesHeadImage.alpha = 1.0
+        }, completion: { finished in })
+    }
+    
+    func updateLives(){
+        livesLabel.removeFromSuperview()
+        initLives()
+    }
+    
     override func update(_ currentTime: CFTimeInterval) {
-        checkpoints.forEach { checkpoint in
-            checkpoint.check(scene: self, position: player.position)
+        for checkpoint in Checkpoints.available {
+            if checkpoint.check(scene: self, position: player.position) == true {
+                let mission = checkpoint.missions[0]
+                Checkpoints.available.removeAll{$0 == checkpoint}
+                checkpoint.removeFromParent()
+                sceneManagerDelegate?.presentMissionScreenScene(mission: mission)
+            }
         }
-        enemies.forEach { enemy in
+        Enemies.available.forEach { enemy in
             enemy.attack(scene: self, position: player.position)
         }
     }
@@ -148,23 +214,35 @@ extension CityScreenScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let mask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-
+        
         switch mask {
             case PhysicsCategory.player | PhysicsCategory.enemy:
                 if player.attackState == true {
-                    contact.bodyB.node?.removeFromParent()
-                } else {
-                    if lives < 1 {
-                        goToGameOverScreenScene()
+                    if let enemy = contact.bodyB.node as? Enemy {
+                        enemy.removeFromParent()
+                    } else if let enemy = contact.bodyA.node as? Enemy {
+                        enemy.removeFromParent()
                     }
+                } else {
                     lives = lives - 1
-                    
+                    if lives == 0 {
+                        goToGameOverScreenScene()
+                    } else {
+                        updateLives()
+                    }
                 }
             case PhysicsCategory.player | PhysicsCategory.bullet:
-                if lives < 1 {
-                    goToGameOverScreenScene()
+                if (contact.bodyB.node as? Player) != nil {
+                    lives = lives - 1
                 }
-                lives = lives - 1
+                if (contact.bodyA.node as? Player) != nil {
+                    lives = lives - 1
+                }
+                if lives == 0 {
+                    goToGameOverScreenScene()
+                } else {
+                    updateLives()
+                }
             case PhysicsCategory.player | PhysicsCategory.flag:
                 break
             default:

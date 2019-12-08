@@ -18,7 +18,7 @@ class Enemy: SKSpriteNode {
     let type: EnemyType
     let minRange = 75
     let maxRange = 400
-    let bulletRange = CGFloat(500)
+    let bulletRange = CGFloat(20.0)
     var enemyDirection = "left"
     var inRange = false
     var mayFire = true
@@ -31,7 +31,7 @@ class Enemy: SKSpriteNode {
             break
         }
         let texture = SKTexture(imageNamed: type.rawValue)
-        super.init(texture: texture, color: UIColor.clear, size: CGSize.zero)
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
     }
     
     func createPhysicsBody() {
@@ -64,22 +64,22 @@ class Enemy: SKSpriteNode {
     }
     
     func fireBullet(scene: SKScene){
-        let bullet = Bullet(imageNamed: "bullet")
-        bullet.load()
-        bullet.position.x = self.position.x
-        bullet.position.y = self.position.y
+        let bullet = Bullet()
+        bullet.position.x = self.position.x*2
+        bullet.position.y = self.position.y + size.height/2
         bullet.setScale(0.4)
         
-        var direction = self.position.x-bulletRange
+        print("bullet: \(bullet.position)", "enemy: \(position)")
+    
+        var direction = position.x - bulletRange
         if enemyDirection == "right" {
             bullet.xScale = -(CGFloat(0.5))
-            bullet.position.x = self.position.x+100
-            direction = self.position.x+bulletRange
+            direction = position.x + bulletRange
         }
         scene.addChild(bullet)
-        let moveBulletAction = SKAction.move(to: CGPoint(x:direction, y: self.position.y), duration: 1)
+        let moveBulletAction = SKAction.move(to: CGPoint(x:direction, y: position.y), duration: 1)
         let removeBulletAction = SKAction.removeFromParent()
-        bullet.run(SKAction.sequence([moveBulletAction,removeBulletAction]))
+        bullet.run(SKAction.sequence([moveBulletAction, removeBulletAction]))
     }
     
     func invokeFire(scene: SKScene){

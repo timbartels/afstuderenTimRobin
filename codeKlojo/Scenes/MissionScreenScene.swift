@@ -126,7 +126,8 @@ class MissionScreenScene: SKScene {
     }
     
     func checkResult(answer: String) {
-        if answer == mission.answer{
+        if answer == mission.answer {
+            
             removeAllSubViews()
             sceneManagerDelegate?.presentCityScreenScene()
         }
