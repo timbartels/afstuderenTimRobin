@@ -12,8 +12,9 @@ import GameplayKit
 
 protocol SceneManagerDelegate {
     func presentMenuScene()
-    func presentLevelScene()
     func presentCityScreenScene()
+    func presentMissionScreenScene(mission: Mission)
+    func presentGameOverScreenScene()
 }
 
 class GameViewController: UIViewController {
@@ -31,16 +32,25 @@ extension GameViewController: SceneManagerDelegate {
         present(scene: menuScene)
     }
     
-    func presentLevelScene() {
-       
-    }
-    
     func presentCityScreenScene() {
         let sceneName = "CityScreenScene"
         if let cityScreenScene = SKScene(fileNamed: sceneName) as? CityScreenScene {
             cityScreenScene.sceneManagerDelegate = self
             present(scene: cityScreenScene)
         }
+    }
+    
+    func presentMissionScreenScene(mission: Mission) {
+        let missionScreenScene = MissionScreenScene()
+        missionScreenScene.mission = mission
+        missionScreenScene.sceneManagerDelegate = self
+        present(scene: missionScreenScene)
+    }
+    
+    func presentGameOverScreenScene() {
+        let gameOverScreenScene = GameOverScreenScene()
+        gameOverScreenScene.sceneManagerDelegate = self
+        present(scene: gameOverScreenScene)
     }
     
     func present(scene: SKScene) {

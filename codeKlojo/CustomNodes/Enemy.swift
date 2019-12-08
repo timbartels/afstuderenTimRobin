@@ -38,8 +38,8 @@ class Enemy: SKSpriteNode {
         physicsBody = SKPhysicsBody(rectangleOf: size)
         physicsBody?.isDynamic = true
         physicsBody?.categoryBitMask = PhysicsCategory.enemy
-        physicsBody?.contactTestBitMask = PhysicsCategory.all
-        physicsBody?.collisionBitMask = PhysicsCategory.all
+        physicsBody?.contactTestBitMask = PhysicsCategory.player
+        physicsBody?.collisionBitMask = PhysicsCategory.player | PhysicsCategory.platform
     }
 
     func attack(scene: SKScene, position: CGPoint){
@@ -66,8 +66,7 @@ class Enemy: SKSpriteNode {
     func fireBullet(scene: SKScene){
         let bullet = Bullet(imageNamed: "bullet")
         bullet.load()
-        bullet.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-        bullet.position.x = self.position.x-100
+        bullet.position.x = self.position.x
         bullet.position.y = self.position.y
         bullet.setScale(0.4)
         

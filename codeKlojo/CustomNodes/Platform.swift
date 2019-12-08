@@ -20,8 +20,7 @@ class Platform: SKSpriteNode {
     func createPhysicsBody(){
       physicsBody = SKPhysicsBody(rectangleOf: size)
       physicsBody?.isDynamic = false
-      physicsBody?.categoryBitMask = PhysicsCategory.all
-      physicsBody?.contactTestBitMask = PhysicsCategory.all
-      physicsBody?.collisionBitMask = PhysicsCategory.all
+      physicsBody?.categoryBitMask = PhysicsCategory.platform
+      physicsBody?.collisionBitMask = PhysicsCategory.player | PhysicsCategory.enemy
     }
 }

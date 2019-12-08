@@ -15,18 +15,24 @@ class Player: SKSpriteNode {
     
     init() {
         let texture = SKTexture(imageNamed: "player_idle" + "1")
-        super.init(texture: texture, color: UIColor.clear, size: CGSize.zero)
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        
         let idleFrames = AnimationHelper.loadTextures(from: SKTextureAtlas(named: "idle"), withName: "player_idle")
-        run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.3, resize: true, restore: false)))
+        run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.3, resize: false, restore: false)))
 
     }
     
     func attack() {
         let slideFrames = AnimationHelper.loadTextures(from: SKTextureAtlas(named: "slide"), withName: "player_slide")
-        var attackMoveBy = CGFloat(20)
-         
-        if viewDirection == "Left" {
-            attackMoveBy = CGFloat(-20)
+        let attackMoveBy: CGFloat
+        
+        switch viewDirection {
+            case "Left":
+                attackMoveBy = -20.0
+            case "Right":
+                attackMoveBy = 20.0
+            default:
+                attackMoveBy = 20
         }
           
         let attackAction = SKAction.moveBy(x: attackMoveBy, y:0, duration:0.4)
@@ -56,23 +62,28 @@ class Player: SKSpriteNode {
         let moveAnimation = SKAction.animate(with: walkFrames,
                                             timePerFrame: 0.1,
                                             resize: true,
-                                            restore: false)
+                                            restore: true)
         if direction < 0 {
-            xScale = -(xScale)
+            viewDirection = "Left"
         } else {
-            xScale = (xScale)
+            viewDirection = "Right"
         }
-        
-        run(SKAction.repeatForever(SKAction.sequence([moveAction, moveAnimation])),
-                   withKey:"walking")
+        run(SKAction.repeatForever(moveAction), withKey:"walkingAction")
+        run(SKAction.repeatForever(moveAnimation), withKey:"walkingAnimation")
+    }
+    
+    func finishedWalking() {
+        removeAction(forKey:"walkingAnimation")
+        removeAction(forKey:"walkingAction")
     }
     
     func createPhysicsBody() {
         physicsBody = SKPhysicsBody(rectangleOf: size)
         physicsBody?.isDynamic = true
-        physicsBody?.categoryBitMask = PhysicsCategory.enemy
-        physicsBody?.contactTestBitMask = PhysicsCategory.all
-        physicsBody?.collisionBitMask = PhysicsCategory.all
+        physicsBody?.categoryBitMask = PhysicsCategory.player
+        physicsBody?.contactTestBitMask = PhysicsCategory.enemy
+        physicsBody?.collisionBitMask = PhysicsCategory.platform | PhysicsCategory.enemy
+        physicsBody?.allowsRotation = false
     }
 
     required init?(coder aDecoder: NSCoder) {

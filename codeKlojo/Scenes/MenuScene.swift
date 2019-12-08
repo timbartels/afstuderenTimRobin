@@ -35,8 +35,7 @@ class MenuScene: SKScene {
     }
     
     func initTitleScreen(){
-        titleScreen.anchorPoint = CGPoint(x: 0,y: 0)
-        titleScreen.position = CGPoint(x: 0, y: 0)
+        titleScreen.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         titleScreen.zPosition = -99
         titleScreen.aspectScale(to: frame.size, width: true, multiplier: 1.0)
         self.addChild(titleScreen)

@@ -10,11 +10,9 @@ import SpriteKit
 import GameplayKit
 
 class GameOverScreenScene: SKScene {
+    var sceneManagerDelegate: SceneManagerDelegate?
+
     let textLabel = UILabel()
-    
-    override func sceneDidLoad() {
-        
-    }
     
     override func didMove(to view: SKView) {
         self.backgroundColor = SKColor(red: CGFloat(188.0/255.0), green: CGFloat(228.0/255.0), blue: CGFloat(227.0/255.0), alpha: 0)
@@ -31,10 +29,7 @@ class GameOverScreenScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
-    
-    override func update(_ currentTime: CFTimeInterval) {
-        
+        textLabel.removeFromSuperview()
+        sceneManagerDelegate?.presentCityScreenScene()
     }
 }

@@ -22,7 +22,11 @@ class CityScreenScene: SKScene {
     
     var enemies = [Enemy]()
     
+    var checkpoints = [Checkpoint]()
+    
     let clouds = Clouds()
+    
+    var lives: Int = 3
  
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
@@ -48,43 +52,39 @@ class CityScreenScene: SKScene {
             if let child = child as? SKSpriteNode {
                 guard let name = child.name else { continue }
                 switch name {
-                case "player":
-                    player.size = child.size
-                    player.xScale = child.xScale
-                    player.yScale = child.yScale
-                    player.position = child.position
-                    player.zPosition = ZPosition.obstacles
-                    player.zRotation = child.zRotation
-                    player.createPhysicsBody()
-                    mapNode.addChild(player)
-                    child.removeFromParent()
-                case "platform":
-                    if let platform = createPlatform(from: child, name: name) {
-                        mapNode.addChild(platform)
-                        child.removeFromParent()
-                    }
-                case "robot":
-                    if let enemy = createEnemy(from: child, name: name) {
-                        mapNode.addChild(enemy)
-                        child.removeFromParent()
-                        enemies.append(enemy)
-                    }
-                    
-                default:
-                    break
+                    case "platform":
+                        if let platform = createPlatform(from: child, name: name) {
+                            mapNode.addChild(platform)
+                            child.removeFromParent()
+                        }
+                    case "robot":
+                        if let enemy = createEnemy(from: child, name: name) {
+                            mapNode.addChild(enemy)
+                            child.removeFromParent()
+                            enemies.append(enemy)
+                        }
+                    case let name where name.contains("checkpoint"):
+                        if let checkpoint = createCheckpoint(from: child, name: name) {
+                            mapNode.addChild(checkpoint)
+                            child.removeFromParent()
+                            checkpoints.append(checkpoint)
+                        }
+                       
+                    default:
+                        break
                 }
                 
                 child.removeFromParent()
             }
         }
         
-        let physicsRect = CGRect(x: 0, y: mapNode.tileSize.height, width: mapNode.frame.size.width, height: mapNode.frame.size.height - mapNode.tileSize.height)
-        physicsBody = SKPhysicsBody(edgeLoopFrom: physicsRect)
-        physicsBody?.categoryBitMask = PhysicsCategory.edge
-        physicsBody?.collisionBitMask = PhysicsCategory.all
-        
         clouds.load(scene: self, amount: 20)
         
+        player.createPhysicsBody()
+        player.position = Position.saved        
+        player.aspectScale(to: mapNode.tileSize, width: false, multiplier: 4.0)
+        player.zPosition = ZPosition.player
+        mapNode.addChild(player)
     }
     
     func addCamera() {
@@ -108,23 +108,36 @@ class CityScreenScene: SKScene {
          enemy.zRotation = placeholder.zRotation
          enemy.createPhysicsBody()
          return enemy
-     }
+    }
      
-     func createPlatform(from placeholder: SKSpriteNode, name: String) -> Platform? {
-         let platform = Platform()
-         platform.size = placeholder.size
-         platform.position = placeholder.position
-         platform.zPosition = ZPosition.obstacles
-         platform.zRotation = placeholder.zRotation
-         platform.createPhysicsBody()
-         return platform
-     }
+    func createPlatform(from placeholder: SKSpriteNode, name: String) -> Platform? {
+        let platform = Platform()
+        platform.size = placeholder.size
+        platform.position = placeholder.position
+        platform.zPosition = ZPosition.obstacles
+        platform.zRotation = placeholder.zRotation
+        platform.createPhysicsBody()
+        return platform
+    }
+    
+    func createCheckpoint(from placeholder: SKSpriteNode, name: String) -> Checkpoint? {
+        let checkpoint = Checkpoint()
+        checkpoint.name = name
+        checkpoint.size = placeholder.size
+        checkpoint.position = placeholder.position
+        checkpoint.zPosition = ZPosition.obstacles
+        checkpoint.zRotation = placeholder.zRotation
+        return checkpoint
+    }
 
     func goToGameOverScreenScene() {
-        sceneManagerDelegate?.presentMenuScene()
+        sceneManagerDelegate?.presentGameOverScreenScene()
     }
     
     override func update(_ currentTime: CFTimeInterval) {
+        checkpoints.forEach { checkpoint in
+            checkpoint.check(scene: self, position: player.position)
+        }
         enemies.forEach { enemy in
             enemy.attack(scene: self, position: player.position)
         }
@@ -137,8 +150,25 @@ extension CityScreenScene: SKPhysicsContactDelegate {
         let mask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 
         switch mask {
-        default:
-            break
+            case PhysicsCategory.player | PhysicsCategory.enemy:
+                if player.attackState == true {
+                    contact.bodyB.node?.removeFromParent()
+                } else {
+                    if lives < 1 {
+                        goToGameOverScreenScene()
+                    }
+                    lives = lives - 1
+                    
+                }
+            case PhysicsCategory.player | PhysicsCategory.bullet:
+                if lives < 1 {
+                    goToGameOverScreenScene()
+                }
+                lives = lives - 1
+            case PhysicsCategory.player | PhysicsCategory.flag:
+                break
+            default:
+                break
         }
     }
 }
@@ -146,17 +176,16 @@ extension CityScreenScene: SKPhysicsContactDelegate {
 extension CityScreenScene: ControllerButtonHandlerDelegate {
     func leftTapped(finished: Bool) {
         if finished {
-            player.removeAction(forKey:"walking")
+            player.finishedWalking()
         } else {
             player.walkTo(direction: -12)
         }
-        
         
     }
     
     func rightTapped(finished: Bool) {
         if finished {
-            player.removeAction(forKey:"walking")
+            player.finishedWalking()
         } else {
             player.walkTo(direction: 12)
         }
