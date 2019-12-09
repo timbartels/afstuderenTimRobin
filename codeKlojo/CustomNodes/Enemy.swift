@@ -68,9 +68,7 @@ class Enemy: SKSpriteNode {
         bullet.position.x = self.position.x*2
         bullet.position.y = self.position.y + size.height/2
         bullet.setScale(0.4)
-        
-        print("bullet: \(bullet.position)", "enemy: \(position)")
-    
+
         var direction = position.x - bulletRange
         if enemyDirection == "right" {
             bullet.xScale = -(CGFloat(0.5))

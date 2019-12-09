@@ -53,12 +53,6 @@ class CityScreenScene: SKScene {
         gameCamera.addChild(controller)
         
         clouds.load(scene: self, amount: 20)
-        
-        player.createPhysicsBody()
-        player.position = Position.saved
-        player.zPosition = ZPosition.player
-        mapNode.addChild(player)
-        
         initLives()
     }
     
@@ -72,6 +66,14 @@ class CityScreenScene: SKScene {
                             mapNode.addChild(platform)
                             child.removeFromParent()
                         }
+                    case "player":
+                        player.size = child.size
+                        player.xScale = child.xScale
+                        player.yScale = child.yScale
+                        player.position = Position.saved
+                        mapNode.addChild(player)
+                       
+                        child.removeFromParent()
                     case "robot":
                         if State.status == 0 {
                             if let enemy = createEnemy(from: child, name: name) {

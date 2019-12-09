@@ -15,7 +15,8 @@ class Player: SKSpriteNode {
     
     init() {
         let texture = SKTexture(imageNamed: "player_idle" + "1")
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        super.init(texture: texture, color: UIColor.red, size: texture.size())
+        createPhysicsBody()
 
         let idleFrames = AnimationHelper.loadTextures(from: SKTextureAtlas(named: "idle"), withName: "player_idle")
         run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.3, resize: true, restore: false)))
