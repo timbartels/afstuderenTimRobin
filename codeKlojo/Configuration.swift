@@ -48,6 +48,7 @@ extension CGPoint {
 
 struct Position {
     static var saved = CGPoint(x: 150, y: UIScreen.main.bounds.size.height/2)
+    static let bottomLevel: CGFloat = -200.0
 }
 
 struct Checkpoints {
@@ -61,4 +62,3 @@ struct Enemies {
 struct State {
     static var status: UInt32 = 0
 }
-    

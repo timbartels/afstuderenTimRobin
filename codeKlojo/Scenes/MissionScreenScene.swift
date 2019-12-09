@@ -19,7 +19,7 @@ class MissionScreenScene: SKScene {
     let returnLabel = UILabel()
     let explanationLabel = UITextView()
     let submit = UIButton()
-    var mission = Checkpoint().missions[0]
+    var mission = Missions.missions[0]
     
     override func didMove(to view: SKView) {
         prepareMission()

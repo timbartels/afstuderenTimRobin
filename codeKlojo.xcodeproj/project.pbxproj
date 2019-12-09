@@ -32,6 +32,8 @@
 		2D5E7CBE1DD470CC00B5116E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5E7CBD1DD470CC00B5116E /* Controller.swift */; };
 		2D808E3E239D1A0F0081CA81 /* MissionScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D808E3D239D1A0F0081CA81 /* MissionScreenScene.swift */; };
 		2D808E40239D36240081CA81 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D808E3F239D36240081CA81 /* UITextField+Extensions.swift */; };
+		2DB82026239E6C2200DA5FAD /* Missions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB82025239E6C2200DA5FAD /* Missions.swift */; };
+		2DB82028239E6D1900DA5FAD /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB82027239E6D1900DA5FAD /* String+Extensions.swift */; };
 		2DE7068A1E0099F600AAB222 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE706891E0099F600AAB222 /* Enemy.swift */; };
 		2DE706911E0158B700AAB222 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE706901E0158B700AAB222 /* SoundEngine.swift */; };
 		2DE706971E015BF800AAB222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE706961E015BF800AAB222 /* Main.storyboard */; };
@@ -78,6 +80,8 @@
 		2D5E7CBD1DD470CC00B5116E /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		2D808E3D239D1A0F0081CA81 /* MissionScreenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionScreenScene.swift; sourceTree = "<group>"; };
 		2D808E3F239D36240081CA81 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		2DB82025239E6C2200DA5FAD /* Missions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Missions.swift; sourceTree = "<group>"; };
+		2DB82027239E6D1900DA5FAD /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		2DE706891E0099F600AAB222 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		2DE706901E0158B700AAB222 /* SoundEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
 		2DE706961E015BF800AAB222 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4A42BC239985EC00BA971E /* SKNode+Extensions.swift */,
+				2DB82027239E6D1900DA5FAD /* String+Extensions.swift */,
 				2D808E3F239D36240081CA81 /* UITextField+Extensions.swift */,
 			);
 			path = Extensions;
@@ -179,6 +184,7 @@
 				2D4A42C223998C2B00BA971E /* SpriteKitButton.swift */,
 				2D4A42C423998FF000BA971E /* GameCamera.swift */,
 				2DEC6A701E30EAD600F89FF6 /* Clouds.swift */,
+				2DB82025239E6C2200DA5FAD /* Missions.swift */,
 			);
 			path = CustomNodes;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				2DE7068A1E0099F600AAB222 /* Enemy.swift in Sources */,
 				2D0116281DD1FE8E00324B9C /* AppDelegate.swift in Sources */,
 				2D503F391DE5B6C3007B8EB8 /* GameOverScreenScene.swift in Sources */,
+				2DB82026239E6C2200DA5FAD /* Missions.swift in Sources */,
 				2DE706911E0158B700AAB222 /* SoundEngine.swift in Sources */,
 				2D808E40239D36240081CA81 /* UITextField+Extensions.swift in Sources */,
 				2D4A42C523998FF000BA971E /* GameCamera.swift in Sources */,
@@ -368,6 +375,7 @@
 				2D4A42C323998C2B00BA971E /* SpriteKitButton.swift in Sources */,
 				2D4A42BD239985EC00BA971E /* SKNode+Extensions.swift in Sources */,
 				0055497D1DE5AE3B00D5ED83 /* MenuScene.swift in Sources */,
+				2DB82028239E6D1900DA5FAD /* String+Extensions.swift in Sources */,
 				2D4A42BA2399858200BA971E /* AnimationHelper.swift in Sources */,
 				2D1A64491DFEDCB600433AEB /* Configuration.swift in Sources */,
 				2DEC6A6F1E2E3EB100F89FF6 /* Bullet.swift in Sources */,

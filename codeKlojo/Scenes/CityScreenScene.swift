@@ -200,7 +200,8 @@ class CityScreenScene: SKScene {
     override func update(_ currentTime: CFTimeInterval) {
         for checkpoint in Checkpoints.available {
             if checkpoint.check(scene: self, position: player.position) == true {
-                let mission = checkpoint.missions[0]
+                guard let missionNumber = Int(checkpoint.name!.digits) else { return }
+                let mission = Missions.missions[missionNumber]
                 Checkpoints.available.removeAll{$0 == checkpoint}
                 checkpoint.removeFromParent()
                 sceneManagerDelegate?.presentMissionScreenScene(mission: mission)
@@ -208,6 +209,12 @@ class CityScreenScene: SKScene {
         }
         Enemies.available.forEach { enemy in
             enemy.attack(scene: self, position: player.position)
+        }
+        
+        if player.position.y < Position.bottomLevel {
+            lives = lives - 1
+            updateLives()
+            player.position = Position.saved
         }
     }
 }
